@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Fajar Nurkholiq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0A0D12;
+    --surface: rgba(23, 29, 38, 0.55);
+    --surface-solid: #171D26;
+    --border: #232B36;
+    --text: #E7ECF1;
+    --text-muted: #8993A3;
+    --accent: #46E0C4;
+    --accent-rgb: 70, 224, 196;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html, body{
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  #network{
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .wrap{
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px 40px;
+  }
+
+  .panel{
+    width: 100%;
+    max-width: 420px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 36px 28px 28px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    text-align: center;
+  }
+
+  .node-mark{
+    width: 14px;
+    height: 14px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.14), 0 0 18px rgba(var(--accent-rgb), 0.75);
+  }
+
+  .name{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(22px, 5.5vw, 28px);
+    line-height: 1.25;
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .handle{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin: 0 0 18px;
+  }
+
+  .tagline{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13.5px;
+    color: var(--accent);
+    background: rgba(var(--accent-rgb), 0.08);
+    border: 1px solid rgba(var(--accent-rgb), 0.25);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 0 0 28px;
+    display: inline-block;
+  }
+
+  .links{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .link-card{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 16px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--text);
+    transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+  }
+
+  .link-card:hover,
+  .link-card:focus-visible{
+    transform: translateY(-2px);
+    border-color: rgba(var(--accent-rgb), 0.55);
+    background: rgba(var(--accent-rgb), 0.06);
+  }
+
+  .link-card:focus-visible{
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .badge{
+    flex: 0 0 auto;
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+    background: var(--surface-solid);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  .link-text{
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    text-align: left;
+  }
+
+  .link-label{
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .link-handle{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .arrow{
+    margin-left: auto;
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+
+  footer{
+    margin-top: 26px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    opacity: 0.6;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .link-card{ transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="network" aria-hidden="true"></canvas>
+
+<div class="wrap">
+  <div class="panel">
+    <div class="node-mark"></div>
+    <h1 class="name">Muhammad Fajar Nurkholiq</h1>
+    <p class="handle">@fajarnurkholiq</p>
+    <p class="tagline">// diam-diam explore teknologi</p>
+
+    <nav class="links" aria-label="Tautan sosial media">
+      <a class="link-card" href="portfolio.html">
+        <span class="badge">PF</span>
+        <span class="link-text">
+          <span class="link-label">Portfolio</span>
+          <span class="link-handle">Lihat yang udah dibangun</span>
+        </span>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a class="link-card" href="https://instagram.com/kholiq.619" target="_blank" rel="noopener noreferrer">
+        <span class="badge">IG</span>
+        <span class="link-text">
+          <span class="link-label">Instagram</span>
+          <span class="link-handle">@kholiq.619</span>
+        </span>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a class="link-card" href="https://tiktok.com/@fnurkholiq" target="_blank" rel="noopener noreferrer">
+        <span class="badge">TT</span>
+        <span class="link-text">
+          <span class="link-label">TikTok</span>
+          <span class="link-handle">@fnurkholiq</span>
+        </span>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a class="link-card" href="https://x.com/nurkholiq619" target="_blank" rel="noopener noreferrer">
+        <span class="badge">X</span>
+        <span class="link-text">
+          <span class="link-label">X</span>
+          <span class="link-handle">@nurkholiq619</span>
+        </span>
+        <span class="arrow">↗</span>
+      </a>
+
+      <a class="link-card" href="https://wa.me/6282121759018" target="_blank" rel="noopener noreferrer">
+        <span class="badge">WA</span>
+        <span class="link-text">
+          <span class="link-label">WhatsApp</span>
+          <span class="link-handle">Chat langsung</span>
+        </span>
+        <span class="arrow">↗</span>
+      </a>
+    </nav>
+
+    <footer>connected, quietly</footer>
+  </div>
+</div>
+
+<script>
+(function(){
+  var canvas = document.getElementById('network');
+  var ctx = canvas.getContext('2d');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var w, h, particles = [];
+  var ACCENT = '70, 224, 196';
+  var LINK_DIST = 130;
+
+  function rand(min, max){ return Math.random() * (max - min) + min; }
+
+  function resize(){
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  var count = Math.min(55, Math.floor((w * h) / 26000));
+  for (var i = 0; i < count; i++){
+    particles.push({
+      x: rand(0, w), y: rand(0, h),
+      vx: rand(-0.15, 0.15), vy: rand(-0.15, 0.15),
+      r: rand(1, 2.2), hero: false
+    });
+  }
+  var hero = { x: w / 2, y: h * 0.24, vx: 0, vy: 0, r: 4.5, hero: true };
+  particles.push(hero);
+
+  var mouse = { x: null, y: null };
+  window.addEventListener('mousemove', function(e){ mouse.x = e.clientX; mouse.y = e.clientY; });
+  window.addEventListener('mouseleave', function(){ mouse.x = null; mouse.y = null; });
+
+  function step(){
+    ctx.clearRect(0, 0, w, h);
+
+    for (var i = 0; i < particles.length; i++){
+      var p = particles[i];
+      if (!p.hero){
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > w) p.vx *= -1;
+        if (p.y < 0 || p.y > h) p.vy *= -1;
+        if (mouse.x !== null){
+          var dx = p.x - mouse.x, dy = p.y - mouse.y;
+          var d = Math.hypot(dx, dy);
+          if (d < 90 && d > 0){
+            p.x += (dx / d) * 0.6;
+            p.y += (dy / d) * 0.6;
+          }
+        }
+      }
+    }
+
+    for (var a = 0; a < particles.length; a++){
+      for (var b = a + 1; b < particles.length; b++){
+        var pa = particles[a], pb = particles[b];
+        var dist = Math.hypot(pa.x - pb.x, pa.y - pb.y);
+        var maxDist = (pa.hero || pb.hero) ? LINK_DIST * 1.6 : LINK_DIST;
+        if (dist < maxDist){
+          var alpha = (1 - dist / maxDist) * ((pa.hero || pb.hero) ? 0.5 : 0.2);
+          ctx.strokeStyle = 'rgba(' + ACCENT + ',' + alpha + ')';
+          ctx.lineWidth = (pa.hero || pb.hero) ? 1 : 0.6;
+          ctx.beginPath();
+          ctx.moveTo(pa.x, pa.y);
+          ctx.lineTo(pb.x, pb.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    for (var j = 0; j < particles.length; j++){
+      var pt = particles[j];
+      ctx.beginPath();
+      if (pt.hero){
+        ctx.shadowColor = 'rgba(' + ACCENT + ',0.9)';
+        ctx.shadowBlur = 14;
+        ctx.fillStyle = 'rgba(' + ACCENT + ',1)';
+      } else {
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = 'rgba(' + ACCENT + ',0.5)';
+      }
+      ctx.arc(pt.x, pt.y, pt.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    if (!reduceMotion) requestAnimationFrame(step);
+  }
+  step();
+})();
+</script>
+
+</body>
+</html>
