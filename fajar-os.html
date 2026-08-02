@@ -245,6 +245,8 @@ document.querySelectorAll('.window').forEach(function(win){
   win.addEventListener('touchstart', function(){ bringToFront(win); });
 
   var closeBtn = win.querySelector('.win-close');
+  closeBtn.addEventListener('mousedown', function(e){ e.stopPropagation(); });
+  closeBtn.addEventListener('touchstart', function(e){ e.stopPropagation(); }, { passive: true });
   closeBtn.addEventListener('click', function(e){
     e.stopPropagation();
     closeWindow(win);
