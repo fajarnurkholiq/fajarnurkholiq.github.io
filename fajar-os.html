@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAJAR_OS — Fajar Nurkholiq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0A0D12;
+    --surface: #171D26;
+    --surface-2: #1D2530;
+    --border: #2B3542;
+    --text: #E7ECF1;
+    --text-muted: #8993A3;
+    --accent: #46E0C4;
+    --accent-rgb: 70, 224, 196;
+  }
+  *{ box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body{
+    margin: 0; padding: 0; background: var(--bg); color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif; height: 100%; overflow: hidden;
+  }
+  #network{ position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+
+  .back{
+    position: fixed; top: 14px; left: 14px; z-index: 5;
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+    color: var(--text-muted); text-decoration: none;
+    background: rgba(23,29,38,0.7); padding: 6px 10px; border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .back:hover{ color: var(--accent); }
+
+  .desktop{
+    position: relative; z-index: 1; width: 100%; height: 100%;
+    padding-top: 56px;
+  }
+
+  .icons{
+    position: absolute; top: 0; left: 10px; display: flex; flex-direction: column; gap: 14px;
+  }
+  .icon{
+    width: 76px; background: none; border: none; cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    font-family: 'JetBrains Mono', monospace; color: var(--text);
+  }
+  .icon .glyph{
+    width: 44px; height: 44px; border-radius: 10px; background: var(--surface);
+    border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+  }
+  .icon:hover .glyph{ border-color: rgba(var(--accent-rgb), 0.5); }
+  .icon .label{ font-size: 10px; color: var(--text-muted); text-align: center; line-height: 1.3; }
+
+  .window{
+    position: absolute; display: none; flex-direction: column;
+    width: min(300px, 86vw); max-height: 62vh;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.45); overflow: hidden;
+  }
+  .title-bar{
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--surface-2); padding: 8px 10px; cursor: grab;
+    border-bottom: 1px solid var(--border); user-select: none;
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-muted);
+  }
+  .title-bar.dragging{ cursor: grabbing; }
+  .win-close{
+    width: 18px; height: 18px; border-radius: 4px; border: 1px solid var(--border);
+    background: transparent; color: var(--text-muted); font-size: 11px; line-height: 1;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .win-close:hover{ border-color: #FF5C72; color: #FF5C72; }
+
+  .window-body{
+    padding: 14px 16px; overflow-y: auto;
+    font-family: 'JetBrains Mono', monospace; font-size: 12.5px; line-height: 1.7;
+    white-space: pre-wrap; color: var(--text);
+  }
+  .window-body a{ color: var(--accent); text-decoration: none; }
+  .window-body a:hover{ text-decoration: underline; }
+  .window-body .muted{ color: var(--text-muted); }
+
+  .link-line{ display: block; margin-bottom: 6px; }
+
+  .taskbar{
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 6;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 14px; background: rgba(23,29,38,0.85);
+    border-top: 1px solid var(--border); backdrop-filter: blur(10px);
+    font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--text-muted);
+  }
+  .taskbar b{ color: var(--accent); }
+</style>
+</head>
+<body>
+
+<canvas id="network" aria-hidden="true"></canvas>
+<a class="back" href="portfolio.html">← kembali ke portfolio</a>
+
+<div class="desktop" id="desktop">
+  <div class="icons">
+    <button class="icon" data-win="winAbout" type="button">
+      <span class="glyph">📄</span><span class="label">Tentang_Saya.txt</span>
+    </button>
+    <button class="icon" data-win="winPortfolio" type="button">
+      <span class="glyph">📁</span><span class="label">Portfolio</span>
+    </button>
+    <button class="icon" data-win="winContact" type="button">
+      <span class="glyph">📇</span><span class="label">Kontak.txt</span>
+    </button>
+    <button class="icon" data-win="winSystem" type="button">
+      <span class="glyph">⚙️</span><span class="label">Sistem_Info</span>
+    </button>
+  </div>
+
+  <div class="window" id="winAbout" style="top:70px; left:100px;">
+    <div class="title-bar"><span>Tentang_Saya.txt — Notepad</span><button class="win-close" type="button">×</button></div>
+    <div class="window-body">Muhammad Fajar Nurkholiq
+@fajarnurkholiq
+
+// diam-diam explore teknologi
+
+Pendiam, tapi banyak ide muter di kepala — kebanyakan soal gadget, teknologi, dan hal digital lainnya. Masih terus belajar, pelan-pelan, satu hal baru setiap waktu.</div>
+  </div>
+
+  <div class="window" id="winPortfolio" style="top:110px; left:70px;">
+    <div class="title-bar"><span>Portfolio — File Explorer</span><button class="win-close" type="button">×</button></div>
+    <div class="window-body">Beberapa hal yang udah dibangun, bisa dicoba langsung:
+
+<a href="portfolio.html">→ Buka semua project di sini</a>
+
+<span class="muted">(folder ini bakal terus nambah isinya)</span></div>
+  </div>
+
+  <div class="window" id="winContact" style="top:90px; left:40px;">
+    <div class="title-bar"><span>Kontak.txt — Notepad</span><button class="win-close" type="button">×</button></div>
+    <div class="window-body"><a class="link-line" href="https://instagram.com/kholiq.619" target="_blank" rel="noopener noreferrer">IG — @kholiq.619</a><a class="link-line" href="https://tiktok.com/@fnurkholiq" target="_blank" rel="noopener noreferrer">TikTok — @fnurkholiq</a><a class="link-line" href="https://x.com/nurkholiq619" target="_blank" rel="noopener noreferrer">X — @nurkholiq619</a><a class="link-line" href="https://wa.me/6282121759018" target="_blank" rel="noopener noreferrer">WhatsApp — chat langsung</a></div>
+  </div>
+
+  <div class="window" id="winSystem" style="top:130px; left:110px;">
+    <div class="title-bar"><span>Sistem_Info</span><button class="win-close" type="button">×</button></div>
+    <div class="window-body">FAJAR_OS v1.0
+Status: <span class="muted">online, diam-diam mikir</span>
+RAM: rasa penasaran (unlimited)
+Uptime: masih proses belajar
+Last update: hari ini</div>
+  </div>
+</div>
+
+<div class="taskbar">
+  <span><b>FAJAR_OS</b></span>
+  <span id="clock">00:00</span>
+</div>
+
+<script>
+// ---------- Ambient particle background (proven, non-interactive) ----------
+(function(){
+  var canvas = document.getElementById('network');
+  var ctx = canvas.getContext('2d');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var w, h, particles = [];
+  var ACCENT = '70, 224, 196';
+  var LINK_DIST = 130;
+  function rand(min, max){ return Math.random() * (max - min) + min; }
+  function resize(){ w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+  window.addEventListener('resize', resize); resize();
+  var count = Math.min(35, Math.floor((w * h) / 35000));
+  for (var i = 0; i < count; i++){
+    particles.push({ x: rand(0,w), y: rand(0,h), vx: rand(-0.1,0.1), vy: rand(-0.1,0.1), r: rand(1,1.8) });
+  }
+  function step(){
+    ctx.clearRect(0,0,w,h);
+    for (var i=0;i<particles.length;i++){
+      var p = particles[i];
+      p.x += p.vx; p.y += p.vy;
+      if (p.x<0||p.x>w) p.vx*=-1;
+      if (p.y<0||p.y>h) p.vy*=-1;
+    }
+    for (var a=0;a<particles.length;a++){
+      for (var b=a+1;b<particles.length;b++){
+        var pa=particles[a], pb=particles[b];
+        var dist = Math.hypot(pa.x-pb.x, pa.y-pb.y);
+        if (dist < LINK_DIST){
+          var alpha = (1-dist/LINK_DIST) * 0.14;
+          ctx.strokeStyle = 'rgba('+ACCENT+','+alpha+')';
+          ctx.lineWidth = 0.6;
+          ctx.beginPath(); ctx.moveTo(pa.x,pa.y); ctx.lineTo(pb.x,pb.y); ctx.stroke();
+        }
+      }
+    }
+    for (var j=0;j<particles.length;j++){
+      var pt = particles[j];
+      ctx.beginPath();
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = 'rgba('+ACCENT+',0.4)';
+      ctx.arc(pt.x,pt.y,pt.r,0,Math.PI*2); ctx.fill();
+    }
+    if (!reduceMotion) requestAnimationFrame(step);
+  }
+  step();
+})();
+
+// ---------- Clock ----------
+function updateClock(){
+  var now = new Date();
+  var hh = String(now.getHours()).padStart(2, '0');
+  var mm = String(now.getMinutes()).padStart(2, '0');
+  document.getElementById('clock').textContent = hh + ':' + mm;
+}
+updateClock();
+setInterval(updateClock, 15000);
+
+// ---------- Window manager ----------
+var zTop = 10;
+
+function bringToFront(win){
+  zTop++;
+  win.style.zIndex = zTop;
+}
+
+function openWindow(id){
+  var win = document.getElementById(id);
+  if (!win) return;
+  win.style.display = 'flex';
+  bringToFront(win);
+}
+
+function closeWindow(win){
+  win.style.display = 'none';
+}
+
+document.querySelectorAll('.icon').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    openWindow(btn.getAttribute('data-win'));
+  });
+});
+
+document.querySelectorAll('.window').forEach(function(win){
+  win.addEventListener('mousedown', function(){ bringToFront(win); });
+  win.addEventListener('touchstart', function(){ bringToFront(win); });
+
+  var closeBtn = win.querySelector('.win-close');
+  closeBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    closeWindow(win);
+  });
+});
+
+// ---------- Drag logic (mouse + touch) ----------
+var dragState = null;
+
+function getPoint(e){
+  return e.touches && e.touches.length ? e.touches[0] : e;
+}
+
+document.querySelectorAll('.title-bar').forEach(function(bar){
+  var win = bar.closest('.window');
+
+  function start(e){
+    var point = getPoint(e);
+    var rect = win.getBoundingClientRect();
+    dragState = {
+      win: win,
+      offsetX: point.clientX - rect.left,
+      offsetY: point.clientY - rect.top
+    };
+    bar.classList.add('dragging');
+    bringToFront(win);
+    if (e.type === 'touchstart') e.preventDefault();
+  }
+
+  bar.addEventListener('mousedown', start);
+  bar.addEventListener('touchstart', start, { passive: false });
+});
+
+function onMove(e){
+  if (!dragState) return;
+  var point = getPoint(e);
+  var winEl = dragState.win;
+  var maxX = window.innerWidth - winEl.offsetWidth - 8;
+  var maxY = window.innerHeight - winEl.offsetHeight - 52;
+  var x = Math.min(Math.max(8, point.clientX - dragState.offsetX), Math.max(8, maxX));
+  var y = Math.min(Math.max(56, point.clientY - dragState.offsetY), Math.max(56, maxY));
+  winEl.style.left = x + 'px';
+  winEl.style.top = y + 'px';
+  if (e.type === 'touchmove') e.preventDefault();
+}
+
+function onEnd(){
+  if (dragState){
+    document.querySelectorAll('.title-bar.dragging').forEach(function(b){ b.classList.remove('dragging'); });
+  }
+  dragState = null;
+}
+
+document.addEventListener('mousemove', onMove);
+document.addEventListener('touchmove', onMove, { passive: false });
+document.addEventListener('mouseup', onEnd);
+document.addEventListener('touchend', onEnd);
+
+// Open the welcome window by default
+openWindow('winAbout');
+</script>
+
+</body>
+</html>
