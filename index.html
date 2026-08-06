@@ -5,28 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Muhammad Fajar Nurkholiq — AI & Tech Explorer</title>
+
   <meta
     name="description"
-    content="Muhammad Fajar Nurkholiq — mengeksplorasi AI, teknologi, dan berbagai project digital dengan bantuan AI."
+    content="Personal hub Muhammad Fajar Nurkholiq — AI & Tech Explorer yang mengeksplorasi AI, teknologi, dan pembuatan website dengan AI."
   />
   <meta name="author" content="Muhammad Fajar Nurkholiq" />
   <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#f5f5f2" />
+
+  <meta property="og:title" content="Muhammad Fajar Nurkholiq — AI & Tech Explorer" />
+  <meta
+    property="og:description"
+    content="Personal hub untuk eksplorasi AI, teknologi, portfolio, dan website."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://fajarnurkholiq.github.io/" />
+
+  <link rel="canonical" href="https://fajarnurkholiq.github.io/" />
 
   <style>
     :root {
-      --bg: #f7f7f4;
+      --bg: #f5f5f2;
       --surface: #ffffff;
-      --text: #151515;
-      --muted: #686864;
-      --line: #deded8;
-      --max-width: 1120px;
-      --radius: 18px;
+      --surface-soft: #eeeeeb;
+      --text: #111111;
+      --muted: #666666;
+      --line: #ddddda;
+      --accent: #111111;
+      --max-width: 1160px;
+      --radius: 22px;
+      --radius-small: 12px;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     html {
@@ -37,20 +53,32 @@
       font-family:
         Inter,
         ui-sans-serif,
-        system-ui,
         -apple-system,
         BlinkMacSystemFont,
         "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
         sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     a {
       color: inherit;
       text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    ::selection {
+      background: #111;
+      color: #fff;
     }
 
     .container {
@@ -62,17 +90,23 @@
        NAVBAR
     ========================= */
 
-    header {
+    .navbar {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(247, 247, 244, 0.88);
+      z-index: 1000;
+      border-bottom: 1px solid transparent;
+      background: rgba(245, 245, 242, 0.88);
       backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(222, 222, 216, 0.7);
+      -webkit-backdrop-filter: blur(14px);
+      transition: border-color 0.2s ease;
     }
 
-    .nav {
-      min-height: 72px;
+    .navbar.scrolled {
+      border-color: var(--line);
+    }
+
+    .nav-inner {
+      min-height: 76px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -81,8 +115,9 @@
 
     .brand {
       font-size: 15px;
-      font-weight: 700;
+      font-weight: 750;
       letter-spacing: -0.02em;
+      white-space: nowrap;
     }
 
     .nav-links {
@@ -90,16 +125,59 @@
       align-items: center;
       gap: 28px;
       list-style: none;
-      font-size: 14px;
-      color: var(--muted);
     }
 
     .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
       transition: color 0.2s ease;
     }
 
-    .nav-links a:hover {
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
       color: var(--text);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 17px;
+      border-radius: 999px;
+      background: var(--text);
+      color: #fff !important;
+      font-size: 13px !important;
+      font-weight: 650;
+      transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.82;
+      transform: translateY(-1px);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--surface);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 16px;
+      height: 1.5px;
+      background: var(--text);
     }
 
     /* =========================
@@ -107,119 +185,112 @@
     ========================= */
 
     .hero {
-      min-height: calc(100vh - 72px);
+      min-height: calc(100vh - 76px);
+      min-height: calc(100svh - 76px);
       display: flex;
       align-items: center;
-      padding: 100px 0 120px;
-      position: relative;
-      overflow: hidden;
+      padding: 90px 0 100px;
     }
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 420px;
-      height: 420px;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      right: -180px;
-      top: 80px;
-      opacity: 0.55;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 240px;
-      height: 240px;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      right: -90px;
-      top: 170px;
-      opacity: 0.45;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      max-width: 900px;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.65fr);
+      gap: 80px;
+      align-items: end;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      font-size: 13px;
-      font-weight: 600;
+      margin-bottom: 26px;
       color: var(--muted);
-      margin-bottom: 24px;
+      font-size: 13px;
+      font-weight: 650;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
 
-    .eyebrow::before {
-      content: "";
+    .eyebrow-dot {
       width: 7px;
       height: 7px;
-      background: var(--text);
       border-radius: 50%;
+      background: #111;
     }
 
     .hero h1 {
-      font-size: clamp(3.2rem, 8vw, 7.2rem);
-      line-height: 0.94;
-      letter-spacing: -0.075em;
       max-width: 900px;
-      margin-bottom: 30px;
+      font-size: clamp(48px, 8vw, 92px);
+      line-height: 0.98;
+      letter-spacing: -0.065em;
+      font-weight: 760;
+    }
+
+    .hero h1 span {
+      color: #777;
     }
 
     .hero-description {
-      max-width: 590px;
-      font-size: clamp(17px, 2vw, 20px);
+      max-width: 620px;
+      margin-top: 30px;
       color: var(--muted);
-      margin-bottom: 36px;
+      font-size: clamp(17px, 2vw, 20px);
+      line-height: 1.65;
     }
 
-    .actions {
+    .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
+      margin-top: 38px;
     }
 
     .button {
+      min-height: 50px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 48px;
+      gap: 9px;
       padding: 0 21px;
       border: 1px solid var(--text);
       border-radius: 999px;
+      background: var(--text);
+      color: #fff;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 650;
       transition:
+        transform 0.2s ease,
         background 0.2s ease,
-        color 0.2s ease,
-        transform 0.2s ease;
+        color 0.2s ease;
     }
 
     .button:hover {
       transform: translateY(-2px);
     }
 
-    .button.primary {
-      background: var(--text);
-      color: #fff;
-    }
-
-    .button.primary:hover {
-      background: #333;
-    }
-
     .button.secondary {
+      background: transparent;
       color: var(--text);
+      border-color: var(--line);
     }
 
     .button.secondary:hover {
-      background: var(--text);
-      color: #fff;
+      border-color: var(--text);
+    }
+
+    .hero-note {
+      justify-self: end;
+      max-width: 280px;
+      padding-bottom: 5px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .hero-note strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text);
+      font-size: 15px;
     }
 
     /* =========================
@@ -227,34 +298,40 @@
     ========================= */
 
     section {
-      padding: 110px 0;
+      scroll-margin-top: 100px;
+    }
+
+    .section {
+      padding: 120px 0;
+      border-top: 1px solid var(--line);
     }
 
     .section-header {
       display: grid;
-      grid-template-columns: 0.7fr 1.3fr;
-      gap: 40px;
+      grid-template-columns: 0.35fr 1fr;
+      gap: 50px;
       margin-bottom: 60px;
     }
 
     .section-number {
+      color: #999;
       font-size: 13px;
-      color: var(--muted);
-      font-weight: 600;
+      font-weight: 650;
     }
 
     .section-title {
-      font-size: clamp(2rem, 4vw, 3.5rem);
+      max-width: 800px;
+      font-size: clamp(32px, 5vw, 58px);
       line-height: 1.05;
-      letter-spacing: -0.055em;
-      max-width: 700px;
+      letter-spacing: -0.045em;
+      font-weight: 730;
     }
 
     .section-intro {
-      color: var(--muted);
-      max-width: 620px;
+      max-width: 650px;
       margin-top: 20px;
-      font-size: 16px;
+      color: var(--muted);
+      font-size: 17px;
     }
 
     /* =========================
@@ -264,50 +341,73 @@
     .about-grid {
       display: grid;
       grid-template-columns: 0.7fr 1.3fr;
-      gap: 40px;
-      border-top: 1px solid var(--line);
-      padding-top: 34px;
+      gap: 80px;
     }
 
-    .about-copy {
-      font-size: clamp(1.6rem, 3vw, 2.7rem);
-      line-height: 1.18;
-      letter-spacing: -0.04em;
+    .about-label {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .about-content {
       max-width: 760px;
     }
 
+    .about-content p {
+      font-size: clamp(22px, 3vw, 32px);
+      line-height: 1.35;
+      letter-spacing: -0.025em;
+    }
+
+    .about-content p + p {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+      letter-spacing: 0;
+    }
+
     /* =========================
-       EXPLORE
+       EXPLORATION
     ========================= */
 
-    .explore-grid {
+    .exploration-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      border-top: 1px solid var(--line);
-      border-left: 1px solid var(--line);
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
     }
 
-    .explore-item {
-      min-height: 190px;
-      padding: 30px;
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      transition: background 0.25s ease;
+    .exploration-card {
+      min-height: 260px;
+      padding: 34px;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    .explore-item:hover {
-      background: var(--surface);
-    }
-
-    .explore-index {
-      color: var(--muted);
+    .card-index {
+      color: #999;
       font-size: 12px;
-      margin-bottom: 48px;
+      font-weight: 650;
     }
 
-    .explore-item h3 {
-      font-size: 21px;
+    .exploration-card h3 {
+      margin-top: 50px;
+      font-size: 22px;
+      line-height: 1.2;
       letter-spacing: -0.025em;
+    }
+
+    .exploration-card p {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
     }
 
     /* =========================
@@ -319,115 +419,223 @@
     }
 
     .project-list {
-      border-top: 1px solid var(--line);
+      display: grid;
+      gap: 20px;
     }
 
     .project-card {
+      position: relative;
       display: grid;
-      grid-template-columns: 100px 1fr auto;
-      gap: 30px;
-      align-items: center;
-      padding: 34px 0;
-      border-bottom: 1px solid var(--line);
-      transition: padding 0.25s ease;
+      grid-template-columns: 1fr 1fr;
+      min-height: 420px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg);
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
     }
 
     .project-card:hover {
-      padding-left: 10px;
-      padding-right: 10px;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
     }
 
-    .project-number {
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 600;
+    .project-visual {
+      position: relative;
+      min-height: 360px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 75% 25%, rgba(255,255,255,0.95), transparent 28%),
+        linear-gradient(145deg, #ddd, #f4f4f1 55%, #d2d2ce);
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .project-card h3 {
-      font-size: clamp(1.7rem, 3vw, 2.6rem);
+    .project-visual.arunika {
+      background:
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,0.9), transparent 25%),
+        linear-gradient(145deg, #d9d6cf, #f2f0e9 55%, #c8c4ba);
+    }
+
+    .visual-frame {
+      width: 70%;
+      max-width: 350px;
+      aspect-ratio: 16 / 10;
+      border: 1px solid rgba(17, 17, 17, 0.14);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.55);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.12);
+      padding: 14px;
+      transform: rotate(-4deg);
+    }
+
+    .visual-frame.second {
+      position: absolute;
+      width: 45%;
+      max-width: 220px;
+      transform: rotate(7deg) translate(45%, 30%);
+      opacity: 0.65;
+    }
+
+    .visual-bar {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 15px;
+    }
+
+    .visual-bar i {
+      display: block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #777;
+    }
+
+    .visual-line {
+      width: 75%;
+      height: 6px;
+      margin-bottom: 8px;
+      border-radius: 10px;
+      background: #222;
+    }
+
+    .visual-line.short {
+      width: 45%;
+      background: #999;
+    }
+
+    .visual-blocks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+      margin-top: 22px;
+    }
+
+    .visual-block {
+      height: 45px;
+      border-radius: 5px;
+      background: rgba(17,17,17,0.08);
+    }
+
+    .project-info {
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: #888;
+      font-size: 12px;
+      font-weight: 650;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .project-info h3 {
+      margin-top: 40px;
+      font-size: clamp(30px, 4vw, 44px);
+      line-height: 1;
       letter-spacing: -0.045em;
-      margin-bottom: 7px;
     }
 
-    .project-card p {
+    .project-info p {
+      max-width: 500px;
+      margin-top: 18px;
       color: var(--muted);
-      max-width: 600px;
       font-size: 15px;
     }
 
     .project-link {
-      width: 46px;
-      height: 46px;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      font-size: 18px;
-      transition:
-        background 0.2s ease,
-        color 0.2s ease;
+      width: fit-content;
+      margin-top: 35px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 14px;
+      font-weight: 700;
+      border-bottom: 1px solid var(--text);
+      padding-bottom: 4px;
     }
 
-    .project-link:hover {
-      background: var(--text);
-      color: #fff;
+    .project-link span {
+      transition: transform 0.2s ease;
+    }
+
+    .project-link:hover span {
+      transform: translateX(4px);
     }
 
     /* =========================
        WHAT I DO
     ========================= */
 
-    .service-list {
-      border-top: 1px solid var(--line);
+    .services {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      border: 1px solid var(--line);
+      background: var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
     }
 
     .service {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-      padding: 25px 0;
-      border-bottom: 1px solid var(--line);
+      min-height: 170px;
+      padding: 30px;
+      background: var(--bg);
     }
 
-    .service span:first-child {
-      font-size: clamp(1.2rem, 2.4vw, 1.7rem);
-      letter-spacing: -0.03em;
+    .service h3 {
+      font-size: 19px;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
     }
 
-    .service span:last-child {
+    .service p {
+      max-width: 440px;
+      margin-top: 10px;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 14px;
     }
 
     /* =========================
-       PROCESS
+       WORKFLOW
     ========================= */
 
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
+    .workflow-list {
       border-top: 1px solid var(--line);
-      border-left: 1px solid var(--line);
     }
 
-    .process-item {
-      padding: 25px;
-      min-height: 180px;
-      border-right: 1px solid var(--line);
+    .workflow-item {
+      display: grid;
+      grid-template-columns: 80px 1fr 1fr;
+      gap: 30px;
+      align-items: start;
+      padding: 28px 0;
       border-bottom: 1px solid var(--line);
     }
 
-    .process-item .number {
-      display: block;
-      color: var(--muted);
-      font-size: 12px;
-      margin-bottom: 65px;
+    .workflow-number {
+      color: #999;
+      font-size: 13px;
+      font-weight: 650;
     }
 
-    .process-item h3 {
-      font-size: 16px;
-      letter-spacing: -0.02em;
+    .workflow-item h3 {
+      font-size: 21px;
+      letter-spacing: -0.025em;
+    }
+
+    .workflow-item p {
+      color: var(--muted);
+      font-size: 14px;
     }
 
     /* =========================
@@ -435,39 +643,70 @@
     ========================= */
 
     .contact {
+      padding-bottom: 140px;
+    }
+
+    .contact-box {
+      padding: clamp(35px, 7vw, 75px);
+      border-radius: var(--radius);
       background: var(--text);
       color: #fff;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 50px;
+      align-items: end;
     }
 
-    .contact .section-number {
+    .contact-box .eyebrow {
       color: #aaa;
     }
 
-    .contact-content {
-      max-width: 850px;
-    }
-
-    .contact h2 {
-      font-size: clamp(2.8rem, 7vw, 6.4rem);
-      line-height: 0.95;
-      letter-spacing: -0.07em;
-      margin-bottom: 30px;
-    }
-
-    .contact p {
-      color: #aaa;
-      max-width: 540px;
-      margin-bottom: 34px;
-    }
-
-    .contact .button {
-      border-color: #fff;
-      color: #fff;
-    }
-
-    .contact .button:hover {
+    .contact-box .eyebrow-dot {
       background: #fff;
-      color: var(--text);
+    }
+
+    .contact-box h2 {
+      max-width: 760px;
+      font-size: clamp(38px, 6vw, 70px);
+      line-height: 1;
+      letter-spacing: -0.055em;
+    }
+
+    .contact-box .button {
+      background: #fff;
+      color: #111;
+      border-color: #fff;
+      white-space: nowrap;
+    }
+
+    .contact-details {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px 40px;
+      padding-top: 25px;
+      border-top: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .contact-detail small {
+      color: #888;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .contact-detail a {
+      font-size: 14px;
+    }
+
+    .contact-detail a:hover {
+      text-decoration: underline;
     }
 
     /* =========================
@@ -475,137 +714,223 @@
     ========================= */
 
     footer {
-      background: var(--text);
-      color: #aaa;
-      border-top: 1px solid #333;
-      padding: 25px 0;
-      font-size: 13px;
+      border-top: 1px solid var(--line);
+      padding: 28px 0;
     }
 
     .footer-inner {
       display: flex;
+      align-items: center;
       justify-content: space-between;
       gap: 20px;
     }
 
-    /* =========================
-       ACCESSIBILITY
-    ========================= */
+    .footer-inner p,
+    .footer-links a {
+      color: var(--muted);
+      font-size: 12px;
+    }
 
-    a:focus-visible {
-      outline: 2px solid currentColor;
-      outline-offset: 5px;
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
     }
 
     /* =========================
        RESPONSIVE
     ========================= */
 
-    @media (max-width: 800px) {
+    @media (max-width: 850px) {
       .container {
-        width: min(calc(100% - 30px), var(--max-width));
-      }
-
-      .nav {
-        min-height: 64px;
+        width: min(calc(100% - 32px), var(--max-width));
       }
 
       .nav-links {
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 0;
+        right: 0;
+        padding: 18px 16px 22px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(245, 245, 242, 0.98);
         display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links li {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav-links li:last-child {
+        border-bottom: 0;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 13px 4px;
+      }
+
+      .nav-cta {
+        width: fit-content;
+        margin-top: 10px;
+        padding: 0 18px !important;
+      }
+
+      .menu-toggle {
+        display: flex;
       }
 
       .hero {
-        min-height: auto;
-        padding: 90px 0 100px;
+        padding: 75px 0 90px;
       }
 
-      .hero h1 {
-        font-size: clamp(3.2rem, 15vw, 5rem);
-      }
-
-      section {
-        padding: 80px 0;
-      }
-
-      .section-header,
-      .about-grid {
+      .hero-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 45px;
+      }
+
+      .hero-note {
+        justify-self: start;
+      }
+
+      .section {
+        padding: 90px 0;
       }
 
       .section-header {
-        margin-bottom: 40px;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-bottom: 45px;
       }
 
-      .explore-grid {
+      .about-grid {
         grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .exploration-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .exploration-card {
+        min-height: 210px;
       }
 
       .project-card {
-        grid-template-columns: 55px 1fr auto;
-        gap: 15px;
-      }
-
-      .project-card:hover {
-        padding-left: 0;
-        padding-right: 0;
-      }
-
-      .project-card p {
-        font-size: 14px;
-      }
-
-      .process-grid {
         grid-template-columns: 1fr;
       }
 
-      .process-item {
-        min-height: auto;
+      .project-visual {
+        min-height: 300px;
       }
 
-      .process-item .number {
-        margin-bottom: 25px;
+      .project-info {
+        padding: 32px;
+      }
+
+      .workflow-item {
+        grid-template-columns: 50px 1fr;
+        gap: 18px;
+      }
+
+      .workflow-item p {
+        grid-column: 2;
+      }
+
+      .contact-box {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .contact-details {
+        grid-column: 1;
       }
     }
 
-    @media (max-width: 520px) {
-      .hero {
-        padding-top: 75px;
+    @media (max-width: 560px) {
+      .brand {
+        font-size: 14px;
       }
 
-      .hero::before,
-      .hero::after {
-        display: none;
+      .hero h1 {
+        font-size: clamp(46px, 14vw, 68px);
       }
 
-      .actions {
-        width: 100%;
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
       }
 
       .button {
         width: 100%;
       }
 
-      .project-card {
-        grid-template-columns: 1fr auto;
+      .section-title {
+        font-size: 36px;
       }
 
-      .project-number {
-        display: none;
-      }
-
-      .project-card h3 {
-        font-size: 1.65rem;
+      .services {
+        grid-template-columns: 1fr;
       }
 
       .service {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 5px;
+        min-height: auto;
+      }
+
+      .project-visual {
+        min-height: 260px;
+      }
+
+      .project-info {
+        padding: 28px;
+      }
+
+      .project-info h3 {
+        font-size: 34px;
+      }
+
+      .contact {
+        padding-bottom: 90px;
+      }
+
+      .contact-box {
+        padding: 32px 25px;
+      }
+
+      .contact-box h2 {
+        font-size: 42px;
       }
 
       .footer-inner {
         flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
       }
     }
   </style>
@@ -613,221 +938,371 @@
 
 <body>
 
-  <!-- NAVBAR -->
-  <header>
-    <div class="container nav">
-      <a href="#top" class="brand" aria-label="Kembali ke halaman utama">
+  <!-- =========================
+       NAVBAR
+  ========================== -->
+
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="brand" aria-label="Muhammad Fajar Nurkholiq — Home">
         MFN.
       </a>
 
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Buka menu"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
       <nav aria-label="Navigasi utama">
-        <ul class="nav-links">
-          <li><a href="#about">Tentang</a></li>
-          <li><a href="#explore">Eksplorasi</a></li>
-          <li><a href="#projects">Portfolio</a></li>
-          <li><a href="#services">Layanan</a></li>
-          <li><a href="#contact">Kontak</a></li>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#about">About</a></li>
+          <li><a href="#exploration">Exploration</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#services">What I Do</a></li>
+          <li><a href="#workflow">Workflow</a></li>
+          <li>
+            <a
+              href="https://wa.me/6282121759018"
+              class="nav-cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Let's Talk
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main id="top">
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero-content">
+  <main>
 
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+
+        <div>
           <div class="eyebrow">
-            AI &amp; Tech Explorer
+            <span class="eyebrow-dot"></span>
+            AI & Tech Explorer
           </div>
 
           <h1>
-            Muhammad Fajar Nurkholiq
+            Exploring ideas,
+            <span>building with AI.</span>
           </h1>
 
           <p class="hero-description">
-            Mengeksplorasi AI, teknologi, dan membangun berbagai project
-            digital dengan bantuan AI.
+            Saya Muhammad Fajar Nurkholiq, pembelajar AI & teknologi yang
+            mengeksplorasi bagaimana AI Tools dapat digunakan untuk membuat
+            project digital yang berguna.
           </p>
 
-          <div class="actions">
-            <a class="button primary" href="#projects">
-              Lihat Portfolio
+          <div class="hero-actions">
+            <a
+              href="https://wa.me/6282121759018"
+              class="button"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Mulai Percakapan
+              <span aria-hidden="true">↗</span>
             </a>
 
-            <a class="button secondary" href="#contact">
-              Hubungi Saya
+            <a href="#projects" class="button secondary">
+              Lihat Project
             </a>
           </div>
-
         </div>
+
+        <div class="hero-note">
+          <strong>AI-assisted exploration.</strong>
+          Saya menggunakan AI sebagai bagian dari proses belajar,
+          eksplorasi, dan pembuatan project — sambil terus memahami
+          bagaimana teknologi tersebut bekerja.
+        </div>
+
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about">
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
+
+    <section class="section" id="about">
       <div class="container">
 
         <div class="section-header">
-
-          <span class="section-number">
-            01 / TENTANG
-          </span>
+          <div class="section-number">01 / About</div>
 
           <div>
             <h2 class="section-title">
-              Mengeksplorasi teknologi lewat project nyata.
+              Belajar dengan cara membuat.
             </h2>
 
             <p class="section-intro">
-              Saya mengeksplorasi AI dan teknologi melalui praktik langsung,
-              eksperimen, dan pembuatan berbagai project digital dengan
-              bantuan AI Tools.
+              Bagi saya, eksplorasi teknologi bukan hanya tentang mempelajari
+              teori, tetapi juga mencoba ide dan mengubahnya menjadi project
+              nyata.
             </p>
           </div>
-
         </div>
 
         <div class="about-grid">
-
-          <span class="section-number">
-            FOKUS SAAT INI
-          </span>
-
-          <p class="about-copy">
-            Belajar dengan mencoba, membangun, menyempurnakan, dan memahami
-            apa saja yang bisa dilakukan AI.
-          </p>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- EXPLORE -->
-    <section id="explore">
-      <div class="container">
-
-        <div class="section-header">
-
-          <span class="section-number">
-            02 / EKSPLORASI
-          </span>
-
-          <div>
-            <h2 class="section-title">
-              Hal-hal yang sedang saya eksplorasi.
-            </h2>
+          <div class="about-label">
+            Muhammad Fajar Nurkholiq<br />
+            AI & Tech Explorer
           </div>
 
-        </div>
+          <div class="about-content">
+            <p>
+              Saya sedang membangun pemahaman tentang AI dan teknologi
+              melalui eksperimen, project, dan penggunaan AI Tools dalam
+              proses kerja.
+            </p>
 
-        <div class="explore-grid">
-
-          <article class="explore-item">
-            <div class="explore-index">01</div>
-            <h3>AI &amp; AI Tools</h3>
-          </article>
-
-          <article class="explore-item">
-            <div class="explore-index">02</div>
-            <h3>Web &amp; Digital Projects</h3>
-          </article>
-
-          <article class="explore-item">
-            <div class="explore-index">03</div>
-            <h3>AI-assisted Workflows</h3>
-          </article>
-
-          <article class="explore-item">
-            <div class="explore-index">04</div>
-            <h3>Crypto &amp; Technology</h3>
-          </article>
-
+            <p>
+              Website ini menjadi personal hub untuk mendokumentasikan
+              project yang saya buat, hal-hal yang sedang saya eksplorasi,
+              dan layanan website yang bisa saya bantu kerjakan dengan
+              pendekatan AI-assisted.
+            </p>
+          </div>
         </div>
 
       </div>
     </section>
 
-    <!-- SELECTED PROJECTS -->
-    <section id="projects" class="projects">
+
+    <!-- =========================
+         AI & TECH EXPLORATION
+    ========================== -->
+
+    <section class="section" id="exploration">
       <div class="container">
 
         <div class="section-header">
-
-          <span class="section-number">
-            03 / PORTFOLIO
-          </span>
+          <div class="section-number">02 / Exploration</div>
 
           <div>
             <h2 class="section-title">
-              Beberapa project yang pernah saya buat.
+              Area yang sedang saya eksplorasi.
             </h2>
 
             <p class="section-intro">
-              Kumpulan project digital yang saya kerjakan sambil
-              mengeksplorasi AI-assisted workflows dan pengalaman web.
+              Bukan daftar klaim keahlian. Ini adalah area teknologi yang
+              sedang saya pelajari dan gunakan melalui project nyata.
             </p>
           </div>
+        </div>
 
+        <div class="exploration-grid">
+
+          <article class="exploration-card">
+            <div class="card-index">01</div>
+            <div>
+              <h3>AI Tools</h3>
+              <p>
+                Mengeksplorasi bagaimana AI dapat membantu proses berpikir,
+                riset, pembuatan konten, dan pengerjaan project.
+              </p>
+            </div>
+          </article>
+
+          <article class="exploration-card">
+            <div class="card-index">02</div>
+            <div>
+              <h3>AI-Assisted Web</h3>
+              <p>
+                Menggunakan AI untuk membantu merancang, membuat, menguji,
+                dan memperbaiki website.
+              </p>
+            </div>
+          </article>
+
+          <article class="exploration-card">
+            <div class="card-index">03</div>
+            <div>
+              <h3>Digital Projects</h3>
+              <p>
+                Mengubah ide atau kebutuhan bisnis menjadi project digital
+                sederhana yang bisa digunakan dan dikembangkan.
+              </p>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================
+         SELECTED PROJECTS
+    ========================== -->
+
+    <section class="section projects" id="projects">
+      <div class="container">
+
+        <div class="section-header">
+          <div class="section-number">03 / Projects</div>
+
+          <div>
+            <h2 class="section-title">
+              Selected Projects.
+            </h2>
+
+            <p class="section-intro">
+              Beberapa project website yang saya buat sebagai bagian dari
+              proses eksplorasi dan pembelajaran.
+            </p>
+          </div>
         </div>
 
         <div class="project-list">
 
-          <!-- PROJECT 01 -->
+          <!-- Macake Coffee -->
+
           <article class="project-card">
 
-            <div class="project-number">
-              PROJECT 01
+            <div class="project-visual" aria-hidden="true">
+
+              <div class="visual-frame">
+                <div class="visual-bar">
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </div>
+
+                <div class="visual-line"></div>
+                <div class="visual-line short"></div>
+
+                <div class="visual-blocks">
+                  <div class="visual-block"></div>
+                  <div class="visual-block"></div>
+                </div>
+              </div>
+
+              <div class="visual-frame second">
+                <div class="visual-bar">
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </div>
+                <div class="visual-line"></div>
+                <div class="visual-line short"></div>
+              </div>
+
             </div>
 
-            <div>
-              <h3>Macake Coffee</h3>
+            <div class="project-info">
 
-              <p>
-                Website untuk Macake Coffee, brand kopi Robusta Single Origin
-                dari Cibeureum, Ciremai.
-              </p>
+              <div>
+                <div class="project-meta">
+                  <span>01 / Brand Website</span>
+                  <span>Macake Coffee</span>
+                </div>
+
+                <h3>Macake Coffee</h3>
+
+                <p>
+                  Website brand kopi Robusta Single Origin Cibeureum,
+                  Ciremai. Dibuat sebagai project digital untuk
+                  memperkenalkan brand dan produknya.
+                </p>
+              </div>
+
+              <a
+                href="https://fajarnurkholiq.github.io/macakecoffee/"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Lihat website Macake Coffee"
+              >
+                View Project
+                <span aria-hidden="true">↗</span>
+              </a>
+
             </div>
-
-            <a
-              class="project-link"
-              href="https://fajarnurkholiq.github.io/macakecoffee/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Lihat project Macake Coffee"
-            >
-              ↗
-            </a>
 
           </article>
 
-          <!-- PROJECT 02 -->
+
+          <!-- Arunika Wedding -->
+
           <article class="project-card">
 
-            <div class="project-number">
-              PROJECT 02
+            <div class="project-visual arunika" aria-hidden="true">
+
+              <div class="visual-frame">
+                <div class="visual-bar">
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </div>
+
+                <div class="visual-line"></div>
+                <div class="visual-line short"></div>
+
+                <div class="visual-blocks">
+                  <div class="visual-block"></div>
+                  <div class="visual-block"></div>
+                </div>
+              </div>
+
+              <div class="visual-frame second">
+                <div class="visual-bar">
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </div>
+                <div class="visual-line"></div>
+                <div class="visual-line short"></div>
+              </div>
+
             </div>
 
-            <div>
-              <h3>Arunika Wedding</h3>
+            <div class="project-info">
 
-              <p>
-                Demo website untuk konsep wedding vendor premium.
-              </p>
+              <div>
+                <div class="project-meta">
+                  <span>02 / Business Website</span>
+                  <span>Arunika Wedding</span>
+                </div>
+
+                <h3>Arunika Wedding</h3>
+
+                <p>
+                  Demo website untuk wedding vendor yang dirancang untuk
+                  menampilkan layanan, informasi bisnis, dan membangun
+                  kehadiran digital.
+                </p>
+              </div>
+
+              <a
+                href="https://fajarnurkholiq.github.io/arunikawedding/"
+                class="project-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Lihat website Arunika Wedding"
+              >
+                View Project
+                <span aria-hidden="true">↗</span>
+              </a>
+
             </div>
-
-            <a
-              class="project-link"
-              href="https://fajarnurkholiq.github.io/arunikawedding/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Lihat project Arunika Wedding"
-            >
-              ↗
-            </a>
 
           </article>
 
@@ -836,148 +1311,221 @@
       </div>
     </section>
 
-    <!-- WHAT I DO -->
-    <section id="services">
+
+    <!-- =========================
+         WHAT I DO
+    ========================== -->
+
+    <section class="section" id="services">
       <div class="container">
 
         <div class="section-header">
-
-          <span class="section-number">
-            04 / YANG SAYA KERJAKAN
-          </span>
+          <div class="section-number">04 / What I Do</div>
 
           <div>
-
             <h2 class="section-title">
-              Website untuk kebutuhan nyata.
+              Website sederhana untuk kebutuhan nyata.
             </h2>
 
             <p class="section-intro">
-              Pembuatan website dengan bantuan AI, dengan fokus pada
-              tampilan yang jelas, profesional, dan sesuai kebutuhan bisnis.
+              Saya membantu membuat website dengan pendekatan AI-assisted
+              untuk personal brand, produk, dan bisnis yang membutuhkan
+              kehadiran digital.
             </p>
-
           </div>
-
         </div>
 
-        <div class="service-list">
+        <div class="services">
 
-          <div class="service">
-            <span>AI-Assisted Website Creation</span>
-            <span>01</span>
-          </div>
+          <article class="service">
+            <h3>AI-Assisted Website Creation</h3>
+            <p>
+              Pembuatan website dengan AI sebagai bagian dari proses
+              eksplorasi, produksi, dan iterasi.
+            </p>
+          </article>
 
-          <div class="service">
-            <span>Landing Page</span>
-            <span>02</span>
-          </div>
+          <article class="service">
+            <h3>Landing Page</h3>
+            <p>
+              Halaman yang fokus memperkenalkan produk, layanan, campaign,
+              atau satu tujuan utama.
+            </p>
+          </article>
 
-          <div class="service">
-            <span>Business / Company Profile</span>
-            <span>03</span>
-          </div>
+          <article class="service">
+            <h3>Business / Company Profile</h3>
+            <p>
+              Website untuk memperkenalkan bisnis, layanan, identitas,
+              dan informasi penting kepada calon pelanggan.
+            </p>
+          </article>
 
-          <div class="service">
-            <span>Product / Service Website</span>
-            <span>04</span>
-          </div>
+          <article class="service">
+            <h3>Product / Service Website</h3>
+            <p>
+              Website yang membantu menjelaskan produk atau layanan secara
+              lebih terstruktur dan profesional.
+            </p>
+          </article>
 
-          <div class="service">
-            <span>Online Catalog</span>
-            <span>05</span>
-          </div>
+          <article class="service">
+            <h3>Online Catalog</h3>
+            <p>
+              Katalog digital untuk menampilkan daftar produk atau layanan
+              tanpa harus membangun sistem e-commerce yang kompleks.
+            </p>
+          </article>
 
-          <div class="service">
-            <span>Website untuk UMKM &amp; Bisnis Lokal</span>
-            <span>06</span>
-          </div>
+          <article class="service">
+            <h3>Website untuk UMKM & Bisnis Lokal</h3>
+            <p>
+              Website sederhana yang disesuaikan dengan kebutuhan bisnis
+              lokal dan pelanggan yang ingin dijangkau.
+            </p>
+          </article>
 
         </div>
 
       </div>
     </section>
 
-    <!-- PROCESS -->
-    <section id="process">
+
+    <!-- =========================
+         WORKFLOW
+    ========================== -->
+
+    <section class="section" id="workflow">
       <div class="container">
 
         <div class="section-header">
-
-          <span class="section-number">
-            05 / PROSES
-          </span>
+          <div class="section-number">05 / Workflow</div>
 
           <div>
             <h2 class="section-title">
-              Dari ide hingga siap digunakan.
+              Dari ide menjadi website.
             </h2>
-          </div>
 
+            <p class="section-intro">
+              Proses dibuat sederhana: memahami kebutuhan, membangun,
+              menguji, lalu memperbaiki sampai hasilnya siap digunakan.
+            </p>
+          </div>
         </div>
 
-        <div class="process-grid">
+        <div class="workflow-list">
 
-          <article class="process-item">
-            <span class="number">01</span>
-            <h3>Pahami</h3>
-          </article>
+          <div class="workflow-item">
+            <div class="workflow-number">01</div>
 
-          <article class="process-item">
-            <span class="number">02</span>
-            <h3>Rencanakan</h3>
-          </article>
+            <h3>Understand</h3>
 
-          <article class="process-item">
-            <span class="number">03</span>
-            <h3>Bangun dengan AI</h3>
-          </article>
+            <p>
+              Memahami bisnis, tujuan website, target pengguna, dan
+              informasi yang perlu ditampilkan.
+            </p>
+          </div>
 
-          <article class="process-item">
-            <span class="number">04</span>
-            <h3>Sempurnakan</h3>
-          </article>
+          <div class="workflow-item">
+            <div class="workflow-number">02</div>
 
-          <article class="process-item">
-            <span class="number">05</span>
-            <h3>Publikasikan</h3>
-          </article>
+            <h3>Build</h3>
+
+            <p>
+              Menyusun struktur, visual, dan isi website dengan bantuan
+              AI Tools sesuai kebutuhan project.
+            </p>
+          </div>
+
+          <div class="workflow-item">
+            <div class="workflow-number">03</div>
+
+            <h3>Test</h3>
+
+            <p>
+              Mengecek tampilan, responsive behavior, navigasi, link,
+              dan fungsi utama website.
+            </p>
+          </div>
+
+          <div class="workflow-item">
+            <div class="workflow-number">04</div>
+
+            <h3>Fix & Refine</h3>
+
+            <p>
+              Memperbaiki bagian yang bermasalah dan melakukan iterasi
+              sampai website siap dipublikasikan.
+            </p>
+          </div>
 
         </div>
 
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="contact">
+
+    <!-- =========================
+         CONTACT
+    ========================== -->
+
+    <section class="section contact" id="contact">
       <div class="container">
 
-        <div class="section-header">
+        <div class="contact-box">
 
-          <span class="section-number">
-            06 / KONTAK
-          </span>
-
-          <div class="contact-content">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              Contact
+            </div>
 
             <h2>
-              Punya project atau ide yang ingin diwujudkan?
+              Punya ide website?
+              Mari mulai dari percakapan.
             </h2>
+          </div>
 
-            <p>
-              Saya sedang mengembangkan kemampuan dalam pembuatan website
-              dengan bantuan AI. Jika Anda memiliki project atau ide yang
-              ingin didiskusikan, silakan hubungi saya.
-            </p>
+          <a
+            href="https://wa.me/6282121759018"
+            class="button"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Chat via WhatsApp
+            <span aria-hidden="true">↗</span>
+          </a>
 
-            <!-- Ganti #CONTACT-LINK dengan link kontak sebenarnya -->
-            <a
-              class="button"
-              href="#CONTACT-LINK"
-              aria-label="Hubungi Muhammad Fajar Nurkholiq"
-            >
-              Hubungi Saya ↗
-            </a>
+          <div class="contact-details">
+
+            <div class="contact-detail">
+              <small>WhatsApp</small>
+              <a
+                href="https://wa.me/6282121759018"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                082121759018
+              </a>
+            </div>
+
+            <div class="contact-detail">
+              <small>Instagram</small>
+              <a
+                href="https://instagram.com/kholiq.619"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                @kholiq.619
+              </a>
+            </div>
+
+            <div class="contact-detail">
+              <small>Website</small>
+              <a href="https://fajarnurkholiq.github.io/">
+                fajarnurkholiq.github.io
+              </a>
+            </div>
 
           </div>
 
@@ -988,44 +1536,86 @@
 
   </main>
 
-  <!-- FOOTER -->
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
   <footer>
     <div class="container footer-inner">
-      <span>
-        © 2026 Muhammad Fajar Nurkholiq
-      </span>
 
-      <span>
-        AI &amp; Tech Explorer
-      </span>
+      <p>
+        © <span id="year"></span> Muhammad Fajar Nurkholiq
+      </p>
+
+      <div class="footer-links">
+        <a href="#home">Back to top ↑</a>
+
+        <a
+          href="https://instagram.com/kholiq.619"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram
+        </a>
+      </div>
+
     </div>
   </footer>
 
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
   <script>
-    document.querySelectorAll('a[href^="#"]').forEach((link) => {
-      link.addEventListener("click", (event) => {
-        const targetId = link.getAttribute("href");
+    (() => {
+      "use strict";
 
-        if (
-          !targetId ||
-          targetId === "#" ||
-          targetId === "#CONTACT-LINK"
-        ) {
-          return;
+      const navbar = document.getElementById("navbar");
+      const menuToggle = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+      const year = document.getElementById("year");
+
+      // Dynamic year
+      if (year) {
+        year.textContent = new Date().getFullYear();
+      }
+
+      // Navbar border on scroll
+      const updateNavbar = () => {
+        if (window.scrollY > 10) {
+          navbar.classList.add("scrolled");
+        } else {
+          navbar.classList.remove("scrolled");
         }
+      };
 
-        const target = document.querySelector(targetId);
+      updateNavbar();
+      window.addEventListener("scroll", updateNavbar, { passive: true });
 
-        if (target) {
-          event.preventDefault();
+      // Mobile navigation
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener("click", () => {
+          const isOpen = navLinks.classList.toggle("active");
 
-          target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
+          menuToggle.setAttribute("aria-expanded", String(isOpen));
+          menuToggle.setAttribute(
+            "aria-label",
+            isOpen ? "Tutup menu" : "Buka menu"
+          );
+        });
+
+        // Close menu after selecting a navigation link
+        navLinks.querySelectorAll("a").forEach((link) => {
+          link.addEventListener("click", () => {
+            navLinks.classList.remove("active");
+            menuToggle.setAttribute("aria-expanded", "false");
+            menuToggle.setAttribute("aria-label", "Buka menu");
           });
-        }
-      });
-    });
+        });
+      }
+    })();
   </script>
 
 </body>
