@@ -25,7 +25,7 @@
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
+    html{scroll-behavior:smooth;scroll-padding-top:100px}
     body{
       background:var(--bg);
       color:var(--ink);
@@ -51,12 +51,20 @@
 
     /* NAV */
     .nav{
-      position:absolute;
+      position:fixed;
       top:0;
       left:0;
       width:100%;
-      z-index:20;
+      z-index:50;
       padding:28px 0;
+      background:transparent;
+      transition:background .3s ease,padding .3s ease,box-shadow .3s ease;
+    }
+    .nav.scrolled{
+      background:rgba(238,236,231,.92);
+      backdrop-filter:blur(10px);
+      padding:18px 0;
+      box-shadow:0 1px 0 var(--line);
     }
     .nav-inner{
       display:flex;
@@ -105,19 +113,21 @@
       gap:5px;
       cursor:pointer;
     }
+    .menu-btn{position:relative;z-index:60}
     .menu-btn span{
-      display:block;width:22px;height:1.5px;background:var(--ink);
+      display:block;width:22px;height:2px;background:var(--ink);
+      border-radius:2px;
       transition:transform .3s ease,opacity .3s ease;
     }
-    .menu-btn.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+    .menu-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
     .menu-btn.open span:nth-child(2){opacity:0}
-    .menu-btn.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+    .menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
     /* MOBILE FULLSCREEN MENU */
     .mobile-menu{
       position:fixed;
       inset:0;
-      z-index:40;
+      z-index:55;
       background:var(--bg);
       display:flex;
       flex-direction:column;
@@ -316,6 +326,7 @@
       margin-bottom:25px;
     }
     .work-title{font-size:44px;line-height:.95}
+    #about,#services,#products,#lab,#contact{scroll-margin-top:100px}
     .view-all{
       font-size:10px;
       text-transform:uppercase;
@@ -960,6 +971,14 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    const navEl = document.querySelector(".nav");
+    const onScroll = () => {
+      if (window.scrollY > 30) navEl.classList.add("scrolled");
+      else navEl.classList.remove("scrolled");
+    };
+    document.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
 
     const menuBtn = document.getElementById("menuBtn");
     const mobileMenu = document.getElementById("mobileMenu");
