@@ -37,6 +37,7 @@
     a{text-decoration:none;color:inherit}
     img{display:block;max-width:100%}
     button{font:inherit}
+    :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
     .container{
       width:min(calc(100% - 48px),var(--max));
@@ -90,8 +91,49 @@
       font-size:11px;
       text-transform:uppercase;
       letter-spacing:.04em;
+      transition:transform .25s ease,background .25s ease;
     }
-    .menu-btn{display:none;border:0;background:none;font-size:22px}
+    .nav-cta:hover{transform:translateY(-2px);background:var(--accent)}
+    .menu-btn{
+      display:none;
+      border:0;
+      background:none;
+      width:38px;height:38px;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:5px;
+      cursor:pointer;
+    }
+    .menu-btn span{
+      display:block;width:22px;height:1.5px;background:var(--ink);
+      transition:transform .3s ease,opacity .3s ease;
+    }
+    .menu-btn.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+    .menu-btn.open span:nth-child(2){opacity:0}
+    .menu-btn.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+    /* MOBILE FULLSCREEN MENU */
+    .mobile-menu{
+      position:fixed;
+      inset:0;
+      z-index:40;
+      background:var(--bg);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:26px;
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(-14px);
+      transition:opacity .35s ease,transform .35s ease,visibility .35s;
+    }
+    .mobile-menu.open{opacity:1;visibility:visible;transform:translateY(0)}
+    .mobile-menu a{
+      font-family:"Playfair Display",Georgia,serif;
+      font-size:30px;
+    }
 
     /* HERO */
     .hero{
@@ -137,6 +179,7 @@
       align-items:center;
       gap:22px;
       margin-top:30px;
+      flex-wrap:wrap;
     }
     .btn{
       display:inline-flex;
@@ -150,9 +193,12 @@
       font-weight:600;
       text-transform:uppercase;
       letter-spacing:.05em;
+      transition:transform .25s ease,opacity .25s ease;
     }
-    .btn-dark{background:var(--black);color:white}
+    .btn-dark{background:var(--black);color:#fff}
+    .btn-dark:hover{transform:translateY(-2px)}
     .btn-text{padding:0;background:none}
+    .btn-text:hover{opacity:.6}
     .arrow{font-size:16px}
     .scroll{
       font-size:10px;
@@ -183,7 +229,7 @@
       opacity:.96;
     }
     .hero-photo::after{
-      content:"YOUR PHOTO";
+      content:"FOTO PROFIL";
       position:absolute;
       inset:auto 0 25px 0;
       text-align:center;
@@ -216,7 +262,9 @@
       font-size:10px;
       font-weight:600;
       text-transform:uppercase;
+      transition:opacity .25s ease;
     }
+    .availability a:hover{opacity:.6}
 
     /* ABOUT + PROJECTS */
     .intro{
@@ -260,26 +308,6 @@
       font-size:12px;
     }
     .mini-list span{color:var(--accent)}
-    .about-image{
-      margin-top:25px;
-      width:100%;
-      height:380px;
-      border-radius:7px;
-      background:
-        linear-gradient(145deg,rgba(255,255,255,.25),transparent),
-        linear-gradient(160deg,#bcb6ae,#dedad2 60%,#aaa39b);
-      position:relative;
-      overflow:hidden;
-    }
-    .about-image::after{
-      content:"IMAGE / STORY";
-      position:absolute;
-      left:22px;
-      bottom:18px;
-      font-size:9px;
-      letter-spacing:.15em;
-      color:rgba(0,0,0,.5);
-    }
 
     .work-head{
       display:flex;
@@ -292,7 +320,9 @@
       font-size:10px;
       text-transform:uppercase;
       letter-spacing:.08em;
+      transition:opacity .25s ease;
     }
+    .view-all:hover{opacity:.6}
     .projects{
       display:grid;
       grid-template-columns:repeat(2,1fr);
@@ -307,9 +337,11 @@
       overflow:hidden;
       background:var(--soft);
       position:relative;
+      transition:transform .35s cubic-bezier(.2,.8,.2,1);
     }
+    .project:hover .project-thumb{transform:translateY(-4px)}
     .project-thumb::after{
-      content:"VIEW PROJECT →";
+      content:"LIHAT PROJECT →";
       position:absolute;
       right:12px;
       bottom:12px;
@@ -390,7 +422,9 @@
       border-right:1px solid #c8c2ba;
       border-bottom:1px solid #c8c2ba;
       min-height:190px;
+      transition:background .25s ease;
     }
+    .service:hover{background:rgba(255,255,255,.35)}
     .service-number{
       font-size:10px;
       color:var(--accent);
@@ -419,10 +453,13 @@
       gap:18px;
     }
     .product{
+      display:block;
       background:var(--paper);
       border:1px solid var(--line);
       padding:12px;
+      transition:transform .3s ease,border-color .3s ease;
     }
+    .product:hover{transform:translateY(-4px);border-color:var(--accent)}
     .product-img{
       aspect-ratio:1.15;
       background:linear-gradient(145deg,#26221e,#b59c80);
@@ -454,7 +491,9 @@
       align-items:center;
       padding:22px 0;
       border-bottom:1px solid #333;
+      transition:padding-left .3s ease;
     }
+    .lab-item:hover{padding-left:8px}
     .lab-num{font-size:10px;color:#888}
     .lab-item h3{
       font-family:"Playfair Display",Georgia,serif;
@@ -466,7 +505,9 @@
       font-size:9px;
       text-transform:uppercase;
       letter-spacing:.1em;
+      transition:opacity .25s ease;
     }
+    .lab-link:hover{opacity:.6}
 
     /* KAVELO */
     .kavelo{
@@ -511,6 +552,7 @@
       display:flex;
       gap:18px;
       margin-top:30px;
+      flex-wrap:wrap;
     }
 
     footer{
@@ -543,7 +585,7 @@
       .nav{padding:20px 0}
       .brand{font-size:26px}
       .nav-links,.nav-cta{display:none}
-      .menu-btn{display:block}
+      .menu-btn{display:flex}
 
       .hero{padding-top:78px;min-height:auto}
       .hero-card{
@@ -571,7 +613,6 @@
       .intro{padding:55px 0}
       .intro-grid{grid-template-columns:1fr;gap:45px}
       .about-title,.work-title,.services-title,.product-title,.lab-title{font-size:38px}
-      .about-image{height:300px}
       .work-head{align-items:start;gap:20px;flex-direction:column}
       .projects{grid-template-columns:1fr;gap:30px}
 
@@ -613,21 +654,33 @@
       <a class="brand" href="#home">F.</a>
 
       <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#work">Work</a>
-        <a href="#services">Services</a>
-        <a href="#products">Products</a>
-        <a href="#contact">Contact</a>
+        <a href="#home">Beranda</a>
+        <a href="#about">Tentang</a>
+        <a href="#work">Karya</a>
+        <a href="#services">Layanan</a>
+        <a href="#products">Produk</a>
+        <a href="#contact">Kontak</a>
       </div>
 
-      <a class="nav-cta" href="https://wa.me/6282121759018?text=Halo%20Fajar%2C%20saya%20mau%20diskusi%20project." target="_blank">
-        Let's Talk →
+      <a class="nav-cta" href="https://wa.me/6282121759018?text=Halo%20Fajar%2C%20saya%20mau%20diskusi%20project." target="_blank" rel="noopener">
+        Hubungi Saya →
       </a>
 
-      <button class="menu-btn" id="menuBtn" aria-label="Buka menu">☰</button>
+      <button class="menu-btn" id="menuBtn" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#home">Beranda</a>
+    <a href="#about">Tentang</a>
+    <a href="#work">Karya</a>
+    <a href="#services">Layanan</a>
+    <a href="#products">Produk</a>
+    <a href="#contact">Kontak</a>
+    <a class="btn btn-dark" href="https://wa.me/6282121759018?text=Halo%20Fajar%2C%20saya%20mau%20diskusi%20project." target="_blank" rel="noopener">Hubungi Saya →</a>
+  </div>
 
   <main>
 
@@ -638,8 +691,8 @@
 
           <div class="hero-copy">
             <div>
-              <div class="eyebrow">Hello, I'm Fajar</div>
-              <h1 class="serif">AI & Technology<br>Explorer Building<br>Digital Projects</h1>
+              <div class="eyebrow">Halo, Saya Fajar</div>
+              <h1 class="serif">AI & Technology<br>Explorer, Membangun<br>Project Digital</h1>
 
               <p class="hero-desc">
                 Membangun website, digital products, dan eksperimen berbasis AI
@@ -647,14 +700,14 @@
               </p>
 
               <div class="hero-actions">
-                <a class="btn btn-dark" href="#work">View My Work <span class="arrow">→</span></a>
-                <a class="btn btn-text" href="https://wa.me/6282121759018?text=Halo%20Fajar%2C%20saya%20mau%20diskusi%20project." target="_blank">
-                  Get In Touch <span class="arrow">→</span>
+                <a class="btn btn-dark" href="#work">Lihat Karya <span class="arrow">→</span></a>
+                <a class="btn btn-text" href="https://wa.me/6282121759018?text=Halo%20Fajar%2C%20saya%20mau%20diskusi%20project." target="_blank" rel="noopener">
+                  Hubungi Saya <span class="arrow">→</span>
                 </a>
               </div>
             </div>
 
-            <div class="scroll">↓ Scroll to explore</div>
+            <div class="scroll">↓ Scroll untuk jelajahi</div>
           </div>
 
           <!-- Ganti bagian ini dengan foto asli:
@@ -662,10 +715,10 @@
           -->
           <div class="hero-photo" aria-label="Area foto profil">
             <div class="availability">
-              <strong>● Available for Project</strong>
+              <strong>● Tersedia untuk Project</strong>
               Punya website, undangan digital, atau project digital yang ingin dibuat?
-              <a href="https://wa.me/6282121759018?text=Halo%20Fajar%2C%20saya%20mau%20diskusi%20project." target="_blank">
-                Schedule a chat →
+              <a href="https://wa.me/6282121759018?text=Halo%20Fajar%2C%20saya%20mau%20diskusi%20project." target="_blank" rel="noopener">
+                Jadwalkan Chat →
               </a>
             </div>
           </div>
@@ -679,9 +732,9 @@
       <div class="container intro-grid">
 
         <div>
-          <div class="section-label">About Me</div>
+          <div class="section-label">Tentang Saya</div>
           <h2 class="serif about-title">
-            Building Digital<br>Solutions With <span>Purpose.</span>
+            Membangun Solusi Digital<br>Dengan <span>Tujuan.</span>
           </h2>
           <p class="about-copy">
             Fokus pada eksplorasi AI dan teknologi melalui project nyata:
@@ -699,15 +752,15 @@
         <div id="work">
           <div class="work-head">
             <div>
-              <div class="section-label">Featured Work</div>
+              <div class="section-label">Karya Pilihan</div>
               <h2 class="serif work-title">Selected<br>Projects</h2>
             </div>
-            <a class="view-all" href="#lab">View all projects →</a>
+            <a class="view-all" href="#lab">Lihat semua project →</a>
           </div>
 
           <div class="projects">
 
-            <a class="project" href="https://fajarnurkholiq.github.io/macakecoffee/" target="_blank">
+            <a class="project" href="https://fajarnurkholiq.github.io/macakecoffee/" target="_blank" rel="noopener">
               <div class="project-thumb thumb-1">
                 <div class="mock-site"></div>
               </div>
@@ -715,7 +768,7 @@
               <div class="project-type">Website</div>
             </a>
 
-            <a class="project" href="https://fajarnurkholiq.github.io/homestudio.ido/" target="_blank">
+            <a class="project" href="https://fajarnurkholiq.github.io/homestudio.ido/" target="_blank" rel="noopener">
               <div class="project-thumb thumb-2">
                 <div class="mock-site"></div>
               </div>
@@ -723,7 +776,7 @@
               <div class="project-type">Website</div>
             </a>
 
-            <a class="project" href="https://fajarnurkholiq.github.io/inframestudio/" target="_blank">
+            <a class="project" href="https://fajarnurkholiq.github.io/inframestudio/" target="_blank" rel="noopener">
               <div class="project-thumb thumb-3">
                 <div class="mock-site"></div>
               </div>
@@ -731,7 +784,7 @@
               <div class="project-type">Website</div>
             </a>
 
-            <a class="project" href="https://fajar-os.vercel.app/" target="_blank">
+            <a class="project" href="https://fajar-os.vercel.app/" target="_blank" rel="noopener">
               <div class="project-thumb thumb-4">
                 <div class="mock-site"></div>
               </div>
@@ -749,8 +802,8 @@
     <section class="services" id="services">
       <div class="container">
         <div class="services-head">
-          <div class="section-label">What I Do</div>
-          <h2 class="serif services-title">Services & Solutions.</h2>
+          <div class="section-label">Yang Saya Kerjakan</div>
+          <h2 class="serif services-title">Layanan & Solusi.</h2>
         </div>
 
         <div class="services-grid">
@@ -762,7 +815,7 @@
 
           <article class="service">
             <div class="service-number">02</div>
-            <h3>Digital Invitation</h3>
+            <h3>Undangan Digital</h3>
             <p>Undangan digital modern dengan template yang dapat dikustomisasi.</p>
           </article>
 
@@ -787,7 +840,7 @@
 
         <div>
           <div class="section-label">Digital Products</div>
-          <h2 class="serif product-title">Things You<br>Can Use.</h2>
+          <h2 class="serif product-title">Siap Kamu<br>Gunakan.</h2>
           <p class="product-copy">
             Produk digital yang dibuat supaya bisa langsung dipakai,
             dikembangkan, atau dikustomisasi sesuai kebutuhan.
@@ -796,17 +849,17 @@
 
         <div class="product-grid">
 
-          <article class="product">
+          <a class="product" href="https://fajarnurkholiq.github.io/Elegant-Classic-AURELIA/" target="_blank" rel="noopener">
             <div class="product-img"></div>
             <h3>Aurelia</h3>
             <p>Elegant Classic Digital Invitation</p>
-          </article>
+          </a>
 
-          <article class="product">
+          <a class="product" href="https://fajarnurkholiq.github.io/Modern-Cinematic-NOIR/" target="_blank" rel="noopener">
             <div class="product-img"></div>
             <h3>Noir</h3>
             <p>Modern Cinematic Digital Invitation</p>
-          </article>
+          </a>
 
         </div>
       </div>
@@ -817,7 +870,7 @@
       <div class="container">
         <div class="section-label">Experiments / Lab</div>
         <h2 class="serif lab-title">
-          Exploring ideas through <span>real projects.</span>
+          Menjelajah ide lewat <span>project nyata.</span>
         </h2>
 
         <div class="lab-list">
@@ -826,27 +879,27 @@
             <div class="lab-num">01</div>
             <div>
               <h3>Kavelo Crypto Agent</h3>
-              <p>AI agent experiment for crypto information and analysis.</p>
+              <p>Eksperimen AI agent untuk mengolah dan menganalisis informasi crypto.</p>
             </div>
-            <a class="lab-link" href="https://kavelo-crypto-agent.vercel.app/" target="_blank">Open →</a>
+            <a class="lab-link" href="https://kavelo-crypto-agent.vercel.app/" target="_blank" rel="noopener">Buka →</a>
           </div>
 
           <div class="lab-item">
             <div class="lab-num">02</div>
             <div>
               <h3>Fajar OS</h3>
-              <p>AI workspace experiment combining conversation, memory, and AI tools.</p>
+              <p>Eksperimen AI workspace yang menggabungkan percakapan, memory, dan berbagai kemampuan AI.</p>
             </div>
-            <a class="lab-link" href="https://fajar-os.vercel.app/" target="_blank">Open →</a>
+            <a class="lab-link" href="https://fajar-os.vercel.app/" target="_blank" rel="noopener">Buka →</a>
           </div>
 
           <div class="lab-item">
             <div class="lab-num">03</div>
             <div>
               <h3>Website Demo Collection</h3>
-              <p>Starter, Business, dan Pro website demos untuk berbagai kebutuhan bisnis.</p>
+              <p>Demo website Starter, Business, dan Pro untuk berbagai kebutuhan bisnis.</p>
             </div>
-            <a class="lab-link" href="#work">Explore →</a>
+            <a class="lab-link" href="#work">Jelajahi →</a>
           </div>
 
         </div>
@@ -858,7 +911,7 @@
       <div class="container">
         <div class="kavelo-card">
           <div>
-            <div class="section-label">My Technology Lab</div>
+            <div class="section-label">Technology Lab Saya</div>
             <div class="kavelo-name">Kavelo<span>Lab</span></div>
             <p class="kavelo-copy">
               AI & Technology Lab untuk eksperimen, project, konten,
@@ -866,8 +919,8 @@
             </p>
           </div>
 
-          <a class="btn btn-dark" href="https://fajarnurkholiq.github.io/landing-page/" target="_blank">
-            Visit KaveloLab →
+          <a class="btn btn-dark" href="https://fajarnurkholiq.github.io/landing-page/" target="_blank" rel="noopener">
+            Kunjungi KaveloLab →
           </a>
         </div>
       </div>
@@ -877,18 +930,18 @@
     <section class="contact" id="contact">
       <div class="container">
         <div class="contact-inner">
-          <div class="section-label">Let's Work Together</div>
-          <h2>Have a project<br>in mind?</h2>
+          <div class="section-label">Mari Bekerja Sama</div>
+          <h2 class="serif">Punya project<br>yang ingin dibuat?</h2>
           <p>
             Ceritakan kebutuhan website, undangan digital, atau project
             digital yang ingin dibuat.
           </p>
 
           <div class="contact-actions">
-            <a class="btn btn-dark" href="https://wa.me/6282121759018?text=Halo%20Fajar%2C%20saya%20mau%20diskusi%20project." target="_blank">
+            <a class="btn btn-dark" href="https://wa.me/6282121759018?text=Halo%20Fajar%2C%20saya%20mau%20diskusi%20project." target="_blank" rel="noopener">
               WhatsApp →
             </a>
-            <a class="btn btn-text" href="https://instagram.com/kholiq.619" target="_blank">
+            <a class="btn btn-text" href="https://instagram.com/kholiq.619" target="_blank" rel="noopener">
               Instagram →
             </a>
           </div>
@@ -909,9 +962,22 @@
     document.getElementById("year").textContent = new Date().getFullYear();
 
     const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
 
     menuBtn.addEventListener("click", () => {
-      alert("Untuk versi mobile final, menu dapat dibuat menjadi full-screen navigation.");
+      const isOpen = mobileMenu.classList.toggle("open");
+      menuBtn.classList.toggle("open", isOpen);
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+      document.body.style.overflow = isOpen ? "hidden" : "";
+    });
+
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.remove("open");
+        menuBtn.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      });
     });
   </script>
 
