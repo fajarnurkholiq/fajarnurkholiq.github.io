@@ -113,7 +113,13 @@
       gap:5px;
       cursor:pointer;
     }
-    .menu-btn{position:relative;z-index:60}
+    .menu-btn{
+      position:relative;
+      z-index:60;
+      background:var(--paper);
+      border-radius:8px;
+      box-shadow:0 4px 14px rgba(0,0,0,.1);
+    }
     .menu-btn span{
       display:block;width:22px;height:2px;background:var(--ink);
       border-radius:2px;
@@ -447,6 +453,19 @@
       margin:38px 0 9px;
     }
     .service p{font-size:12px;color:#68635c}
+    .service-examples{
+      margin-top:14px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .service-examples a{
+      font-size:10.5px;
+      color:var(--accent);
+      font-weight:600;
+      transition:opacity .25s ease;
+    }
+    .service-examples a:hover{opacity:.6}
 
     /* PRODUCTS */
     .products{padding:80px 0}
@@ -458,32 +477,106 @@
     }
     .product-title{font-size:45px;line-height:1}
     .product-copy{font-size:13px;color:var(--muted);margin-top:16px;max-width:330px}
-    .product-grid{
+
+    /* CAPTION SYSTEM PRODUCT */
+    .caption-product{
       display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:18px;
-    }
-    .product{
-      display:block;
+      grid-template-columns:.85fr 1.15fr;
+      gap:0;
       background:var(--paper);
       border:1px solid var(--line);
-      padding:12px;
-      transition:transform .3s ease,border-color .3s ease;
+      border-radius:14px;
+      overflow:hidden;
     }
-    .product:hover{transform:translateY(-4px);border-color:var(--accent)}
-    .product-img{
-      aspect-ratio:1.15;
-      background:linear-gradient(145deg,#26221e,#b59c80);
+    .caption-visual{
+      background:linear-gradient(155deg,#1c1a17,#3d352b 60%,#6b5b45);
+      padding:36px 30px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      min-height:320px;
+      color:#f2ede4;
     }
-    .product:nth-child(2) .product-img{
-      background:linear-gradient(145deg,#0d0d0d,#555);
+    .caption-tag{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      color:#cbb896;
+      font-weight:600;
     }
-    .product h3{
+    .caption-steps{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      margin-top:24px;
+    }
+    .caption-steps div{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-size:12px;
+      padding-bottom:12px;
+      border-bottom:1px solid rgba(255,255,255,.12);
+      color:#e8e1d4;
+    }
+    .caption-steps div:last-child{border-bottom:none;padding-bottom:0}
+    .caption-steps span{
       font-family:"Playfair Display",Georgia,serif;
-      font-size:20px;
-      margin-top:12px;
+      font-size:15px;
+      color:#cbb896;
+      width:22px;
+      flex-shrink:0;
     }
-    .product p{font-size:10px;color:var(--muted)}
+    .caption-info{
+      padding:36px 38px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+    .caption-info h3{font-size:26px;margin-top:2px}
+    .caption-info > p{font-size:13.5px;color:#4f4b46;max-width:480px}
+    .caption-sub{font-size:12.5px;color:var(--muted);max-width:480px;line-height:1.6}
+    .caption-fit{margin-top:6px}
+    .fit-label{
+      display:block;
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      color:var(--accent);
+      margin-bottom:10px;
+    }
+    .caption-fit ul{list-style:none}
+    .caption-fit li{
+      font-size:12.5px;
+      color:#5f5a54;
+      padding:8px 0;
+      border-bottom:1px solid var(--line);
+      display:flex;
+      gap:10px;
+    }
+    .caption-fit li::before{content:"→";color:var(--accent);flex-shrink:0}
+    .caption-price{
+      margin-top:12px;
+      padding-top:22px;
+      border-top:1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+    .price-label{
+      display:block;
+      font-size:10px;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+      color:var(--muted);
+      margin-bottom:4px;
+    }
+    .price-value{
+      font-family:"Playfair Display",Georgia,serif;
+      font-size:28px;
+    }
 
     /* LAB */
     .lab{
@@ -587,6 +680,8 @@
       .intro-grid{gap:40px}
       .services-grid{grid-template-columns:repeat(2,1fr)}
       .product-layout{gap:40px}
+      .caption-product{grid-template-columns:1fr}
+      .caption-visual{min-height:auto}
       .kavelo-card{padding:40px}
     }
 
@@ -634,7 +729,10 @@
 
       .products{padding:60px 0}
       .product-layout{grid-template-columns:1fr;gap:35px}
-      .product-grid{grid-template-columns:1fr 1fr;gap:10px}
+      .caption-product{grid-template-columns:1fr}
+      .caption-visual{min-height:auto}
+      .caption-info{padding:28px 24px}
+      .caption-price{align-items:flex-start;flex-direction:column;gap:16px}
 
       .lab{padding:60px 0}
       .lab-item{grid-template-columns:35px 1fr;gap:10px}
@@ -828,6 +926,10 @@
             <div class="service-number">02</div>
             <h3>Undangan Digital</h3>
             <p>Undangan digital modern dengan template yang dapat dikustomisasi.</p>
+            <div class="service-examples">
+              <a href="https://fajarnurkholiq.github.io/Elegant-Classic-AURELIA/" target="_blank" rel="noopener">Aurelia — Elegant Classic ↗</a>
+              <a href="https://fajarnurkholiq.github.io/Modern-Cinematic-NOIR/" target="_blank" rel="noopener">Noir — Modern Cinematic ↗</a>
+            </div>
           </article>
 
           <article class="service">
@@ -858,20 +960,41 @@
           </p>
         </div>
 
-        <div class="product-grid">
-
-          <a class="product" href="https://fajarnurkholiq.github.io/Elegant-Classic-AURELIA/" target="_blank" rel="noopener">
-            <div class="product-img"></div>
-            <h3>Aurelia</h3>
-            <p>Elegant Classic Digital Invitation</p>
-          </a>
-
-          <a class="product" href="https://fajarnurkholiq.github.io/Modern-Cinematic-NOIR/" target="_blank" rel="noopener">
-            <div class="product-img"></div>
-            <h3>Noir</h3>
-            <p>Modern Cinematic Digital Invitation</p>
-          </a>
-
+        <div class="caption-product">
+          <div class="caption-visual">
+            <span class="caption-tag">KaveloLab</span>
+            <div class="caption-steps">
+              <div><span>01</span>Ide &amp; Bahan Mentah</div>
+              <div><span>02</span>Angle</div>
+              <div><span>03</span>Hook</div>
+              <div><span>04</span>Struktur Caption</div>
+              <div><span>05</span>Polish</div>
+            </div>
+          </div>
+          <div class="caption-info">
+            <div class="section-label">Caption AI Kamu Masih Terasa "AI Banget"?</div>
+            <h3 class="serif">KaveloLab Caption System</h3>
+            <p>Sistem 5 prompt berurutan untuk mengubah ide mentah jadi caption Instagram yang natural, punya hook, struktur, dan CTA — tanpa harus jago copywriting.</p>
+            <div class="caption-fit">
+              <div>
+                <span class="fit-label">Cocok kalau kamu</span>
+                <ul>
+                  <li>Sering pakai AI untuk membuat konten</li>
+                  <li>Punya ide tapi bingung mengubahnya jadi caption</li>
+                  <li>Sering dapat hasil AI yang kaku</li>
+                </ul>
+              </div>
+            </div>
+            <div class="caption-price">
+              <div>
+                <span class="price-label">Harga</span>
+                <span class="price-value">Rp29.000</span>
+              </div>
+              <a class="btn btn-dark" href="https://kavelolab.lynk.id" target="_blank" rel="noopener">
+                Dapatkan Caption System →
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
