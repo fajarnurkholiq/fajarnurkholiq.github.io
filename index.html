@@ -1,1198 +1,766 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Muhammad Fajar Nurkholiq — AI & Technology Explorer. Website, digital products, projects, dan eksperimen AI.">
-  <title>Muhammad Fajar Nurkholiq — AI & Technology Explorer</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Fajar — bukan template</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <!-- Font: hanya 2, dipilih manual -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 
   <style>
-    :root{
-      --bg:#eeece7;
-      --paper:#f7f5f1;
-      --ink:#151515;
-      --muted:#77736d;
-      --line:#d7d3cc;
-      --soft:#e5e1da;
-      --accent:#9a806d;
-      --black:#080808;
-      --radius:20px;
-      --max:1280px;
+    /* Reset brutal — tidak pakai reset generik */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth;scroll-padding-top:100px}
-    body{
-      background:var(--bg);
-      color:var(--ink);
-      font-family:"DM Sans",sans-serif;
-      line-height:1.55;
-      -webkit-font-smoothing:antialiased;
-      overflow-x:hidden;
-    }
-    a{text-decoration:none;color:inherit}
-    img{display:block;max-width:100%}
-    button{font:inherit}
-    :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-
-    .container{
-      width:min(calc(100% - 48px),var(--max));
-      margin:auto;
+    body {
+      background: #0c0b0a;
+      color: #e7e3db;
+      font-family: 'Space Grotesk', sans-serif;
+      line-height: 1.4;
+      padding: 0 20px;
     }
 
-    .serif{
-      font-family:"Playfair Display",Georgia,serif;
-      letter-spacing:-.035em;
+    /* Container — sengaja tidak simetris */
+    .wrap {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 40px 0 80px;
     }
 
-    /* NAV */
-    .nav{
-      position:fixed;
-      top:0;
-      left:0;
-      width:100%;
-      z-index:50;
-      padding:28px 0;
-      background:rgba(238,236,231,0.88);
-      backdrop-filter:blur(12px);
-      -webkit-backdrop-filter:blur(12px);
-      transition:padding .3s ease,box-shadow .3s ease;
-      will-change:transform;
-      border-bottom:1px solid rgba(0,0,0,0.04);
-    }
-    .nav.scrolled{
-      padding:18px 0;
-      box-shadow:0 1px 0 var(--line);
-      background:rgba(238,236,231,0.94);
-    }
-    .nav-inner{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-    }
-    .brand{
-      font-family:"Playfair Display",Georgia,serif;
-      font-size:30px;
-      font-weight:600;
-    }
-    .nav-links{
-      display:flex;
-      align-items:center;
-      gap:30px;
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:.06em;
-    }
-    .nav-links a{position:relative}
-    .nav-links a:first-child::after{
-      content:"";
-      position:absolute;
-      left:0;right:0;bottom:-7px;
-      height:1px;background:var(--ink);
-    }
-    .nav-cta{
-      background:var(--black);
-      color:#fff;
-      padding:13px 20px;
-      border-radius:7px;
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:.04em;
-      transition:transform .25s ease,background .25s ease;
-    }
-    .nav-cta:hover{transform:translateY(-2px);background:var(--accent)}
-    .menu-btn{
-      display:none;
-      border:0;
-      background:var(--paper);
-      width:38px;height:38px;
-      border-radius:8px;
-      box-shadow:0 4px 14px rgba(0,0,0,.1);
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:5px;
-      cursor:pointer;
-      position:relative;
-      z-index:60;
-    }
-    .menu-btn span{
-      display:block;width:22px;height:2px;background:var(--ink);
-      border-radius:2px;
-      transition:transform .3s ease,opacity .3s ease;
-    }
-    .menu-btn.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-    .menu-btn.open span:nth-child(2){opacity:0}
-    .menu-btn.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-
-    /* MOBILE FULLSCREEN MENU */
-    .mobile-menu{
-      position:fixed;
-      inset:0;
-      z-index:55;
-      background:var(--bg);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:26px;
-      opacity:0;
-      visibility:hidden;
-      transform:translateY(-14px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    .mobile-menu.open{
-      opacity:1;
-      visibility:visible;
-      transform:translateY(0);
-    }
-    .mobile-menu a{
-      font-family:"Playfair Display",Georgia,serif;
-      font-size:30px;
+    /* NAV — minimal, tanpa efek blur berlebihan */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0 40px;
+      border-bottom: 2px solid #2a2622;
+      flex-wrap: wrap;
+      gap: 20px;
     }
 
-    /* HERO */
-    .hero{
-      min-height:700px;
-      padding-top:105px;
-    }
-    .hero-card{
-      min-height:590px;
-      display:grid;
-      grid-template-columns:44% 56%;
-      background:var(--paper);
-      border-radius:var(--radius);
-      overflow:hidden;
-      box-shadow:0 20px 50px rgba(0,0,0,.08);
-    }
-    .hero-copy{
-      padding:105px 62px 55px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      position:relative;
-    }
-    .eyebrow{
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.13em;
-      color:var(--muted);
-      margin-bottom:18px;
-    }
-    .hero h1{
-      font-size:clamp(45px,5vw,76px);
-      line-height:.98;
-      max-width:650px;
-    }
-    .hero-desc{
-      max-width:460px;
-      font-size:16px;
-      color:#4f4b46;
-      margin-top:28px;
-    }
-    .hero-actions{
-      display:flex;
-      align-items:center;
-      gap:22px;
-      margin-top:30px;
-      flex-wrap:wrap;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      min-height:45px;
-      padding:0 20px;
-      border-radius:6px;
-      font-size:11px;
-      font-weight:600;
-      text-transform:uppercase;
-      letter-spacing:.05em;
-      transition:transform .25s ease,opacity .25s ease;
-      will-change:transform;
-    }
-    .btn-dark{background:var(--black);color:#fff}
-    .btn-dark:hover{transform:translateY(-2px)}
-    .btn-text{padding:0;background:none}
-    .btn-text:hover{opacity:.6}
-    .arrow{font-size:16px}
-    .scroll{
-      font-size:10px;
-      text-transform:uppercase;
-      letter-spacing:.1em;
-      color:var(--muted);
+    .logo {
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      background: #e7e3db;
+      color: #0c0b0a;
+      padding: 4px 14px 8px 14px;
+      display: inline-block;
+      line-height: 1;
     }
 
-    .hero-photo{
-      position:relative;
-      min-height:590px;
-      background:
-        radial-gradient(circle at 70% 20%,rgba(255,255,255,.55),transparent 28%),
-        linear-gradient(135deg,#d8d4ce,#bcb7af);
-      overflow:hidden;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .hero-photo img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      opacity:.92;
-    }
-    /* Placeholder teks HAPUS — sekarang foto asli yang tampil */
-    .hero-photo::after{
-      display:none; /* <-- Kunci perbaikan */
-    }
-    .availability{
-      position:absolute;
-      right:38px;
-      bottom:28px;
-      z-index:2;
-      width:220px;
-      padding:20px;
-      background:rgba(250,248,244,.95);
-      border-radius:9px;
-      box-shadow:0 12px 30px rgba(0,0,0,.12);
-      font-size:12px;
-    }
-    .availability strong{
-      display:block;
-      font-size:9px;
-      letter-spacing:.1em;
-      text-transform:uppercase;
-      margin-bottom:12px;
-    }
-    .availability a{
-      display:block;
-      margin-top:12px;
-      font-size:10px;
-      font-weight:600;
-      text-transform:uppercase;
-      transition:opacity .25s ease;
-    }
-    .availability a:hover{opacity:.6}
-
-    /* ABOUT + WORK */
-    .intro{
-      padding:45px 0 70px;
-    }
-    .intro-grid{
-      display:grid;
-      grid-template-columns:1fr 1.45fr;
-      gap:80px;
-      align-items:start;
-    }
-    .section-label{
-      font-size:10px;
-      text-transform:uppercase;
-      letter-spacing:.13em;
-      color:var(--muted);
-      margin-bottom:22px;
-    }
-    .about-title{
-      font-size:42px;
-      line-height:1.04;
-      max-width:400px;
-    }
-    .about-title span{color:var(--accent)}
-    .about-copy{
-      max-width:500px;
-      font-size:14px;
-      color:#5f5a54;
-      margin-top:20px;
-    }
-    .mini-list{
-      margin-top:24px;
-      border-top:1px solid var(--line);
-      max-width:430px;
-    }
-    .mini-list div{
-      display:flex;
-      gap:12px;
-      padding:10px 0;
-      border-bottom:1px solid var(--line);
-      font-size:12px;
-    }
-    .mini-list span{color:var(--accent)}
-
-    .work-head{
-      display:flex;
-      align-items:end;
-      justify-content:space-between;
-      margin-bottom:25px;
-    }
-    .work-title{font-size:44px;line-height:.95}
-    #about,#services,#products,#lab,#contact{scroll-margin-top:100px}
-    .view-all{
-      font-size:10px;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      transition:opacity .25s ease;
-    }
-    .view-all:hover{opacity:.6}
-    .projects{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:28px 20px;
-    }
-    .project{
-      display:block;
-    }
-    .project-thumb{
-      aspect-ratio:1.55;
-      border-radius:7px;
-      overflow:hidden;
-      background:var(--soft);
-      position:relative;
-      transition:transform .35s cubic-bezier(.2,.8,.2,1);
-      will-change:transform;
-    }
-    .project:hover .project-thumb{transform:translateY(-4px)}
-    .project-thumb::after{
-      content:"LIHAT PROJECT →";
-      position:absolute;
-      right:12px;
-      bottom:12px;
-      background:rgba(255,255,255,.9);
-      padding:7px 9px;
-      border-radius:4px;
-      font-size:8px;
-      letter-spacing:.08em;
-      opacity:0;
-      transform:translateY(5px);
-      transition:.25s;
-    }
-    .project:hover .project-thumb::after{
-      opacity:1;
-      transform:translateY(0);
-    }
-    .thumb-1{background:linear-gradient(135deg,#111,#3a3a3a)}
-    .thumb-2{background:linear-gradient(135deg,#ddd8d0,#f4f0e9)}
-    .thumb-3{background:linear-gradient(135deg,#e8e4dc,#c5bfb6)}
-    .thumb-4{background:linear-gradient(135deg,#121212,#444)}
-    .mock-site{
-      position:absolute;
-      inset:13% 12%;
-      border-radius:4px;
-      background:rgba(255,255,255,.9);
-      box-shadow:0 12px 25px rgba(0,0,0,.12);
-      padding:10%;
-    }
-    .thumb-1 .mock-site,.thumb-4 .mock-site{background:#151515}
-    .mock-site::before{
-      content:"";
-      display:block;
-      width:55%;
-      height:7px;
-      background:currentColor;
-      opacity:.8;
-      margin-bottom:20px;
-    }
-    .mock-site::after{
-      content:"";
-      display:block;
-      width:75%;
-      height:55%;
-      border-top:1px solid currentColor;
-      border-bottom:1px solid currentColor;
-      opacity:.25;
-    }
-    .project-name{
-      margin-top:12px;
-      font-family:"Playfair Display",Georgia,serif;
-      font-size:17px;
-    }
-    .project-type{
-      font-size:9px;
-      color:var(--muted);
-      text-transform:uppercase;
-      letter-spacing:.08em;
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
     }
 
-    /* SERVICES */
-    .services{
-      padding:80px 0;
-      background:#ddd9d2;
-    }
-    .services-head{
-      max-width:600px;
-      margin-bottom:30px;
-    }
-    .services-title{font-size:46px;line-height:1}
-    .services-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      border-top:1px solid #c8c2ba;
-      border-left:1px solid #c8c2ba;
-    }
-    .service{
-      padding:28px 22px;
-      border-right:1px solid #c8c2ba;
-      border-bottom:1px solid #c8c2ba;
-      min-height:190px;
-      transition:background .25s ease;
-    }
-    .service:hover{background:rgba(255,255,255,.35)}
-    .service-number{
-      font-size:10px;
-      color:var(--accent);
-      letter-spacing:.1em;
-    }
-    .service h3{
-      font-family:"Playfair Display",Georgia,serif;
-      font-size:24px;
-      margin:38px 0 9px;
-    }
-    .service p{font-size:12px;color:#68635c}
-    .service-examples{
-      margin-top:14px;
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-    }
-    .service-examples a{
-      font-size:10.5px;
-      color:var(--accent);
-      font-weight:600;
-      transition:opacity .25s ease;
-    }
-    .service-examples a:hover{opacity:.6}
-
-    /* PRODUCTS */
-    .products{padding:80px 0}
-    .product-layout{
-      display:grid;
-      grid-template-columns:.75fr 1.25fr;
-      gap:70px;
-      align-items:start;
-    }
-    .product-title{font-size:45px;line-height:1}
-    .product-copy{font-size:13px;color:var(--muted);margin-top:16px;max-width:330px}
-
-    /* CAPTION SYSTEM PRODUCT */
-    .caption-product{
-      display:grid;
-      grid-template-columns:.85fr 1.15fr;
-      gap:0;
-      background:var(--paper);
-      border:1px solid var(--line);
-      border-radius:14px;
-      overflow:hidden;
-    }
-    .caption-visual{
-      background:linear-gradient(155deg,#1c1a17,#3d352b 60%,#6b5b45);
-      padding:36px 30px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      min-height:320px;
-      color:#f2ede4;
-    }
-    .caption-tag{
-      font-size:11px;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      color:#cbb896;
-      font-weight:600;
-    }
-    .caption-steps{
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      margin-top:24px;
-    }
-    .caption-steps div{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      font-size:12px;
-      padding-bottom:12px;
-      border-bottom:1px solid rgba(255,255,255,.12);
-      color:#e8e1d4;
-    }
-    .caption-steps div:last-child{border-bottom:none;padding-bottom:0}
-    .caption-steps span{
-      font-family:"Playfair Display",Georgia,serif;
-      font-size:15px;
-      color:#cbb896;
-      width:22px;
-      flex-shrink:0;
-    }
-    .caption-info{
-      padding:36px 38px;
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-    }
-    .caption-info h3{font-size:26px;margin-top:2px}
-    .caption-info > p{font-size:13.5px;color:#4f4b46;max-width:480px}
-    .caption-sub{font-size:12.5px;color:var(--muted);max-width:480px;line-height:1.6}
-    .caption-fit{margin-top:6px}
-    .fit-label{
-      display:block;
-      font-size:10px;
-      text-transform:uppercase;
-      letter-spacing:.1em;
-      color:var(--accent);
-      margin-bottom:10px;
-    }
-    .caption-fit ul{list-style:none}
-    .caption-fit li{
-      font-size:12.5px;
-      color:#5f5a54;
-      padding:8px 0;
-      border-bottom:1px solid var(--line);
-      display:flex;
-      gap:10px;
-    }
-    .caption-fit li::before{content:"→";color:var(--accent);flex-shrink:0}
-    .caption-price{
-      margin-top:12px;
-      padding-top:22px;
-      border-top:1px solid var(--line);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:18px;
-      flex-wrap:wrap;
-    }
-    .price-label{
-      display:block;
-      font-size:10px;
-      text-transform:uppercase;
-      letter-spacing:.1em;
-      color:var(--muted);
-      margin-bottom:4px;
-    }
-    .price-value{
-      font-family:"Playfair Display",Georgia,serif;
-      font-size:28px;
+    .nav-links a {
+      color: #b0aaa0;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s;
+      padding-bottom: 4px;
     }
 
-    /* LAB */
-    .lab{
-      padding:75px 0;
-      background:var(--black);
-      color:#fff;
-    }
-    .lab .section-label{color:#aaa}
-    .lab-title{font-size:46px;line-height:1;max-width:650px}
-    .lab-title span{color:#bba48e}
-    .lab-list{margin-top:38px;border-top:1px solid #333}
-    .lab-item{
-      display:grid;
-      grid-template-columns:70px 1fr auto;
-      gap:20px;
-      align-items:center;
-      padding:22px 0;
-      border-bottom:1px solid #333;
-      transition:padding-left .3s ease;
-    }
-    .lab-item:hover{padding-left:8px}
-    .lab-num{font-size:10px;color:#888}
-    .lab-item h3{
-      font-family:"Playfair Display",Georgia,serif;
-      font-size:23px;
-      font-weight:500;
-    }
-    .lab-item p{font-size:11px;color:#999;margin-top:3px}
-    .lab-link{
-      font-size:9px;
-      text-transform:uppercase;
-      letter-spacing:.1em;
-      transition:opacity .25s ease;
-    }
-    .lab-link:hover{opacity:.6}
-
-    /* KAVELO */
-    .kavelo{
-      padding:80px 0;
-    }
-    .kavelo-card{
-      background:var(--paper);
-      border-radius:var(--radius);
-      padding:55px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:40px;
-    }
-    .kavelo-name{
-      font-family:"Playfair Display",Georgia,serif;
-      font-size:46px;
-    }
-    .kavelo-name span{color:var(--accent)}
-    .kavelo-copy{font-size:13px;color:var(--muted);max-width:500px;margin-top:8px}
-
-    /* CONTACT */
-    .contact{
-      padding:110px 0;
-      background:#e0dcd5;
-    }
-    .contact-inner{
-      max-width:850px;
-    }
-    .contact h2{
-      font-family:"Playfair Display",Georgia,serif;
-      font-size:clamp(48px,7vw,88px);
-      line-height:.95;
-    }
-    .contact p{
-      max-width:480px;
-      margin-top:22px;
-      color:#625d57;
-      font-size:14px;
-    }
-    .contact-actions{
-      display:flex;
-      gap:18px;
-      margin-top:30px;
-      flex-wrap:wrap;
+    .nav-links a:hover {
+      border-color: #e7e3db;
+      color: #e7e3db;
     }
 
-    footer{
-      padding:30px 0;
-      background:var(--black);
-      color:#aaa;
-      font-size:10px;
-    }
-    .footer-inner{
-      display:flex;
-      justify-content:space-between;
-      gap:20px;
+    /* HERO — tanpa foto, fokus ke teks dan "keberanian" */
+    .hero {
+      padding: 80px 0 60px;
+      border-bottom: 2px solid #2a2622;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 60px;
     }
 
-    /* ============================================================ */
-    /* 1. TABLET (768px - 992px) - Perubahan jelas dari desktop     */
-    /* ============================================================ */
-    @media (max-width: 992px){
-      .container{width:min(calc(100% - 36px),900px)}
-      
-      .hero-card{grid-template-columns:48% 52%}
-      .hero-copy{padding:75px 36px 40px}
-      .hero h1{font-size:clamp(40px,5.5vw,54px)}
-      .hero-desc{font-size:15px}
-      .hero-photo{min-height:480px}
-      .availability{right:24px;bottom:20px;width:200px;padding:16px}
-      
-      .intro-grid{gap:45px}
-      .about-title{font-size:36px}
-      .work-title{font-size:38px}
-      
-      .services-grid{grid-template-columns:repeat(2,1fr)}
-      .services-title{font-size:40px}
-      
-      .product-layout{gap:40px;grid-template-columns:1fr 1fr}
-      .product-title{font-size:38px}
-      .caption-product{grid-template-columns:1fr}
-      .caption-visual{min-height:auto}
-      
-      .lab-title{font-size:40px}
-      .lab-item{grid-template-columns:60px 1fr auto}
-      
-      .kavelo-card{padding:40px}
-      .kavelo-name{font-size:40px}
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    /* ============================================================ */
-    /* 2. MOBILE (< 768px) - Perubahan EKSTREM (Foto di atas)      */
-    /* ============================================================ */
-    @media (max-width: 768px){
-      .container{width:min(calc(100% - 28px),520px)}
-      
-      .nav{padding:16px 0}
-      .brand{font-size:24px}
-      .nav-links,.nav-cta{display:none}
-      .menu-btn{display:flex}
+    .hero-left .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #a09080;
+      margin-bottom: 20px;
+      font-family: 'JetBrains Mono', monospace;
+    }
 
-      .hero{padding-top:72px;min-height:auto}
-      .hero-card{
-        display:flex;
-        flex-direction:column;
-        border-radius:16px;
-        min-height:auto;
-      }
-      /* FOTO PINDAH KE ATAS (urutan 1) */
-      .hero-photo{
-        order:-1;
-        min-height:340px;
-        border-radius:16px 16px 0 0;
-      }
-      .hero-photo::after{
-        display:none;
-      }
-      .hero-copy{
-        padding:40px 24px 32px;
-        min-height:auto;
-      }
-      .hero h1{font-size:clamp(38px,12vw,52px)}
-      .hero-desc{font-size:14px;margin-top:18px}
-      .hero-actions{gap:14px}
-      .btn{min-height:48px;padding:0 24px;font-size:12px;width:100%;justify-content:center}
-      .btn-text{width:auto;padding:0}
-      .availability{
-        position:relative;
-        right:auto;
-        bottom:auto;
-        width:100%;
-        margin-top:16px;
-        background:rgba(250,248,244,.98);
-        padding:16px 18px;
-        border-radius:8px;
+    .hero-left h1 {
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      background: linear-gradient(135deg, #f5ede4 0%, #b8a090 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-left .sub {
+      margin-top: 28px;
+      font-size: 18px;
+      color: #b0aaa0;
+      max-width: 420px;
+      font-weight: 400;
+    }
+
+    .hero-left .actions {
+      margin-top: 40px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .btn-primary {
+      background: #e7e3db;
+      color: #0c0b0a;
+      border-radius: 0;
+    }
+
+    .btn-primary:hover {
+      background: #b8a090;
+      transform: scale(0.97);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #e7e3db;
+      border: 2px solid #4a4440;
+      border-radius: 0;
+    }
+
+    .btn-outline:hover {
+      border-color: #e7e3db;
+      background: rgba(255, 255, 255, 0.04);
+      transform: scale(0.97);
+    }
+
+    /* Kanan hero — "abstrak" tanpa foto */
+    .hero-right {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      align-content: start;
+    }
+
+    .hero-right .box {
+      background: #1a1714;
+      padding: 24px 18px;
+      border: 1px solid #2a2622;
+      transition: background 0.2s;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #c8c0b5;
+    }
+
+    .hero-right .box:hover {
+      background: #2a2622;
+    }
+
+    .hero-right .box strong {
+      display: block;
+      font-size: 28px;
+      font-weight: 700;
+      color: #e7e3db;
+      margin-bottom: 6px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-right .box span {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #908880;
+    }
+
+    .box-highlight {
+      grid-column: span 2;
+      background: #1a1714;
+      border: 2px solid #b8a090;
+      padding: 28px 22px;
+    }
+
+    .box-highlight strong {
+      font-size: 32px;
+    }
+
+    /* SECTION "TENTANG + KARYA" — digabung, tidak terpisah */
+    .about-work {
+      padding: 80px 0 40px;
+      border-bottom: 2px solid #2a2622;
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 60px;
+    }
+
+    .about-work .left h2 {
+      font-size: 44px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+    }
+
+    .about-work .left p {
+      margin-top: 20px;
+      color: #b0aaa0;
+      font-size: 15px;
+      max-width: 400px;
+    }
+
+    .about-work .right .work-item {
+      padding: 24px 0;
+      border-bottom: 1px solid #2a2622;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 20px;
+      transition: padding-left 0.15s;
+    }
+
+    .about-work .right .work-item:hover {
+      padding-left: 12px;
+    }
+
+    .work-item .name {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .work-item .meta {
+      font-size: 12px;
+      color: #908880;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .work-item .desc {
+      font-size: 14px;
+      color: #b0aaa0;
+      margin-top: 4px;
+      flex-basis: 100%;
+    }
+
+    /* LAYANAN — daftar vertikal, bukan grid */
+    .services {
+      padding: 80px 0 60px;
+      border-bottom: 2px solid #2a2622;
+    }
+
+    .services h2 {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 40px;
+    }
+
+    .service-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .service-item {
+      display: grid;
+      grid-template-columns: 60px 1fr 1fr;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid #2a2622;
+      align-items: center;
+      transition: background 0.15s;
+      padding-left: 0;
+    }
+
+    .service-item:hover {
+      background: #1a1714;
+      padding-left: 12px;
+    }
+
+    .service-item .num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: #908880;
+    }
+
+    .service-item h3 {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .service-item p {
+      font-size: 13px;
+      color: #b0aaa0;
+      max-width: 400px;
+    }
+
+    /* PRODUK — satu kolom, gaya "manifesto" */
+    .products {
+      padding: 80px 0 60px;
+      border-bottom: 2px solid #2a2622;
+    }
+
+    .products h2 {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .products .subhead {
+      font-size: 16px;
+      color: #b0aaa0;
+      margin-bottom: 40px;
+    }
+
+    .product-card {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 40px;
+      padding: 40px 0;
+      border-top: 1px solid #2a2622;
+    }
+
+    .product-card:first-of-type {
+      border-top: none;
+    }
+
+    .product-card h3 {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .product-card .detail p {
+      color: #b0aaa0;
+      font-size: 15px;
+      max-width: 500px;
+    }
+
+    .product-card .detail .tag {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 6px 14px;
+      background: #2a2622;
+      color: #c8c0b5;
+      border-radius: 0;
+    }
+
+    /* LAB — eksperimen, gaya lebih liar */
+    .lab {
+      padding: 80px 0 60px;
+      border-bottom: 2px solid #2a2622;
+    }
+
+    .lab h2 {
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .lab .sub {
+      color: #b0aaa0;
+      margin-bottom: 40px;
+      font-size: 15px;
+    }
+
+    .lab-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .lab-item {
+      padding: 28px 24px;
+      background: #1a1714;
+      border: 1px solid #2a2622;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .lab-item:hover {
+      border-color: #b8a090;
+      background: #24201c;
+    }
+
+    .lab-item .num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #908880;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .lab-item h3 {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .lab-item p {
+      font-size: 13px;
+      color: #b0aaa0;
+    }
+
+    .lab-item .link {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #e7e3db;
+      border-bottom: 1px solid #e7e3db;
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+      text-decoration: none;
+    }
+
+    .lab-item .link:hover {
+      opacity: 0.6;
+    }
+
+    /* CONTACT — tanpa tombol generik */
+    .contact {
+      padding: 80px 0 40px;
+    }
+
+    .contact h2 {
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      max-width: 600px;
+    }
+
+    .contact .info {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px 80px;
+    }
+
+    .contact .info a {
+      color: #b0aaa0;
+      text-decoration: none;
+      font-size: 16px;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+      padding-bottom: 2px;
+    }
+
+    .contact .info a:hover {
+      border-color: #e7e3db;
+      color: #e7e3db;
+    }
+
+    /* FOOTER — kasar */
+    .footer {
+      padding: 40px 0 20px;
+      border-top: 2px solid #2a2622;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #908880;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    /* RESPONSIF — hanya 2 breakpoint, tidak berlebihan */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 40px;
       }
 
-      .intro{padding:50px 0}
-      .intro-grid{grid-template-columns:1fr;gap:40px}
-      .about-title{font-size:34px}
-      .about-copy{font-size:13px}
-      .work-head{align-items:start;gap:16px;flex-direction:column}
-      .work-title{font-size:34px}
-      .projects{grid-template-columns:1fr;gap:24px}
-
-      .services{padding:50px 0}
-      .services-grid{grid-template-columns:1fr}
-      .service{min-height:140px;padding:20px}
-      .service h3{font-size:22px;margin-top:20px}
-      .services-title{font-size:34px}
-
-      .products{padding:50px 0}
-      .product-layout{grid-template-columns:1fr;gap:30px}
-      .product-title{font-size:34px}
-      .caption-product{grid-template-columns:1fr}
-      .caption-visual{min-height:auto;padding:28px 20px}
-      .caption-info{padding:24px 20px}
-      .caption-info h3{font-size:24px}
-      .caption-price{align-items:flex-start;flex-direction:column;gap:16px}
-      .caption-price .btn{width:100%}
-
-      .lab{padding:50px 0}
-      .lab-title{font-size:34px}
-      .lab-item{
-        grid-template-columns:35px 1fr;
-        gap:10px;
-        padding:18px 0;
+      .about-work {
+        grid-template-columns: 1fr;
+        gap: 40px;
       }
-      .lab-link{grid-column:2;justify-self:start;margin-top:2px}
-      .lab-item h3{font-size:20px}
 
-      .kavelo{padding:45px 0}
-      .kavelo-card{
-        padding:28px 20px;
-        flex-direction:column;
-        align-items:flex-start;
-        gap:24px;
+      .service-item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding: 20px 0;
       }
-      .kavelo-name{font-size:34px}
-      .kavelo-copy{font-size:12px}
 
-      .contact{padding:60px 0}
-      .contact h2{font-size:46px}
-      .contact-actions{flex-direction:column;align-items:stretch}
-      .contact-actions .btn{width:100%;justify-content:center}
+      .product-card {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
 
-      .footer-inner{flex-direction:column;gap:8px;text-align:center}
+      .lab-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-right {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
-    /* ============================================================ */
-    /* 3. GADGET KECIL (< 480px) - Sentuhan akhir untuk HP mungil */
-    /* ============================================================ */
-    @media (max-width: 480px){
-      .container{width:min(calc(100% - 20px),400px)}
-      
-      .hero-photo{min-height:260px}
-      .hero-copy{padding:32px 16px 24px}
-      .hero h1{font-size:clamp(32px,10vw,42px)}
-      .hero-desc{font-size:13px}
-      .eyebrow{font-size:10px}
-      
-      .about-title{font-size:28px}
-      .work-title{font-size:28px}
-      .services-title{font-size:28px}
-      .product-title{font-size:28px}
-      .lab-title{font-size:28px}
-      .kavelo-name{font-size:28px}
-      .contact h2{font-size:38px}
+    @media (max-width: 600px) {
+      .nav {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+      }
 
-      .service h3{font-size:20px}
-      .caption-info h3{font-size:20px}
-      .price-value{font-size:24px}
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 16px;
+        font-size: 12px;
+      }
 
-      .btn{min-height:44px;font-size:11px;padding:0 16px}
-      
-      .lab-item h3{font-size:18px}
-      .lab-item p{font-size:10px}
+      .hero-left h1 {
+        font-size: 44px;
+      }
+
+      .hero-right {
+        grid-template-columns: 1fr;
+      }
+
+      .box-highlight {
+        grid-column: span 1;
+      }
+
+      .contact h2 {
+        font-size: 34px;
+      }
+
+      .footer {
+        flex-direction: column;
+        text-align: center;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <nav class="nav" role="navigation" aria-label="Navigasi utama">
-    <div class="container nav-inner">
-      <a class="brand" href="#home">F.</a>
+  <div class="wrap">
 
+    <!-- NAV -->
+    <nav class="nav">
+      <div class="logo">F.</div>
       <div class="nav-links">
-        <a href="#home" aria-current="page">Beranda</a>
         <a href="#about">Tentang</a>
         <a href="#work">Karya</a>
         <a href="#services">Layanan</a>
         <a href="#products">Produk</a>
+        <a href="#lab">Lab</a>
         <a href="#contact">Kontak</a>
       </div>
+    </nav>
 
-      <a class="nav-cta" href="https://wa.me/6282121759018?text=Halo%20Fajar%2C%20saya%20mau%20diskusi%20project." target="_blank" rel="noopener">
-        Hubungi Saya →
-      </a>
+    <!-- HERO — tanpa foto -->
+    <section class="hero">
+      <div class="hero-left">
+        <div class="label">// bukan template</div>
+        <h1>Bikin yang<br />berbeda.</h1>
+        <p class="sub">
+          Bukan sekadar kode. Saya membangun identitas visual yang berteriak,
+          bukan berbisik.
+        </p>
+        <div class="actions">
+          <a href="#work" class="btn btn-primary">Lihat karya</a>
+          <a href="#contact" class="btn btn-outline">Hubungi</a>
+        </div>
+      </div>
 
-      <button class="menu-btn" id="menuBtn" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobileMenu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-
-  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu navigasi mobile">
-    <a href="#home">Beranda</a>
-    <a href="#about">Tentang</a>
-    <a href="#work">Karya</a>
-    <a href="#services">Layanan</a>
-    <a href="#products">Produk</a>
-    <a href="#contact">Kontak</a>
-    <a class="btn btn-dark" href="https://wa.me/6282121759018?text=Halo%20Fajar%2C%20saya%20mau%20diskusi%20project." target="_blank" rel="noopener">Hubungi Saya →</a>
-  </div>
-
-  <main>
-
-    <!-- HERO -->
-    <section class="hero" id="home">
-      <div class="container">
-        <div class="hero-card">
-
-          <div class="hero-copy">
-            <div>
-              <div class="eyebrow">Halo, Saya Fajar</div>
-              <h1 class="serif">AI & Technology<br>Explorer, Membangun<br>Project Digital</h1>
-
-              <p class="hero-desc">
-                Membangun website, digital products, dan eksperimen berbasis AI
-                dari ide sampai menjadi sesuatu yang benar-benar bisa digunakan.
-              </p>
-
-              <div class="hero-actions">
-                <a class="btn btn-dark" href="#work">Lihat Karya <span class="arrow">→</span></a>
-                <a class="btn btn-text" href="https://wa.me/6282121759018?text=Halo%20Fajar%2C%20saya%20mau%20diskusi%20project." target="_blank" rel="noopener">
-                  Hubungi Saya <span class="arrow">→</span>
-                </a>
-              </div>
-            </div>
-
-            <div class="scroll">↓ Scroll untuk jelajahi</div>
-          </div>
-
-          <!-- FOTO: sekarang pakai kholiq.jpg -->
-          <div class="hero-photo" aria-label="Foto profil Muhammad Fajar Nurkholiq">
-            <img src="assets/kholiq.jpg" alt="Muhammad Fajar Nurkholiq" loading="lazy">
-            <div class="availability">
-              <strong>● Tersedia untuk Project</strong>
-              Punya website, undangan digital, atau project digital yang ingin dibuat?
-              <a href="https://wa.me/6282121759018?text=Halo%20Fajar%2C%20saya%20mau%20diskusi%20project." target="_blank" rel="noopener">
-                Jadwalkan Chat →
-              </a>
-            </div>
-          </div>
-
+      <div class="hero-right">
+        <div class="box"><strong>4+</strong> <span>tahun eksperimen</span></div>
+        <div class="box"><strong>12</strong> <span>project rilis</span></div>
+        <div class="box"><strong>3</strong> <span>produk digital</span></div>
+        <div class="box"><strong>∞</strong> <span>ide yang belum lahir</span></div>
+        <div class="box box-highlight">
+          <strong>Tanpa foto, tanpa wajah.</strong>
+          <span>Yang penting karyanya, bukan siapa saya.</span>
         </div>
       </div>
     </section>
 
     <!-- ABOUT + WORK -->
-    <section class="intro" id="about">
-      <div class="container intro-grid">
+    <section class="about-work" id="about">
+      <div class="left">
+        <h2>Nggak cuma ngoding.<br />Saya <span style="color:#b8a090;">bangun</span>.</h2>
+        <p>
+          Website, produk digital, eksperimen AI — semuanya saya kerjakan
+          dari ide sampai jadi. Nggak pakai template, nggak pakai maen-maen.
+        </p>
+        <p style="margin-top:12px; font-size:13px; color:#908880;">
+          Saya Fajar. Saya suka hal yang nyeleneh.
+        </p>
+      </div>
 
-        <div>
-          <div class="section-label">Tentang Saya</div>
-          <h2 class="serif about-title">
-            Membangun Solusi Digital<br>Dengan <span>Tujuan.</span>
-          </h2>
-          <p class="about-copy">
-            Fokus pada eksplorasi AI dan teknologi melalui project nyata:
-            website, digital products, AI tools, dan berbagai eksperimen digital.
-          </p>
-
-          <div class="mini-list">
-            <div><span>•</span> Website & Landing Page</div>
-            <div><span>•</span> Undangan Digital</div>
-            <div><span>•</span> Digital Products</div>
-            <div><span>•</span> AI & Technology Projects</div>
+      <div class="right" id="work">
+        <div class="work-item">
+          <div>
+            <div class="name">Macake Coffee</div>
+            <div class="desc">Landing page dengan mood kopi dan kehangatan.</div>
           </div>
+          <div class="meta">2025</div>
         </div>
-
-        <div id="work">
-          <div class="work-head">
-            <div>
-              <div class="section-label">Karya Pilihan</div>
-              <h2 class="serif work-title">Selected<br>Projects</h2>
-            </div>
-            <a class="view-all" href="#lab">Lihat semua project →</a>
+        <div class="work-item">
+          <div>
+            <div class="name">Home Studio.ID</div>
+            <div class="desc">Platform untuk kreator audio rumahan.</div>
           </div>
-
-          <div class="projects">
-
-            <a class="project" href="https://fajarnurkholiq.github.io/macakecoffee/" target="_blank" rel="noopener">
-              <div class="project-thumb thumb-1">
-                <div class="mock-site"></div>
-              </div>
-              <div class="project-name">Macake Coffee</div>
-              <div class="project-type">Website</div>
-            </a>
-
-            <a class="project" href="https://fajarnurkholiq.github.io/homestudio.ido/" target="_blank" rel="noopener">
-              <div class="project-thumb thumb-2">
-                <div class="mock-site"></div>
-              </div>
-              <div class="project-name">Home Studio.ID</div>
-              <div class="project-type">Website</div>
-            </a>
-
-            <a class="project" href="https://fajarnurkholiq.github.io/inframestudio/" target="_blank" rel="noopener">
-              <div class="project-thumb thumb-3">
-                <div class="mock-site"></div>
-              </div>
-              <div class="project-name">Inframe Studio</div>
-              <div class="project-type">Website</div>
-            </a>
-
-            <a class="project" href="https://fajar-os.vercel.app/" target="_blank" rel="noopener">
-              <div class="project-thumb thumb-4">
-                <div class="mock-site"></div>
-              </div>
-              <div class="project-name">Fajar OS</div>
-              <div class="project-type">AI Workspace</div>
-            </a>
-
-          </div>
+          <div class="meta">2024</div>
         </div>
-
+        <div class="work-item">
+          <div>
+            <div class="name">Fajar OS</div>
+            <div class="desc">AI workspace eksperimental — percakapan + memory.</div>
+          </div>
+          <div class="meta">2024</div>
+        </div>
       </div>
     </section>
 
-    <!-- SERVICES -->
+    <!-- SERVICES — VERTIKAL -->
     <section class="services" id="services">
-      <div class="container">
-        <div class="services-head">
-          <div class="section-label">Yang Saya Kerjakan</div>
-          <h2 class="serif services-title">Layanan & Solusi.</h2>
+      <h2>Yang saya kerjakan.</h2>
+      <div class="service-list">
+        <div class="service-item">
+          <span class="num">01</span>
+          <h3>Website</h3>
+          <p>Landing page, company profile, katalog, sampai sistem booking.</p>
         </div>
-
-        <div class="services-grid">
-          <article class="service">
-            <div class="service-number">01</div>
-            <h3>Website</h3>
-            <p>Landing page, website bisnis, company profile, katalog, dan kebutuhan web lainnya.</p>
-          </article>
-
-          <article class="service">
-            <div class="service-number">02</div>
-            <h3>Undangan Digital</h3>
-            <p>Undangan digital modern dengan template yang dapat dikustomisasi.</p>
-            <div class="service-examples">
-              <a href="https://fajarnurkholiq.github.io/Elegant-Classic-AURELIA/" target="_blank" rel="noopener">Aurelia — Elegant Classic ↗</a>
-              <a href="https://fajarnurkholiq.github.io/Modern-Cinematic-NOIR/" target="_blank" rel="noopener">Noir — Modern Cinematic ↗</a>
-            </div>
-          </article>
-
-          <article class="service">
-            <div class="service-number">03</div>
-            <h3>Digital Products</h3>
-            <p>Template, sistem, dan produk digital yang dibuat untuk penggunaan praktis.</p>
-          </article>
-
-          <article class="service">
-            <div class="service-number">04</div>
-            <h3>AI Solutions</h3>
-            <p>Eksperimen dan solusi digital berbasis AI untuk kebutuhan tertentu.</p>
-          </article>
+        <div class="service-item">
+          <span class="num">02</span>
+          <h3>Undangan Digital</h3>
+          <p>Template custom yang bisa diubah sesuai tema pernikahan atau acara.</p>
+        </div>
+        <div class="service-item">
+          <span class="num">03</span>
+          <h3>Produk Digital</h3>
+          <p>Template, sistem kecil, atau tools yang siap pakai.</p>
+        </div>
+        <div class="service-item">
+          <span class="num">04</span>
+          <h3>AI Solutions</h3>
+          <p>Eksperimen dan solusi berbasis AI untuk kebutuhan spesifik.</p>
         </div>
       </div>
     </section>
 
     <!-- PRODUCTS -->
     <section class="products" id="products">
-      <div class="container product-layout">
+      <h2>Produk.</h2>
+      <div class="subhead">Yang udah jadi dan bisa langsung dipake.</div>
 
-        <div>
-          <div class="section-label">Digital Products</div>
-          <h2 class="serif product-title">Siap Kamu<br>Gunakan.</h2>
-          <p class="product-copy">
-            Produk digital yang dibuat supaya bisa langsung dipakai,
-            dikembangkan, atau dikustomisasi sesuai kebutuhan.
-          </p>
+      <div class="product-card">
+        <h3>KaveloLab Caption System</h3>
+        <div class="detail">
+          <p>Sistem 5 prompt untuk bikin caption IG yang nggak kaku. Dari ide mentah sampai hook + CTA.</p>
+          <span class="tag">Rp29.000</span>
         </div>
+      </div>
 
-        <div class="caption-product">
-          <div class="caption-visual">
-            <span class="caption-tag">KaveloLab</span>
-            <div class="caption-steps">
-              <div><span>01</span>Ide &amp; Bahan Mentah</div>
-              <div><span>02</span>Angle</div>
-              <div><span>03</span>Hook</div>
-              <div><span>04</span>Struktur Caption</div>
-              <div><span>05</span>Polish</div>
-            </div>
-          </div>
-          <div class="caption-info">
-            <div class="section-label">Caption AI Kamu Masih Terasa "AI Banget"?</div>
-            <h3 class="serif">KaveloLab Caption System</h3>
-            <p>Sistem 5 prompt berurutan untuk mengubah ide mentah jadi caption Instagram yang natural, punya hook, struktur, dan CTA — tanpa harus jago copywriting.</p>
-            <div class="caption-fit">
-              <div>
-                <span class="fit-label">Cocok kalau kamu</span>
-                <ul>
-                  <li>Sering pakai AI untuk membuat konten</li>
-                  <li>Punya ide tapi bingung mengubahnya jadi caption</li>
-                  <li>Sering dapat hasil AI yang kaku</li>
-                </ul>
-              </div>
-            </div>
-            <div class="caption-price">
-              <div>
-                <span class="price-label">Harga</span>
-                <span class="price-value">Rp29.000</span>
-              </div>
-              <a class="btn btn-dark" href="https://kavelolab.lynk.id" target="_blank" rel="noopener">
-                Dapatkan Caption System →
-              </a>
-            </div>
-          </div>
+      <div class="product-card">
+        <h3>Template Undangan Noir</h3>
+        <div class="detail">
+          <p>Undangan digital dengan gaya sinematik, gelap, dan elegan. Bisa dikustomisasi.</p>
+          <span class="tag">Rp45.000</span>
         </div>
       </div>
     </section>
 
     <!-- LAB -->
     <section class="lab" id="lab">
-      <div class="container">
-        <div class="section-label">Experiments / Lab</div>
-        <h2 class="serif lab-title">
-          Menjelajah ide lewat <span>project nyata.</span>
-        </h2>
+      <h2>Lab.</h2>
+      <div class="sub">Eksperimen yang masih jalan.</div>
 
-        <div class="lab-list">
-
-          <div class="lab-item">
-            <div class="lab-num">01</div>
-            <div>
-              <h3>Kavelo Crypto Agent</h3>
-              <p>Eksperimen AI agent untuk mengolah dan menganalisis informasi crypto.</p>
-            </div>
-            <a class="lab-link" href="https://kavelo-crypto-agent.vercel.app/" target="_blank" rel="noopener">Buka →</a>
-          </div>
-
-          <div class="lab-item">
-            <div class="lab-num">02</div>
-            <div>
-              <h3>Fajar OS</h3>
-              <p>Eksperimen AI workspace yang menggabungkan percakapan, memory, dan berbagai kemampuan AI.</p>
-            </div>
-            <a class="lab-link" href="https://fajar-os.vercel.app/" target="_blank" rel="noopener">Buka →</a>
-          </div>
-
-          <div class="lab-item">
-            <div class="lab-num">03</div>
-            <div>
-              <h3>Website Demo Collection</h3>
-              <p>Demo website Starter, Business, dan Pro untuk berbagai kebutuhan bisnis.</p>
-            </div>
-            <a class="lab-link" href="#work">Jelajahi →</a>
-          </div>
-
+      <div class="lab-grid">
+        <div class="lab-item">
+          <span class="num">01</span>
+          <h3>Kavelo Crypto Agent</h3>
+          <p>AI agent buat analisis crypto — masih beta.</p>
+          <a href="#" class="link">Buka →</a>
         </div>
-      </div>
-    </section>
-
-    <!-- KAVELOLAB -->
-    <section class="kavelo">
-      <div class="container">
-        <div class="kavelo-card">
-          <div>
-            <div class="section-label">Technology Lab Saya</div>
-            <div class="kavelo-name">Kavelo<span>Lab</span></div>
-            <p class="kavelo-copy">
-              AI & Technology Lab untuk eksperimen, project, konten,
-              digital products, dan eksplorasi teknologi.
-            </p>
-          </div>
-
-          <a class="btn btn-dark" href="https://fajarnurkholiq.github.io/landing-page/" target="_blank" rel="noopener">
-            Kunjungi KaveloLab →
-          </a>
+        <div class="lab-item">
+          <span class="num">02</span>
+          <h3>Fajar OS v2</h3>
+          <p>Workspace AI dengan memory dan multi-agent.</p>
+          <a href="#" class="link">Buka →</a>
+        </div>
+        <div class="lab-item">
+          <span class="num">03</span>
+          <h3>Demo Collection</h3>
+          <p>Kumpulan landing page demo buat berbagai industri.</p>
+          <a href="#" class="link">Jelajahi →</a>
+        </div>
+        <div class="lab-item">
+          <span class="num">04</span>
+          <h3>Ritual Space</h3>
+          <p>Sistem booking untuk studio meditasi — dalam proses.</p>
+          <a href="#" class="link">Coming soon</a>
         </div>
       </div>
     </section>
 
     <!-- CONTACT -->
     <section class="contact" id="contact">
-      <div class="container">
-        <div class="contact-inner">
-          <div class="section-label">Mari Bekerja Sama</div>
-          <h2 class="serif">Punya project<br>yang ingin dibuat?</h2>
-          <p>
-            Ceritakan kebutuhan website, undangan digital, atau project
-            digital yang ingin dibuat.
-          </p>
-
-          <div class="contact-actions">
-            <a class="btn btn-dark" href="https://wa.me/6282121759018?text=Halo%20Fajar%2C%20saya%20mau%20diskusi%20project." target="_blank" rel="noopener">
-              WhatsApp →
-            </a>
-            <a class="btn btn-text" href="https://instagram.com/kholiq.619" target="_blank" rel="noopener">
-              Instagram →
-            </a>
-          </div>
-        </div>
+      <h2>Ada project?<br />Gas aja.</h2>
+      <div class="info">
+        <a href="https://wa.me/6282121759018">WhatsApp →</a>
+        <a href="mailto:hi@fajar.dev">hi@fajar.dev →</a>
+        <a href="https://instagram.com/kholiq.619">Instagram →</a>
       </div>
     </section>
 
-  </main>
-
-  <footer>
-    <div class="container footer-inner">
-      <div>© <span id="year"></span> Muhammad Fajar Nurkholiq</div>
-      <div>AI & Technology Explorer · KaveloLab</div>
+    <!-- FOOTER -->
+    <div class="footer">
+      <span>© 2026 Muhammad Fajar Nurkholiq</span>
+      <span>AI & Technology Explorer · KaveloLab</span>
     </div>
-  </footer>
+
+  </div>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    const navEl = document.querySelector(".nav");
-    const onScroll = () => {
-      if (window.scrollY > 30) navEl.classList.add("scrolled");
-      else navEl.classList.remove("scrolled");
-    };
-    document.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-
-    const menuBtn = document.getElementById("menuBtn");
-    const mobileMenu = document.getElementById("mobileMenu");
-
-    menuBtn.addEventListener("click", () => {
-      const isOpen = mobileMenu.classList.toggle("open");
-      menuBtn.classList.toggle("open", isOpen);
-      menuBtn.setAttribute("aria-expanded", String(isOpen));
-      document.body.style.overflow = isOpen ? "hidden" : "";
+    // sedikit interaksi — biar terasa "hidup"
+    document.querySelectorAll('.work-item, .service-item, .lab-item, .product-card').forEach((el) => {
+      el.addEventListener('mouseenter', () => {
+        el.style.cursor = 'default';
+      });
     });
 
-    mobileMenu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        mobileMenu.classList.remove("open");
-        menuBtn.classList.remove("open");
-        menuBtn.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
+    // smooth scroll manual (tanpa library)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       });
     });
   </script>
