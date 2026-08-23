@@ -1,17 +1,17 @@
+```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Muhammad Fajar — bukan template</title>
+  <meta name="description" content="Muhammad Fajar — AI & Technology Explorer. Eksperimen, project, website, dan produk digital." />
+  <title>Muhammad Fajar — AI & Technology Explorer</title>
 
-  <!-- Font: hanya 2, dipilih manual -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
 
   <style>
-    /* Reset brutal — tidak pakai reset generik */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -26,14 +26,16 @@
       padding: 0 20px;
     }
 
-    /* Container — sengaja tidak simetris */
+    a {
+      color: inherit;
+    }
+
     .wrap {
       max-width: 1300px;
       margin: 0 auto;
       padding: 40px 0 80px;
     }
 
-    /* NAV — minimal, tanpa efek blur berlebihan */
     .nav {
       display: flex;
       justify-content: space-between;
@@ -76,7 +78,7 @@
       color: #e7e3db;
     }
 
-    /* HERO — tanpa foto, fokus ke teks dan "keberanian" */
+    /* HERO */
     .hero {
       padding: 80px 0 60px;
       border-bottom: 2px solid #2a2622;
@@ -115,7 +117,7 @@
       margin-top: 28px;
       font-size: 18px;
       color: #b0aaa0;
-      max-width: 420px;
+      max-width: 470px;
       font-weight: 400;
     }
 
@@ -132,20 +134,22 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      border: none;
       cursor: pointer;
       transition: all 0.15s ease;
       font-family: 'Space Grotesk', sans-serif;
+      text-decoration: none;
+      display: inline-block;
     }
 
     .btn-primary {
       background: #e7e3db;
       color: #0c0b0a;
-      border-radius: 0;
+      border: 2px solid #e7e3db;
     }
 
     .btn-primary:hover {
       background: #b8a090;
+      border-color: #b8a090;
       transform: scale(0.97);
     }
 
@@ -153,7 +157,6 @@
       background: transparent;
       color: #e7e3db;
       border: 2px solid #4a4440;
-      border-radius: 0;
     }
 
     .btn-outline:hover {
@@ -162,7 +165,7 @@
       transform: scale(0.97);
     }
 
-    /* Kanan hero — "abstrak" tanpa foto */
+    /* HERO STATS */
     .hero-right {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -208,10 +211,10 @@
     }
 
     .box-highlight strong {
-      font-size: 32px;
+      font-size: 28px !important;
     }
 
-    /* SECTION "TENTANG + KARYA" — digabung, tidak terpisah */
+    /* ABOUT + WORK */
     .about-work {
       padding: 80px 0 40px;
       border-bottom: 2px solid #2a2622;
@@ -237,10 +240,6 @@
     .about-work .right .work-item {
       padding: 24px 0;
       border-bottom: 1px solid #2a2622;
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 20px;
       transition: padding-left 0.15s;
     }
 
@@ -254,22 +253,29 @@
       letter-spacing: -0.02em;
     }
 
-    .work-item .meta {
-      font-size: 12px;
-      color: #908880;
-      font-family: 'JetBrains Mono', monospace;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
     .work-item .desc {
       font-size: 14px;
       color: #b0aaa0;
       margin-top: 4px;
-      flex-basis: 100%;
     }
 
-    /* LAYANAN — daftar vertikal, bukan grid */
+    .work-item a {
+      text-decoration: none;
+      display: block;
+    }
+
+    .work-item .visit {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #e7e3db;
+      border-bottom: 1px solid #e7e3db;
+      padding-bottom: 2px;
+    }
+
+    /* SERVICES */
     .services {
       padding: 80px 0 60px;
       border-bottom: 2px solid #2a2622;
@@ -285,7 +291,6 @@
     .service-list {
       display: flex;
       flex-direction: column;
-      gap: 0;
     }
 
     .service-item {
@@ -296,7 +301,6 @@
       border-bottom: 1px solid #2a2622;
       align-items: center;
       transition: background 0.15s;
-      padding-left: 0;
     }
 
     .service-item:hover {
@@ -321,7 +325,7 @@
       max-width: 400px;
     }
 
-    /* PRODUK — satu kolom, gaya "manifesto" */
+    /* PRODUCTS */
     .products {
       padding: 80px 0 60px;
       border-bottom: 2px solid #2a2622;
@@ -346,10 +350,7 @@
       gap: 40px;
       padding: 40px 0;
       border-top: 1px solid #2a2622;
-    }
-
-    .product-card:first-of-type {
-      border-top: none;
+      text-decoration: none;
     }
 
     .product-card h3 {
@@ -373,10 +374,13 @@
       padding: 6px 14px;
       background: #2a2622;
       color: #c8c0b5;
-      border-radius: 0;
     }
 
-    /* LAB — eksperimen, gaya lebih liar */
+    .product-card:hover h3 {
+      color: #b8a090;
+    }
+
+    /* LAB */
     .lab {
       padding: 80px 0 60px;
       border-bottom: 2px solid #2a2622;
@@ -441,15 +445,10 @@
       color: #e7e3db;
       border-bottom: 1px solid #e7e3db;
       padding-bottom: 2px;
-      transition: opacity 0.2s;
       text-decoration: none;
     }
 
-    .lab-item .link:hover {
-      opacity: 0.6;
-    }
-
-    /* CONTACT — tanpa tombol generik */
+    /* CONTACT */
     .contact {
       padding: 80px 0 40px;
     }
@@ -482,7 +481,7 @@
       color: #e7e3db;
     }
 
-    /* FOOTER — kasar */
+    /* FOOTER */
     .footer {
       padding: 40px 0 20px;
       border-top: 2px solid #2a2622;
@@ -494,13 +493,8 @@
       gap: 16px;
     }
 
-    /* RESPONSIF — hanya 2 breakpoint, tidak berlebihan */
     @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
+      .hero,
       .about-work {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -519,10 +513,6 @@
 
       .lab-grid {
         grid-template-columns: 1fr;
-      }
-
-      .hero-right {
-        grid-template-columns: 1fr 1fr;
       }
     }
 
@@ -570,9 +560,10 @@
     <!-- NAV -->
     <nav class="nav">
       <div class="logo">F.</div>
+
       <div class="nav-links">
         <a href="#about">Tentang</a>
-        <a href="#work">Karya</a>
+        <a href="#work">Project</a>
         <a href="#services">Layanan</a>
         <a href="#products">Produk</a>
         <a href="#lab">Lab</a>
@@ -580,190 +571,541 @@
       </div>
     </nav>
 
-    <!-- HERO — tanpa foto -->
+
+    <!-- HERO -->
     <section class="hero">
+
       <div class="hero-left">
-        <div class="label">// bukan template</div>
-        <h1>Bikin yang<br />berbeda.</h1>
+
+        <div class="label">// AI & TECHNOLOGY EXPLORER</div>
+
+        <h1>
+          Muhammad<br />
+          Fajar.
+        </h1>
+
         <p class="sub">
-          Bukan sekadar kode. Saya membangun identitas visual yang berteriak,
-          bukan berbisik.
+          Saya mengeksplorasi AI dan teknologi dengan membangun
+          website, produk digital, dan eksperimen menjadi sesuatu
+          yang nyata.
         </p>
+
         <div class="actions">
-          <a href="#work" class="btn btn-primary">Lihat karya</a>
-          <a href="#contact" class="btn btn-outline">Hubungi</a>
+          <a href="#work" class="btn btn-primary">
+            Lihat project
+          </a>
+
+          <a href="#contact" class="btn btn-outline">
+            Hubungi
+          </a>
         </div>
+
       </div>
 
+
       <div class="hero-right">
-        <div class="box"><strong>4+</strong> <span>tahun eksperimen</span></div>
-        <div class="box"><strong>12</strong> <span>project rilis</span></div>
-        <div class="box"><strong>3</strong> <span>produk digital</span></div>
-        <div class="box"><strong>∞</strong> <span>ide yang belum lahir</span></div>
-        <div class="box box-highlight">
-          <strong>Tanpa foto, tanpa wajah.</strong>
-          <span>Yang penting karyanya, bukan siapa saya.</span>
+
+        <div class="box">
+          <strong>4</strong>
+          <span>selected projects</span>
         </div>
+
+        <div class="box">
+          <strong>2</strong>
+          <span>collaboration projects</span>
+        </div>
+
+        <div class="box">
+          <strong>1</strong>
+          <span>digital product</span>
+        </div>
+
+        <div class="box">
+          <strong>01</strong>
+          <span>AI workspace</span>
+        </div>
+
+        <div class="box box-highlight">
+          <strong>Learn → Build → Share.</strong>
+          <span>
+            AI · Technology · Website · Digital Product
+          </span>
+        </div>
+
       </div>
+
     </section>
+
 
     <!-- ABOUT + WORK -->
     <section class="about-work" id="about">
+
       <div class="left">
-        <h2>Nggak cuma ngoding.<br />Saya <span style="color:#b8a090;">bangun</span>.</h2>
+
+        <h2>
+          Saya masih<br />
+          <span style="color:#b8a090;">belajar.</span>
+        </h2>
+
         <p>
-          Website, produk digital, eksperimen AI — semuanya saya kerjakan
-          dari ide sampai jadi. Nggak pakai template, nggak pakai maen-maen.
+          Saya bukan developer profesional. Saya adalah pembelajar
+          AI dan teknologi yang belajar dengan cara membangun sesuatu.
         </p>
+
+        <p>
+          Dari website, AI workspace, sampai produk digital —
+          setiap project menjadi cara untuk memahami teknologi
+          dengan lebih nyata.
+        </p>
+
         <p style="margin-top:12px; font-size:13px; color:#908880;">
-          Saya Fajar. Saya suka hal yang nyeleneh.
+          Muhammad Fajar Nurkholiq
         </p>
+
       </div>
+
 
       <div class="right" id="work">
+
+        <!-- PERSONAL PROJECT -->
         <div class="work-item">
-          <div>
-            <div class="name">Macake Coffee</div>
-            <div class="desc">Landing page dengan mood kopi dan kehangatan.</div>
-          </div>
-          <div class="meta">2025</div>
-        </div>
-        <div class="work-item">
-          <div>
-            <div class="name">Home Studio.ID</div>
-            <div class="desc">Platform untuk kreator audio rumahan.</div>
-          </div>
-          <div class="meta">2024</div>
-        </div>
-        <div class="work-item">
-          <div>
+
+          <a
+            href="https://fajar-os.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
             <div class="name">Fajar OS</div>
-            <div class="desc">AI workspace eksperimental — percakapan + memory.</div>
+
+            <div class="desc">
+              Prototype AI Workspace dengan percakapan,
+              memory, dan pendekatan local-first.
+            </div>
+
+            <span class="visit">
+              Buka project →
+            </span>
+
+          </a>
+
+        </div>
+
+
+        <div class="work-item">
+
+          <a
+            href="https://fajarnurkholiq.github.io/macakecoffee/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
+            <div class="name">Macake Coffee</div>
+
+            <div class="desc">
+              Website untuk brand kopi yang saya bangun
+              sebagai project bisnis nyata.
+            </div>
+
+            <span class="visit">
+              Buka website →
+            </span>
+
+          </a>
+
+        </div>
+
+
+        <div class="work-item">
+
+          <a
+            href="#services"
+          >
+
+            <div class="name">
+              Website Service — KaveloLab
+            </div>
+
+            <div class="desc">
+              Sistem demo website untuk tiga paket layanan:
+              Starter, Business, dan Pro.
+            </div>
+
+            <span class="visit">
+              Lihat demo →
+            </span>
+
+          </a>
+
+        </div>
+
+
+        <div class="work-item">
+
+          <div class="name">
+            Client & Collaboration
           </div>
-          <div class="meta">2024</div>
+
+          <div class="desc">
+            Website yang dibuat untuk project kolaborasi,
+            termasuk Home Studio dan Inframe Studio.
+          </div>
+
         </div>
+
       </div>
+
     </section>
 
-    <!-- SERVICES — VERTIKAL -->
+
+    <!-- SERVICES -->
     <section class="services" id="services">
-      <h2>Yang saya kerjakan.</h2>
+
+      <h2>
+        Yang saya kerjakan.
+      </h2>
+
       <div class="service-list">
+
         <div class="service-item">
+
           <span class="num">01</span>
+
           <h3>Website</h3>
-          <p>Landing page, company profile, katalog, sampai sistem booking.</p>
+
+          <p>
+            Landing page dan website untuk bisnis,
+            brand, maupun project personal.
+          </p>
+
         </div>
+
+
         <div class="service-item">
+
           <span class="num">02</span>
-          <h3>Undangan Digital</h3>
-          <p>Template custom yang bisa diubah sesuai tema pernikahan atau acara.</p>
+
+          <h3>AI & Technology</h3>
+
+          <p>
+            Eksperimen menggunakan AI untuk membangun
+            workflow, prototype, dan aplikasi kecil.
+          </p>
+
         </div>
+
+
         <div class="service-item">
+
           <span class="num">03</span>
-          <h3>Produk Digital</h3>
-          <p>Template, sistem kecil, atau tools yang siap pakai.</p>
+
+          <h3>Digital Products</h3>
+
+          <p>
+            Mengubah hasil eksperimen menjadi template,
+            sistem, atau produk digital yang bisa digunakan.
+          </p>
+
         </div>
-        <div class="service-item">
-          <span class="num">04</span>
-          <h3>AI Solutions</h3>
-          <p>Eksperimen dan solusi berbasis AI untuk kebutuhan spesifik.</p>
-        </div>
+
       </div>
+
     </section>
 
-    <!-- PRODUCTS -->
+
+    <!-- WEBSITE SERVICE DEMOS -->
+    <section class="products">
+
+      <h2>
+        Website Service.
+      </h2>
+
+      <div class="subhead">
+        Demo paket website yang dibangun untuk KaveloLab.
+      </div>
+
+
+      <div class="product-card">
+
+        <h3>
+          Starter / Business / Pro
+        </h3>
+
+        <div class="detail">
+
+          <p>
+            Tiga demo website untuk menunjukkan perbedaan
+            pendekatan dan skala layanan website KaveloLab.
+          </p>
+
+          <span class="tag">
+            3 Demo · 1 Service
+          </span>
+
+          <div style="margin-top:20px; display:flex; gap:20px; flex-wrap:wrap;">
+
+            <a
+              href="https://fajarnurkholiq.github.io/demo-website-started/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="font-size:12px; color:#e7e3db;"
+            >
+              Senja / Starter →
+            </a>
+
+            <a
+              href="https://fajarnurkholiq.github.io/demo-website-business/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="font-size:12px; color:#e7e3db;"
+            >
+              BENTANG / Business →
+            </a>
+
+            <a
+              href="https://fajarnurkholiq.github.io/demo-website-pro/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style="font-size:12px; color:#e7e3db;"
+            >
+              ARUNA / Pro →
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- DIGITAL PRODUCT -->
     <section class="products" id="products">
-      <h2>Produk.</h2>
-      <div class="subhead">Yang udah jadi dan bisa langsung dipake.</div>
 
-      <div class="product-card">
-        <h3>KaveloLab Caption System</h3>
-        <div class="detail">
-          <p>Sistem 5 prompt untuk bikin caption IG yang nggak kaku. Dari ide mentah sampai hook + CTA.</p>
-          <span class="tag">Rp29.000</span>
-        </div>
+      <h2>
+        Produk.
+      </h2>
+
+      <div class="subhead">
+        Salah satu eksperimen yang sudah menjadi produk digital.
       </div>
 
-      <div class="product-card">
-        <h3>Template Undangan Noir</h3>
+
+      <a
+        class="product-card"
+        href="https://kavelolab.lynk.id"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        <h3>
+          Caption System
+        </h3>
+
         <div class="detail">
-          <p>Undangan digital dengan gaya sinematik, gelap, dan elegan. Bisa dikustomisasi.</p>
-          <span class="tag">Rp45.000</span>
+
+          <p>
+            Sistem 5 prompt berurutan untuk mengubah ide mentah
+            menjadi caption Instagram yang lebih natural,
+            terstruktur, punya hook, dan CTA.
+          </p>
+
+          <span class="tag">
+            Rp29.000 · Digital Product
+          </span>
+
         </div>
-      </div>
+
+      </a>
+
     </section>
+
 
     <!-- LAB -->
     <section class="lab" id="lab">
-      <h2>Lab.</h2>
-      <div class="sub">Eksperimen yang masih jalan.</div>
+
+      <h2>
+        Lab.
+      </h2>
+
+      <div class="sub">
+        Eksperimen teknologi yang menjadi bagian dari proses belajar.
+      </div>
+
 
       <div class="lab-grid">
+
         <div class="lab-item">
+
           <span class="num">01</span>
-          <h3>Kavelo Crypto Agent</h3>
-          <p>AI agent buat analisis crypto — masih beta.</p>
-          <a href="#" class="link">Buka →</a>
+
+          <h3>Fajar OS</h3>
+
+          <p>
+            Eksplorasi membangun AI Workspace personal
+            dengan memory dan local-first architecture.
+          </p>
+
+          <a
+            href="https://fajar-os.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="link"
+          >
+            Buka →
+          </a>
+
         </div>
+
+
         <div class="lab-item">
+
           <span class="num">02</span>
-          <h3>Fajar OS v2</h3>
-          <p>Workspace AI dengan memory dan multi-agent.</p>
-          <a href="#" class="link">Buka →</a>
+
+          <h3>AI Coding</h3>
+
+          <p>
+            Eksperimen membangun website dan aplikasi
+            menggunakan AI sebagai bagian dari workflow.
+          </p>
+
         </div>
+
+
         <div class="lab-item">
+
           <span class="num">03</span>
-          <h3>Demo Collection</h3>
-          <p>Kumpulan landing page demo buat berbagai industri.</p>
-          <a href="#" class="link">Jelajahi →</a>
+
+          <h3>Digital Products</h3>
+
+          <p>
+            Menguji bagaimana eksperimen AI dapat dikembangkan
+            menjadi produk digital sederhana.
+          </p>
+
         </div>
+
+
         <div class="lab-item">
+
           <span class="num">04</span>
-          <h3>Ritual Space</h3>
-          <p>Sistem booking untuk studio meditasi — dalam proses.</p>
-          <a href="#" class="link">Coming soon</a>
+
+          <h3>KaveloLab</h3>
+
+          <p>
+            Brand eksperimen AI & teknologi yang menjadi tempat
+            project, content, website service, dan digital product.
+          </p>
+
+          <a
+            href="https://fajarnurkholiq.github.io/landing-page/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="link"
+          >
+            Buka →
+          </a>
+
         </div>
+
       </div>
+
     </section>
+
 
     <!-- CONTACT -->
     <section class="contact" id="contact">
-      <h2>Ada project?<br />Gas aja.</h2>
+
+      <h2>
+        Ada project?<br />
+        Mari dibangun.
+      </h2>
+
       <div class="info">
-        <a href="https://wa.me/6282121759018">WhatsApp →</a>
-        <a href="mailto:hi@fajar.dev">hi@fajar.dev →</a>
-        <a href="https://instagram.com/kholiq.619">Instagram →</a>
+
+        <a
+          href="tel:+6282121759018"
+        >
+          WhatsApp →
+        </a>
+
+        <a
+          href="https://instagram.com/kholiq.619"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram →
+        </a>
+
+        <a
+          href="https://fajarnurkholiq.github.io/landing-page/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          KaveloLab →
+        </a>
+
       </div>
+
     </section>
+
 
     <!-- FOOTER -->
     <div class="footer">
-      <span>© 2026 Muhammad Fajar Nurkholiq</span>
-      <span>AI & Technology Explorer · KaveloLab</span>
+
+      <span>
+        © 2026 Muhammad Fajar Nurkholiq
+      </span>
+
+      <span>
+        AI & Technology Explorer
+      </span>
+
     </div>
 
   </div>
 
-  <script>
-    // sedikit interaksi — biar terasa "hidup"
-    document.querySelectorAll('.work-item, .service-item, .lab-item, .product-card').forEach((el) => {
-      el.addEventListener('mouseenter', () => {
-        el.style.cursor = 'default';
-      });
-    });
 
-    // smooth scroll manual (tanpa library)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+  <script>
+
+    document
+      .querySelectorAll('.work-item, .service-item, .lab-item, .product-card')
+      .forEach((el) => {
+
+        el.addEventListener('mouseenter', () => {
+          el.style.cursor = 'default';
+        });
+
       });
-    });
+
+
+    document
+      .querySelectorAll('a[href^="#"]')
+      .forEach(anchor => {
+
+        anchor.addEventListener('click', function (e) {
+
+          const target =
+            document.querySelector(this.getAttribute('href'));
+
+          if (target) {
+
+            e.preventDefault();
+
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+
+          }
+
+        });
+
+      });
+
   </script>
 
 </body>
 </html>
+```
