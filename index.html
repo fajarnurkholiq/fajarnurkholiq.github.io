@@ -49,7 +49,7 @@
       letter-spacing:-.035em;
     }
 
-    /* NAV — PERBAIKAN: selalu terlihat */
+    /* NAV */
     .nav{
       position:fixed;
       top:0;
@@ -245,20 +245,9 @@
       object-fit:cover;
       opacity:.92;
     }
+    /* Placeholder teks HAPUS — sekarang foto asli yang tampil */
     .hero-photo::after{
-      content:"Ganti dengan foto asli (assets/fajar.jpg)";
-      position:absolute;
-      inset:auto 0 25px 0;
-      text-align:center;
-      color:rgba(255,255,255,.6);
-      font-size:10px;
-      letter-spacing:.1em;
-      background:rgba(0,0,0,.3);
-      padding:4px 12px;
-      border-radius:20px;
-      width:fit-content;
-      margin:auto;
-      backdrop-filter:blur(4px);
+      display:none; /* <-- Kunci perbaikan */
     }
     .availability{
       position:absolute;
@@ -736,8 +725,7 @@
         border-radius:16px 16px 0 0;
       }
       .hero-photo::after{
-        font-size:8px;
-        padding:3px 10px;
+        display:none;
       }
       .hero-copy{
         padding:40px 24px 32px;
@@ -906,9 +894,9 @@
             <div class="scroll">↓ Scroll untuk jelajahi</div>
           </div>
 
-          <!-- Ganti 'src' dengan path foto asli Anda -->
-          <div class="hero-photo" aria-label="Area foto profil Muhammad Fajar Nurkholiq">
-            <img src="assets/kholiq.jpg" alt="Foto Muhammad Fajar Nurkholiq" loading="lazy">
+          <!-- FOTO: sekarang pakai kholiq.jpg -->
+          <div class="hero-photo" aria-label="Foto profil Muhammad Fajar Nurkholiq">
+            <img src="assets/kholiq.jpg" alt="Muhammad Fajar Nurkholiq" loading="lazy">
             <div class="availability">
               <strong>● Tersedia untuk Project</strong>
               Punya website, undangan digital, atau project digital yang ingin dibuat?
