@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Muhammad Fajar — AI & Technology Explorer. Eksperimen, project, website, dan produk digital." />
+  <meta name="description" content="Muhammad Fajar — AI & Technology Explorer. Membangun website, produk digital, dan eksperimen AI." />
   <title>Muhammad Fajar — AI & Technology Explorer</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <style>
+    /* --- RESET & BASE --- */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -18,386 +19,384 @@
     }
 
     body {
-      background: #0c0b0a;
-      color: #e7e3db;
+      background: #0d0c0a;
+      color: #e8e3da;
       font-family: 'Space Grotesk', sans-serif;
-      line-height: 1.4;
-      padding: 0 20px;
+      line-height: 1.5;
+      padding: 0 24px;
+      -webkit-font-smoothing: antialiased;
     }
 
     a {
       color: inherit;
+      text-decoration: none;
     }
 
     .wrap {
-      max-width: 1300px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 40px 0 80px;
+      padding: 32px 0 64px;
     }
 
-    .nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 0 40px;
-      border-bottom: 2px solid #2a2622;
-      flex-wrap: wrap;
-      gap: 20px;
+    /* --- TYPOGRAPHY --- */
+    h1, h2, h3, h4 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
     }
 
-    .logo {
-      font-size: 32px;
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      background: #e7e3db;
-      color: #0c0b0a;
-      padding: 4px 14px 8px 14px;
-      display: inline-block;
-      line-height: 1;
+    .text-muted {
+      color: #a89f94;
     }
 
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
+    .text-accent {
+      color: #c9b8a8;
     }
 
-    .nav-links a {
-      color: #b0aaa0;
-      text-decoration: none;
-      border-bottom: 2px solid transparent;
-      transition: border-color 0.2s;
-      padding-bottom: 4px;
-    }
-
-    .nav-links a:hover {
-      border-color: #e7e3db;
-      color: #e7e3db;
-    }
-
-    /* HERO */
-    .hero {
-      padding: 80px 0 60px;
-      border-bottom: 2px solid #2a2622;
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 60px;
-    }
-
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .hero-left .label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: #a09080;
-      margin-bottom: 20px;
+    .label-sm {
       font-family: 'JetBrains Mono', monospace;
-    }
-
-    .hero-left h1 {
-      font-size: clamp(48px, 8vw, 96px);
-      font-weight: 700;
-      line-height: 0.95;
-      letter-spacing: -0.04em;
-      background: linear-gradient(135deg, #f5ede4 0%, #b8a090 80%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-left .sub {
-      margin-top: 28px;
-      font-size: 18px;
-      color: #b0aaa0;
-      max-width: 470px;
-      font-weight: 400;
-    }
-
-    .hero-left .actions {
-      margin-top: 40px;
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #8f8579;
     }
 
     .btn {
-      padding: 14px 28px;
+      display: inline-block;
+      padding: 12px 28px;
       font-size: 13px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
+      border: 2px solid transparent;
+      transition: all 0.2s ease;
       cursor: pointer;
-      transition: all 0.15s ease;
       font-family: 'Space Grotesk', sans-serif;
-      text-decoration: none;
-      display: inline-block;
+      text-align: center;
     }
 
     .btn-primary {
-      background: #e7e3db;
-      color: #0c0b0a;
-      border: 2px solid #e7e3db;
+      background: #e8e3da;
+      color: #0d0c0a;
+      border-color: #e8e3da;
     }
-
     .btn-primary:hover {
-      background: #b8a090;
-      border-color: #b8a090;
+      background: #d5cdc0;
+      border-color: #d5cdc0;
       transform: scale(0.97);
     }
 
     .btn-outline {
       background: transparent;
-      color: #e7e3db;
-      border: 2px solid #4a4440;
+      color: #e8e3da;
+      border-color: #4a4440;
     }
-
     .btn-outline:hover {
-      border-color: #e7e3db;
-      background: rgba(255, 255, 255, 0.04);
+      border-color: #e8e3da;
+      background: rgba(232, 227, 218, 0.06);
       transform: scale(0.97);
     }
 
-    /* HERO STATS */
-    .hero-right {
+    /* --- NAV --- */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0 32px;
+      border-bottom: 1px solid #2a2622;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      background: #e8e3da;
+      color: #0d0c0a;
+      padding: 2px 12px 6px 12px;
+      line-height: 1;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: #a89f94;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      border-color: #e8e3da;
+      color: #e8e3da;
+    }
+
+    /* --- HERO --- */
+    .hero {
+      padding: 64px 0 56px;
+      border-bottom: 1px solid #2a2622;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(44px, 7vw, 88px);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      background: linear-gradient(135deg, #f5efe8 0%, #c4b4a4 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-content .tagline {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #b8aea2;
+      max-width: 480px;
+      font-weight: 400;
+    }
+
+    .hero-content .actions {
+      margin-top: 36px;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stats {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
-      align-content: start;
     }
 
-    .hero-right .box {
+    .stat-card {
       background: #1a1714;
-      padding: 24px 18px;
+      padding: 22px 18px;
       border: 1px solid #2a2622;
       transition: background 0.2s;
-      font-size: 13px;
-      line-height: 1.5;
-      color: #c8c0b5;
+    }
+    .stat-card:hover {
+      background: #24201c;
     }
 
-    .hero-right .box:hover {
-      background: #2a2622;
-    }
-
-    .hero-right .box strong {
+    .stat-card .number {
       display: block;
-      font-size: 28px;
+      font-size: 32px;
       font-weight: 700;
-      color: #e7e3db;
-      margin-bottom: 6px;
-      letter-spacing: -0.03em;
+      color: #e8e3da;
+      letter-spacing: -0.02em;
     }
 
-    .hero-right .box span {
+    .stat-card .label {
       font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: #908880;
+      color: #8f8579;
+      margin-top: 4px;
     }
 
-    .box-highlight {
+    .stat-card.highlight {
       grid-column: span 2;
-      background: #1a1714;
-      border: 2px solid #b8a090;
-      padding: 28px 22px;
+      border-color: #b8aea2;
+      background: #1f1b18;
+    }
+    .stat-card.highlight .number {
+      font-size: 22px;
     }
 
-    .box-highlight strong {
-      font-size: 28px !important;
+    /* --- SECTION COMMON --- */
+    section {
+      padding: 64px 0 56px;
+      border-bottom: 1px solid #2a2622;
     }
 
-    /* ABOUT + WORK */
-    .about-work {
-      padding: 80px 0 40px;
-      border-bottom: 2px solid #2a2622;
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      gap: 60px;
-    }
-
-    .about-work .left h2 {
-      font-size: 44px;
+    .section-title {
+      font-size: 36px;
       font-weight: 700;
       letter-spacing: -0.03em;
-      line-height: 1.05;
+      margin-bottom: 8px;
     }
 
-    .about-work .left p {
-      margin-top: 20px;
-      color: #b0aaa0;
+    .section-sub {
+      color: #a89f94;
+      font-size: 16px;
+      margin-bottom: 40px;
+    }
+
+    /* --- ABOUT (ringkas) --- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .about-grid .left p {
+      color: #b8aea2;
       font-size: 15px;
-      max-width: 400px;
+      max-width: 420px;
+      margin-top: 16px;
     }
 
-    .about-work .right .work-item {
-      padding: 24px 0;
+    .about-grid .right .tool-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      margin-top: 8px;
+    }
+    .tool-tags span {
+      font-size: 12px;
+      background: #1a1714;
+      padding: 6px 14px;
+      border: 1px solid #2a2622;
+      color: #c8beb2;
+      letter-spacing: 0.04em;
+    }
+
+    /* --- WORK (project) --- */
+    .project-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-item {
+      padding: 28px 0;
       border-bottom: 1px solid #2a2622;
-      transition: padding-left 0.15s;
+      transition: padding-left 0.2s, background 0.15s;
+    }
+    .project-item:hover {
+      padding-left: 16px;
+      background: #12100e;
     }
 
-    .about-work .right .work-item:hover {
-      padding-left: 12px;
-    }
-
-    .work-item .name {
+    .project-item .name {
       font-size: 22px;
       font-weight: 600;
       letter-spacing: -0.02em;
     }
 
-    .work-item .desc {
+    .project-item .desc {
       font-size: 14px;
-      color: #b0aaa0;
+      color: #b8aea2;
       margin-top: 4px;
+      max-width: 600px;
     }
 
-    .work-item a {
-      text-decoration: none;
-      display: block;
-    }
-
-    .work-item .visit {
+    .project-item .meta {
       display: inline-block;
       margin-top: 10px;
       font-size: 11px;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #e7e3db;
-      border-bottom: 1px solid #e7e3db;
+      letter-spacing: 0.06em;
+      color: #e8e3da;
+      border-bottom: 1px solid #e8e3da;
       padding-bottom: 2px;
     }
 
-    /* SERVICES */
-    .services {
-      padding: 80px 0 60px;
-      border-bottom: 2px solid #2a2622;
-    }
-
-    .services h2 {
-      font-size: 40px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 40px;
-    }
-
-    .service-list {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .service-item {
+    /* --- SERVICES --- */
+    .service-grid {
       display: grid;
-      grid-template-columns: 60px 1fr 1fr;
-      gap: 20px;
-      padding: 24px 0;
-      border-bottom: 1px solid #2a2622;
-      align-items: center;
-      transition: background 0.15s;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
     }
 
-    .service-item:hover {
+    .service-card {
       background: #1a1714;
-      padding-left: 12px;
+      border: 1px solid #2a2622;
+      padding: 28px 24px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .service-card:hover {
+      border-color: #b8aea2;
+      background: #24201c;
     }
 
-    .service-item .num {
+    .service-card .num {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 14px;
-      color: #908880;
+      font-size: 13px;
+      color: #8f8579;
+      display: block;
+      margin-bottom: 12px;
     }
 
-    .service-item h3 {
+    .service-card h3 {
       font-size: 20px;
       font-weight: 600;
+      margin-bottom: 6px;
     }
 
-    .service-item p {
-      font-size: 13px;
-      color: #b0aaa0;
-      max-width: 400px;
+    .service-card p {
+      font-size: 14px;
+      color: #b8aea2;
     }
 
-    /* PRODUCTS */
-    .products {
-      padding: 80px 0 60px;
-      border-bottom: 2px solid #2a2622;
-    }
-
-    .products h2 {
-      font-size: 40px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 10px;
-    }
-
-    .products .subhead {
-      font-size: 16px;
-      color: #b0aaa0;
-      margin-bottom: 40px;
-    }
-
+    /* --- PRODUCTS (digital product) --- */
     .product-card {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
       gap: 40px;
       padding: 40px 0;
       border-top: 1px solid #2a2622;
-      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .product-card:hover {
+      background: #12100e;
+      padding-left: 12px;
     }
 
     .product-card h3 {
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 600;
       letter-spacing: -0.02em;
     }
 
     .product-card .detail p {
-      color: #b0aaa0;
+      color: #b8aea2;
       font-size: 15px;
-      max-width: 500px;
+      max-width: 480px;
     }
 
-    .product-card .detail .tag {
+    .product-card .badge {
       display: inline-block;
       margin-top: 16px;
       font-size: 10px;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      padding: 6px 14px;
+      letter-spacing: 0.08em;
+      padding: 6px 16px;
       background: #2a2622;
-      color: #c8c0b5;
+      color: #c8beb2;
     }
 
-    .product-card:hover h3 {
-      color: #b8a090;
+    .product-card .demo-links {
+      margin-top: 20px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .demo-links a {
+      font-size: 12px;
+      color: #e8e3da;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 2px;
+      transition: border-color 0.2s;
+    }
+    .demo-links a:hover {
+      border-color: #e8e3da;
     }
 
-    /* LAB */
-    .lab {
-      padding: 80px 0 60px;
-      border-bottom: 2px solid #2a2622;
-    }
-
-    .lab h2 {
-      font-size: 40px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 8px;
-    }
-
-    .lab .sub {
-      color: #b0aaa0;
-      margin-bottom: 40px;
-      font-size: 15px;
-    }
-
+    /* --- LAB (ringkas) --- */
     .lab-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -405,143 +404,152 @@
     }
 
     .lab-item {
-      padding: 28px 24px;
       background: #1a1714;
       border: 1px solid #2a2622;
+      padding: 28px 24px;
       transition: border-color 0.2s, background 0.2s;
     }
-
     .lab-item:hover {
-      border-color: #b8a090;
+      border-color: #b8aea2;
       background: #24201c;
     }
 
     .lab-item .num {
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
-      color: #908880;
+      color: #8f8579;
       display: block;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .lab-item h3 {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .lab-item p {
       font-size: 13px;
-      color: #b0aaa0;
+      color: #b8aea2;
     }
 
     .lab-item .link {
       display: inline-block;
-      margin-top: 16px;
+      margin-top: 14px;
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      color: #e7e3db;
-      border-bottom: 1px solid #e7e3db;
+      color: #e8e3da;
+      border-bottom: 1px solid #e8e3da;
       padding-bottom: 2px;
-      text-decoration: none;
     }
 
-    /* CONTACT */
-    .contact {
-      padding: 80px 0 40px;
-    }
-
+    /* --- CONTACT --- */
     .contact h2 {
-      font-size: 48px;
+      font-size: 44px;
       font-weight: 700;
       letter-spacing: -0.03em;
       max-width: 600px;
     }
 
     .contact .info {
-      margin-top: 20px;
+      margin-top: 24px;
       display: flex;
       flex-wrap: wrap;
-      gap: 40px 80px;
+      gap: 32px 64px;
     }
 
     .contact .info a {
-      color: #b0aaa0;
-      text-decoration: none;
+      color: #b8aea2;
       font-size: 16px;
       border-bottom: 1px solid transparent;
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, color 0.2s;
       padding-bottom: 2px;
     }
 
     .contact .info a:hover {
-      border-color: #e7e3db;
-      color: #e7e3db;
+      border-color: #e8e3da;
+      color: #e8e3da;
     }
 
-    /* FOOTER */
+    /* --- FOOTER --- */
     .footer {
-      padding: 40px 0 20px;
-      border-top: 2px solid #2a2622;
+      padding: 32px 0 16px;
+      border-top: 1px solid #2a2622;
       display: flex;
       justify-content: space-between;
       font-size: 12px;
-      color: #908880;
+      color: #8f8579;
       flex-wrap: wrap;
       gap: 16px;
+      margin-top: 16px;
     }
 
-    @media (max-width: 900px) {
-      .hero,
-      .about-work {
+    /* --- RESPONSIVE --- */
+    @media (max-width: 992px) {
+      .hero {
         grid-template-columns: 1fr;
         gap: 40px;
       }
 
-      .service-item {
+      .about-grid {
         grid-template-columns: 1fr;
-        gap: 6px;
-        padding: 20px 0;
+        gap: 32px;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr 1fr;
       }
 
       .product-card {
         grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .lab-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding: 0 16px;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+
+      .nav-links {
         gap: 16px;
+        font-size: 11px;
+        justify-content: center;
+      }
+
+      .hero-content h1 {
+        font-size: 40px;
+      }
+
+      .hero-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stat-card.highlight {
+        grid-column: span 2;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
       }
 
       .lab-grid {
         grid-template-columns: 1fr;
       }
-    }
-
-    @media (max-width: 600px) {
-      .nav {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 16px;
-      }
-
-      .nav-links {
-        flex-wrap: wrap;
-        gap: 16px;
-        font-size: 12px;
-      }
-
-      .hero-left h1 {
-        font-size: 44px;
-      }
-
-      .hero-right {
-        grid-template-columns: 1fr;
-      }
-
-      .box-highlight {
-        grid-column: span 1;
-      }
 
       .contact h2 {
-        font-size: 34px;
+        font-size: 32px;
       }
 
       .footer {
@@ -549,561 +557,310 @@
         text-align: center;
       }
     }
+
+    @media (max-width: 480px) {
+      .hero-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-card.highlight {
+        grid-column: span 1;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <div class="wrap">
+<div class="wrap">
 
-    <!-- NAV -->
-    <nav class="nav">
-      <div class="logo">F.</div>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="logo">F.</div>
+    <div class="nav-links">
+      <a href="#about" class="active">Tentang</a>
+      <a href="#work">Project</a>
+      <a href="#services">Layanan</a>
+      <a href="#products">Produk</a>
+      <a href="#lab">Lab</a>
+      <a href="#contact">Kontak</a>
+    </div>
+  </nav>
 
-      <div class="nav-links">
-        <a href="#about">Tentang</a>
-        <a href="#work">Project</a>
-        <a href="#services">Layanan</a>
-        <a href="#products">Produk</a>
-        <a href="#lab">Lab</a>
-        <a href="#contact">Kontak</a>
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="label-sm">// AI & Technology Explorer</div>
+      <h1>Muhammad<br />Fajar.</h1>
+      <p class="tagline">
+        Membangun website, produk digital, dan eksperimen AI — 
+        dari ide menjadi sesuatu yang nyata dan bermanfaat.
+      </p>
+      <div class="actions">
+        <a href="#work" class="btn btn-primary">Lihat Project</a>
+        <a href="#contact" class="btn btn-outline">Hubungi</a>
       </div>
-    </nav>
-
-
-    <!-- HERO -->
-    <section class="hero">
-
-      <div class="hero-left">
-
-        <div class="label">// AI & TECHNOLOGY EXPLORER</div>
-
-        <h1>
-          Muhammad<br />
-          Fajar.
-        </h1>
-
-        <p class="sub">
-          Saya mengeksplorasi AI dan teknologi dengan membangun
-          website, produk digital, dan eksperimen menjadi sesuatu
-          yang nyata.
-        </p>
-
-        <div class="actions">
-          <a href="#work" class="btn btn-primary">
-            Lihat project
-          </a>
-
-          <a href="#contact" class="btn btn-outline">
-            Hubungi
-          </a>
-        </div>
-
-      </div>
-
-
-      <div class="hero-right">
-
-        <div class="box">
-          <strong>4</strong>
-          <span>selected projects</span>
-        </div>
-
-        <div class="box">
-          <strong>2</strong>
-          <span>collaboration projects</span>
-        </div>
-
-        <div class="box">
-          <strong>1</strong>
-          <span>digital product</span>
-        </div>
-
-        <div class="box">
-          <strong>01</strong>
-          <span>AI workspace</span>
-        </div>
-
-        <div class="box box-highlight">
-          <strong>Learn → Build → Share.</strong>
-          <span>
-            AI · Technology · Website · Digital Product
-          </span>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ABOUT + WORK -->
-    <section class="about-work" id="about">
-
-      <div class="left">
-
-        <h2>
-          Saya masih<br />
-          <span style="color:#b8a090;">belajar.</span>
-        </h2>
-
-        <p>
-          Saya bukan developer profesional. Saya adalah pembelajar
-          AI dan teknologi yang belajar dengan cara membangun sesuatu.
-        </p>
-
-        <p>
-          Dari website, AI workspace, sampai produk digital —
-          setiap project menjadi cara untuk memahami teknologi
-          dengan lebih nyata.
-        </p>
-
-        <p style="margin-top:12px; font-size:13px; color:#908880;">
-          Muhammad Fajar Nurkholiq
-        </p>
-
-      </div>
-
-
-      <div class="right" id="work">
-
-        <!-- PERSONAL PROJECT -->
-        <div class="work-item">
-
-          <a
-            href="https://fajar-os.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-
-            <div class="name">Fajar OS</div>
-
-            <div class="desc">
-              Prototype AI Workspace dengan percakapan,
-              memory, dan pendekatan local-first.
-            </div>
-
-            <span class="visit">
-              Buka project →
-            </span>
-
-          </a>
-
-        </div>
-
-
-        <div class="work-item">
-
-          <a
-            href="https://fajarnurkholiq.github.io/macakecoffee/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-
-            <div class="name">Macake Coffee</div>
-
-            <div class="desc">
-              Website untuk brand kopi yang saya bangun
-              sebagai project bisnis nyata.
-            </div>
-
-            <span class="visit">
-              Buka website →
-            </span>
-
-          </a>
-
-        </div>
-
-
-        <div class="work-item">
-
-          <a
-            href="#services"
-          >
-
-            <div class="name">
-              Website Service — KaveloLab
-            </div>
-
-            <div class="desc">
-              Sistem demo website untuk tiga paket layanan:
-              Starter, Business, dan Pro.
-            </div>
-
-            <span class="visit">
-              Lihat demo →
-            </span>
-
-          </a>
-
-        </div>
-
-
-        <div class="work-item">
-
-          <div class="name">
-            Client & Collaboration
-          </div>
-
-          <div class="desc">
-            Website yang dibuat untuk project kolaborasi,
-            termasuk Home Studio dan Inframe Studio.
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- SERVICES -->
-    <section class="services" id="services">
-
-      <h2>
-        Yang saya kerjakan.
-      </h2>
-
-      <div class="service-list">
-
-        <div class="service-item">
-
-          <span class="num">01</span>
-
-          <h3>Website</h3>
-
-          <p>
-            Landing page dan website untuk bisnis,
-            brand, maupun project personal.
-          </p>
-
-        </div>
-
-
-        <div class="service-item">
-
-          <span class="num">02</span>
-
-          <h3>AI & Technology</h3>
-
-          <p>
-            Eksperimen menggunakan AI untuk membangun
-            workflow, prototype, dan aplikasi kecil.
-          </p>
-
-        </div>
-
-
-        <div class="service-item">
-
-          <span class="num">03</span>
-
-          <h3>Digital Products</h3>
-
-          <p>
-            Mengubah hasil eksperimen menjadi template,
-            sistem, atau produk digital yang bisa digunakan.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- WEBSITE SERVICE DEMOS -->
-    <section class="products">
-
-      <h2>
-        Website Service.
-      </h2>
-
-      <div class="subhead">
-        Demo paket website yang dibangun untuk KaveloLab.
-      </div>
-
-
-      <div class="product-card">
-
-        <h3>
-          Starter / Business / Pro
-        </h3>
-
-        <div class="detail">
-
-          <p>
-            Tiga demo website untuk menunjukkan perbedaan
-            pendekatan dan skala layanan website KaveloLab.
-          </p>
-
-          <span class="tag">
-            3 Demo · 1 Service
-          </span>
-
-          <div style="margin-top:20px; display:flex; gap:20px; flex-wrap:wrap;">
-
-            <a
-              href="https://fajarnurkholiq.github.io/Senja-Coffee-demo-started//"
-              target="_blank"
-              rel="noopener noreferrer"
-              style="font-size:12px; color:#e7e3db;"
-            >
-              Senja / Starter →
-            </a>
-
-            <a
-              href="https://fajarnurkholiq.github.io/BENTANG-DEMO-BUSINESS//"
-              target="_blank"
-              rel="noopener noreferrer"
-              style="font-size:12px; color:#e7e3db;"
-            >
-              BENTANG / Business →
-            </a>
-
-            <a
-              href="https://fajarnurkholiq.github.io/aruna-demo-pro/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style="font-size:12px; color:#e7e3db;"
-            >
-              ARUNA / Pro →
-            </a>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- DIGITAL PRODUCT -->
-    <section class="products" id="products">
-
-      <h2>
-        Produk.
-      </h2>
-
-      <div class="subhead">
-        Salah satu eksperimen yang sudah menjadi produk digital.
-      </div>
-
-
-      <a
-        class="product-card"
-        href="https://kavelolab.lynk.id"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-
-        <h3>
-          Caption System
-        </h3>
-
-        <div class="detail">
-
-          <p>
-            Sistem 5 prompt berurutan untuk mengubah ide mentah
-            menjadi caption Instagram yang lebih natural,
-            terstruktur, punya hook, dan CTA.
-          </p>
-
-          <span class="tag">
-            Rp29.000 · Digital Product
-          </span>
-
-        </div>
-
-      </a>
-
-    </section>
-
-
-    <!-- LAB -->
-    <section class="lab" id="lab">
-
-      <h2>
-        Lab.
-      </h2>
-
-      <div class="sub">
-        Eksperimen teknologi yang menjadi bagian dari proses belajar.
-      </div>
-
-
-      <div class="lab-grid">
-
-        <div class="lab-item">
-
-          <span class="num">01</span>
-
-          <h3>Fajar OS</h3>
-
-          <p>
-            Eksplorasi membangun AI Workspace personal
-            dengan memory dan local-first architecture.
-          </p>
-
-          <a
-            href="https://fajar-os.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="link"
-          >
-            Buka →
-          </a>
-
-        </div>
-
-
-        <div class="lab-item">
-
-          <span class="num">02</span>
-
-          <h3>AI Coding</h3>
-
-          <p>
-            Eksperimen membangun website dan aplikasi
-            menggunakan AI sebagai bagian dari workflow.
-          </p>
-
-        </div>
-
-
-        <div class="lab-item">
-
-          <span class="num">03</span>
-
-          <h3>Digital Products</h3>
-
-          <p>
-            Menguji bagaimana eksperimen AI dapat dikembangkan
-            menjadi produk digital sederhana.
-          </p>
-
-        </div>
-
-
-        <div class="lab-item">
-
-          <span class="num">04</span>
-
-          <h3>KaveloLab</h3>
-
-          <p>
-            Brand eksperimen AI & teknologi yang menjadi tempat
-            project, content, website service, dan digital product.
-          </p>
-
-          <a
-            href="https://fajarnurkholiq.github.io/KaveloLab.web//"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="link"
-          >
-            Buka →
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- CONTACT -->
-    <section class="contact" id="contact">
-
-      <h2>
-        Ada project?<br />
-        Mari dibangun.
-      </h2>
-
-      <div class="info">
-
-        <a
-          href="tel:+6282121759018"
-        >
-          WhatsApp →
-        </a>
-
-        <a
-          href="https://instagram.com/kholiq.619"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Instagram →
-        </a>
-
-        <a
-          href="https://fajarnurkholiq.github.io/KaveloLab.web//"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          KaveloLab →
-        </a>
-
-      </div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-    <div class="footer">
-
-      <span>
-        © 2026 Muhammad Fajar Nurkholiq
-      </span>
-
-      <span>
-        AI & Technology Explorer
-      </span>
-
     </div>
 
+    <div class="hero-stats">
+      <div class="stat-card">
+        <span class="number">5+</span>
+        <span class="label">Project Selesai</span>
+      </div>
+      <div class="stat-card">
+        <span class="number">2</span>
+        <span class="label">Kolaborasi</span>
+      </div>
+      <div class="stat-card">
+        <span class="number">1</span>
+        <span class="label">Produk Digital</span>
+      </div>
+      <div class="stat-card">
+        <span class="number">3</span>
+        <span class="label">Demo Website</span>
+      </div>
+      <div class="stat-card highlight">
+        <span class="number">Learn → Build → Share</span>
+        <span class="label">AI · Website · Digital Product</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="left">
+        <span class="label-sm">Tentang Saya</span>
+        <h2 class="section-title" style="margin-top:4px;">
+          Menjelajahi <span class="text-accent">teknologi</span><br />
+          dengan membangun.
+        </h2>
+        <p>
+          Saya adalah AI & Technology Explorer. Bukan sekadar belajar,
+          tapi langsung menerapkan dengan membuat website, eksperimen AI,
+          dan produk digital yang bisa digunakan.
+        </p>
+        <p style="margin-top:12px; font-size:14px; color:#8f8579;">
+          Muhammad Fajar Nurkholiq
+        </p>
+      </div>
+      <div class="right">
+        <span class="label-sm">Tools & Tech</span>
+        <div class="tool-tags">
+          <span>HTML / CSS</span>
+          <span>JavaScript</span>
+          <span>AI (GPT, Claude)</span>
+          <span>Local-first</span>
+          <span>UI/UX</span>
+          <span>Responsive</span>
+        </div>
+        <p style="margin-top:24px; color:#b8aea2; font-size:14px; max-width:400px;">
+          Saya percaya teknologi terbaik adalah yang memecahkan masalah nyata — 
+          dan saya membangun untuk itu.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK (Project) -->
+  <section id="work">
+    <span class="label-sm">Portfolio</span>
+    <h2 class="section-title">Project Unggulan</h2>
+    <p class="section-sub">Website, AI Workspace, dan kolaborasi.</p>
+
+    <div class="project-list">
+
+      <div class="project-item">
+        <a href="https://fajar-os.vercel.app/" target="_blank" rel="noopener noreferrer">
+          <div class="name">Fajar OS</div>
+          <div class="desc">AI Workspace dengan percakapan, memory, dan pendekatan local-first.</div>
+          <span class="meta">Buka Project →</span>
+        </a>
+      </div>
+
+      <div class="project-item">
+        <a href="https://fajarnurkholiq.github.io/macakecoffee/" target="_blank" rel="noopener noreferrer">
+          <div class="name">Macake Coffee</div>
+          <div class="desc">Website brand kopi — project bisnis nyata dengan desain modern.</div>
+          <span class="meta">Buka Website →</span>
+        </a>
+      </div>
+
+      <div class="project-item">
+        <a href="#services" style="display:block;">
+          <div class="name">Website Service — KaveloLab</div>
+          <div class="desc">Demo 3 paket layanan website: Starter, Business, Pro.</div>
+          <span class="meta">Lihat Demo →</span>
+        </a>
+      </div>
+
+      <div class="project-item">
+        <div class="name">Client & Collaboration</div>
+        <div class="desc">Website untuk Home Studio, Inframe Studio, dan project kolaborasi lainnya.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <span class="label-sm">Layanan</span>
+    <h2 class="section-title">Yang Saya Kerjakan</h2>
+    <p class="section-sub">Fokus pada kualitas, bukan kuantitas.</p>
+
+    <div class="service-grid">
+      <div class="service-card">
+        <span class="num">01</span>
+        <h3>Website</h3>
+        <p>Landing page, company profile, atau website bisnis yang responsif dan sesuai brand.</p>
+      </div>
+      <div class="service-card">
+        <span class="num">02</span>
+        <h3>AI & Technology</h3>
+        <p>Eksperimen AI untuk workflow, prototype, dan aplikasi kecil yang fungsional.</p>
+      </div>
+      <div class="service-card">
+        <span class="num">03</span>
+        <h3>Digital Products</h3>
+        <p>Mengubah eksperimen menjadi template, sistem, atau produk digital siap pakai.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS (Digital Product) -->
+  <section id="products">
+    <span class="label-sm">Produk Digital</span>
+    <h2 class="section-title">Produk</h2>
+    <p class="section-sub">Salah satu eksperimen yang telah menjadi produk.</p>
+
+    <a class="product-card" href="https://kavelolab.lynk.id" target="_blank" rel="noopener noreferrer">
+      <h3>Caption System</h3>
+      <div class="detail">
+        <p>
+          Sistem 5 prompt berurutan untuk mengubah ide mentah menjadi caption Instagram 
+          yang natural, terstruktur, punya hook, dan CTA.
+        </p>
+        <span class="badge">Rp29.000 · Digital Product</span>
+      </div>
+    </a>
+
+    <!-- Demo Website Service (ditampilkan sebagai produk tambahan) -->
+    <div class="product-card" style="border-top:none; padding-top:20px;">
+      <h3>Demo Website Service</h3>
+      <div class="detail">
+        <p>
+          Tiga demo website untuk menunjukkan perbedaan skala layanan: 
+          Starter, Business, dan Pro.
+        </p>
+        <div class="demo-links">
+          <a href="https://fajarnurkholiq.github.io/Senja-Coffee-demo-started/" target="_blank" rel="noopener noreferrer">Senja / Starter →</a>
+          <a href="https://fajarnurkholiq.github.io/BENTANG-DEMO-BUSINESS/" target="_blank" rel="noopener noreferrer">BENTANG / Business →</a>
+          <a href="https://fajarnurkholiq.github.io/aruna-demo-pro/" target="_blank" rel="noopener noreferrer">ARUNA / Pro →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LAB -->
+  <section id="lab">
+    <span class="label-sm">Eksperimen</span>
+    <h2 class="section-title">Lab</h2>
+    <p class="section-sub">Proyek eksplorasi dan pembelajaran teknologi.</p>
+
+    <div class="lab-grid">
+      <div class="lab-item">
+        <span class="num">01</span>
+        <h3>Fajar OS</h3>
+        <p>AI Workspace dengan memory dan local-first architecture.</p>
+        <a href="https://fajar-os.vercel.app/" target="_blank" rel="noopener noreferrer" class="link">Buka →</a>
+      </div>
+      <div class="lab-item">
+        <span class="num">02</span>
+        <h3>AI Coding</h3>
+        <p>Eksperimen membangun website dan aplikasi dengan bantuan AI.</p>
+      </div>
+      <div class="lab-item">
+        <span class="num">03</span>
+        <h3>Digital Products</h3>
+        <p>Menguji bagaimana eksperimen AI dapat menjadi produk digital.</p>
+      </div>
+      <div class="lab-item">
+        <span class="num">04</span>
+        <h3>KaveloLab</h3>
+        <p>Brand eksperimen AI & teknologi — wadah project, content, dan produk.</p>
+        <a href="https://fajarnurkholiq.github.io/KaveloLab.web/" target="_blank" rel="noopener noreferrer" class="link">Buka →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <h2>
+      Ada project?<br />
+      Mari <span class="text-accent">dibangun</span>.
+    </h2>
+    <div class="info">
+      <a href="tel:+6282121759018">WhatsApp →</a>
+      <a href="https://instagram.com/kholiq.619" target="_blank" rel="noopener noreferrer">Instagram →</a>
+      <a href="https://fajarnurkholiq.github.io/KaveloLab.web/" target="_blank" rel="noopener noreferrer">KaveloLab →</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>© 2026 Muhammad Fajar Nurkholiq</span>
+    <span>AI & Technology Explorer</span>
   </div>
 
+</div>
 
-  <script>
+<script>
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Update active nav link
+        document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+        this.classList.add('active');
+      }
+    });
+  });
 
-    document
-      .querySelectorAll('.work-item, .service-item, .lab-item, .product-card')
-      .forEach((el) => {
+  // Highlight active nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
 
-        el.addEventListener('mouseenter', () => {
-          el.style.cursor = 'default';
-        });
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 120;
+      if (pageYOffset >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
 
-      });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  });
 
-
-    document
-      .querySelectorAll('a[href^="#"]')
-      .forEach(anchor => {
-
-        anchor.addEventListener('click', function (e) {
-
-          const target =
-            document.querySelector(this.getAttribute('href'));
-
-          if (target) {
-
-            e.preventDefault();
-
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-
-          }
-
-        });
-
-      });
-
-  </script>
+  // Cursor pointer for interactive items (optional)
+  document.querySelectorAll('.project-item, .service-card, .lab-item, .product-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      el.style.cursor = 'default';
+    });
+  });
+</script>
 
 </body>
 </html>
