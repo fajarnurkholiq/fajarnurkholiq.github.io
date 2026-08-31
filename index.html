@@ -8,22 +8,55 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* --- RESET & BASE --- */
+    :root {
+      --color-cream-paper: #f8f8f2;
+      --color-card-white: #ffffff;
+      --color-studio-ink: #1a1a1a;
+      --color-deep-black: #000000;
+      --color-powder-blue: #bedbff;
+      --color-mint-wash: #a4f4cf;
+      --color-blush-tint: #ffc9c9;
+      --color-signal-green: #00c950;
+
+      --font-sans: 'Inter', -apple-system, ui-sans-serif, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+      --spacing-8: 8px;
+      --spacing-16: 16px;
+      --spacing-24: 24px;
+      --spacing-32: 32px;
+      --spacing-40: 40px;
+      --spacing-48: 48px;
+      --spacing-64: 64px;
+      --spacing-96: 96px;
+      --spacing-112: 112px;
+
+      --radius-cards: 12px;
+      --radius-buttons: 8px;
+      --radius-tags: 9999px;
+
+      --page-max-width: 1200px;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      background: #0d0c0a;
-      color: #e8e3da;
-      font-family: 'Space Grotesk', sans-serif;
+      background: var(--color-cream-paper);
+      color: var(--color-studio-ink);
+      font-family: var(--font-sans);
+      font-weight: 400;
       line-height: 1.5;
-      padding: 0 24px;
+      letter-spacing: -0.4px;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -32,835 +65,853 @@
       text-decoration: none;
     }
 
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
     .wrap {
-      max-width: 1200px;
+      max-width: var(--page-max-width);
       margin: 0 auto;
-      padding: 32px 0 64px;
+      padding: 0 24px;
     }
 
-    /* --- TYPOGRAPHY --- */
-    h1, h2, h3, h4 {
+    section {
+      padding: var(--spacing-96) 0;
+    }
+
+    .section-heading {
+      font-size: 30px;
+      line-height: 1.2;
+      letter-spacing: -0.75px;
       font-weight: 600;
-      letter-spacing: -0.02em;
+      color: var(--color-studio-ink);
+      margin-bottom: 0;
     }
 
-    .text-muted {
-      color: #a89f94;
+    .eyebrow {
+      display: block;
+      font-size: 14px;
+      line-height: 1.43;
+      letter-spacing: -0.35px;
+      color: var(--color-studio-ink);
+      opacity: 0.6;
+      margin-bottom: var(--spacing-8);
     }
 
-    .text-accent {
-      color: #c9b8a8;
-    }
-
-    .label-sm {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #8f8579;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 12px 28px;
-      font-size: 13px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      border: 2px solid transparent;
-      transition: all 0.2s ease;
-      cursor: pointer;
-      font-family: 'Space Grotesk', sans-serif;
-      text-align: center;
-    }
-
-    .btn-primary {
-      background: #e8e3da;
-      color: #0d0c0a;
-      border-color: #e8e3da;
-    }
-    .btn-primary:hover {
-      background: #d5cdc0;
-      border-color: #d5cdc0;
-      transform: scale(0.97);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: #e8e3da;
-      border-color: #4a4440;
-    }
-    .btn-outline:hover {
-      border-color: #e8e3da;
-      background: rgba(232, 227, 218, 0.06);
-      transform: scale(0.97);
+    .section-sub {
+      font-size: 16px;
+      color: var(--color-studio-ink);
+      opacity: 0.6;
+      margin-top: var(--spacing-16);
+      margin-bottom: var(--spacing-48);
+      max-width: 560px;
     }
 
     /* --- NAV --- */
+    .nav-bar {
+      background: var(--color-card-white);
+      width: 100%;
+    }
+
     .nav {
+      max-width: var(--page-max-width);
+      margin: 0 auto;
+      padding: var(--spacing-24);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 0 32px;
-      border-bottom: 1px solid #2a2622;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: var(--spacing-16);
     }
 
     .logo {
-      font-size: 28px;
+      font-size: 16px;
       font-weight: 700;
-      letter-spacing: -0.04em;
-      background: #e8e3da;
-      color: #0d0c0a;
-      padding: 2px 12px 6px 12px;
-      line-height: 1;
+      letter-spacing: -0.4px;
+      color: var(--color-studio-ink);
     }
 
     .nav-links {
       display: flex;
-      gap: 28px;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      gap: var(--spacing-32);
       flex-wrap: wrap;
     }
 
     .nav-links a {
-      color: #a89f94;
-      border-bottom: 2px solid transparent;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--color-studio-ink);
       padding-bottom: 4px;
-      transition: border-color 0.2s, color 0.2s;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s ease, opacity 0.15s ease;
+      opacity: 0.7;
     }
 
-    .nav-links a:hover,
+    .nav-links a:hover {
+      opacity: 1;
+    }
+
     .nav-links a.active {
-      border-color: #e8e3da;
-      color: #e8e3da;
+      border-color: var(--color-studio-ink);
+      opacity: 1;
+    }
+
+    .nav-status {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-8);
+      font-size: 14px;
+      color: var(--color-studio-ink);
+      white-space: nowrap;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-signal-green);
+      flex-shrink: 0;
+    }
+
+    /* --- BUTTONS --- */
+    .btn {
+      display: inline-block;
+      background: var(--color-studio-ink);
+      color: var(--color-card-white);
+      font-size: 16px;
+      font-weight: 500;
+      padding: 16px 24px;
+      border-radius: var(--radius-buttons);
+      text-align: center;
+      transition: opacity 0.15s ease;
+    }
+
+    .btn:hover {
+      opacity: 0.85;
+    }
+
+    .btn-outline {
+      display: inline-block;
+      background: transparent;
+      color: var(--color-studio-ink);
+      font-size: 16px;
+      font-weight: 500;
+      padding: 16px 24px;
+      border-radius: var(--radius-buttons);
+      border: 1px solid var(--color-studio-ink);
+      text-align: center;
+      transition: opacity 0.15s ease;
+    }
+
+    .btn-outline:hover {
+      opacity: 0.7;
+    }
+
+    .actions {
+      display: flex;
+      gap: var(--spacing-16);
+      flex-wrap: wrap;
+      margin-top: var(--spacing-32);
     }
 
     /* --- HERO --- */
     .hero {
-      padding: 64px 0 56px;
-      border-bottom: 1px solid #2a2622;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: center;
+      padding-top: var(--spacing-64);
+      padding-bottom: var(--spacing-96);
     }
 
-    .hero-content h1 {
-      font-size: clamp(44px, 7vw, 88px);
+    .hero h1 {
+      font-size: 96px;
       font-weight: 700;
-      line-height: 0.95;
-      letter-spacing: -0.04em;
-      background: linear-gradient(135deg, #f5efe8 0%, #c4b4a4 80%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      line-height: 1.0;
+      letter-spacing: -2.4px;
+      color: var(--color-studio-ink);
+      max-width: 900px;
     }
 
-    .hero-content .tagline {
-      margin-top: 20px;
-      font-size: 18px;
-      color: #b8aea2;
-      max-width: 480px;
+    .hero .subtitle {
+      margin-top: var(--spacing-32);
+      font-size: 20px;
       font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: -0.5px;
+      color: var(--color-studio-ink);
+      opacity: 0.6;
+      max-width: 560px;
     }
 
-    .hero-content .actions {
-      margin-top: 36px;
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .hero-stats {
+    /* --- STATS (neutral service cards) --- */
+    .stats-grid {
+      margin-top: var(--spacing-64);
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--spacing-32);
     }
 
     .stat-card {
-      background: #1a1714;
-      padding: 22px 18px;
-      border: 1px solid #2a2622;
-      transition: background 0.2s;
-    }
-    .stat-card:hover {
-      background: #24201c;
+      background: var(--color-card-white);
+      border-radius: var(--radius-cards);
+      padding: var(--spacing-32);
     }
 
     .stat-card .number {
       display: block;
-      font-size: 32px;
-      font-weight: 700;
-      color: #e8e3da;
-      letter-spacing: -0.02em;
+      font-size: 48px;
+      font-weight: 600;
+      letter-spacing: -1.2px;
+      color: var(--color-studio-ink);
+      line-height: 1.2;
     }
 
     .stat-card .label {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #8f8579;
-      margin-top: 4px;
+      display: block;
+      margin-top: var(--spacing-8);
+      font-size: 14px;
+      letter-spacing: -0.35px;
+      color: var(--color-studio-ink);
+      opacity: 0.6;
     }
 
     .stat-card.highlight {
-      grid-column: span 2;
-      border-color: #b8aea2;
-      background: #1f1b18;
+      grid-column: span 4;
+      background: var(--color-powder-blue);
     }
+
     .stat-card.highlight .number {
-      font-size: 22px;
+      font-size: 30px;
+      letter-spacing: -0.75px;
     }
 
-    /* --- SECTION COMMON --- */
-    section {
-      padding: 64px 0 56px;
-      border-bottom: 1px solid #2a2622;
+    .stat-card.highlight .label {
+      opacity: 0.75;
     }
 
-    .section-title {
-      font-size: 36px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 8px;
-    }
-
-    .section-sub {
-      color: #a89f94;
-      font-size: 16px;
-      margin-bottom: 40px;
-    }
-
-    /* --- ABOUT (ringkas) --- */
+    /* --- ABOUT --- */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
-      gap: 48px;
+      gap: var(--spacing-64);
       align-items: start;
     }
 
-    .about-grid .left p {
-      color: #b8aea2;
-      font-size: 15px;
-      max-width: 420px;
-      margin-top: 16px;
+    .about-grid h2 {
+      margin-top: var(--spacing-8);
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -1.2px;
+      color: var(--color-studio-ink);
     }
 
-    .about-grid .right .tool-tags {
+    .about-grid .accent {
+      opacity: 0.5;
+    }
+
+    .about-grid p {
+      margin-top: var(--spacing-24);
+      font-size: 16px;
+      line-height: 1.5;
+      letter-spacing: -0.4px;
+      color: var(--color-studio-ink);
+      opacity: 0.75;
+      max-width: 440px;
+    }
+
+    .about-grid .signature {
+      margin-top: var(--spacing-16);
+      font-size: 14px;
+      opacity: 0.5;
+    }
+
+    .tool-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px 12px;
-      margin-top: 8px;
-    }
-    .tool-tags span {
-      font-size: 12px;
-      background: #1a1714;
-      padding: 6px 14px;
-      border: 1px solid #2a2622;
-      color: #c8beb2;
-      letter-spacing: 0.04em;
+      gap: var(--spacing-8) var(--spacing-16);
+      margin-top: var(--spacing-16);
     }
 
-    /* --- WORK (project) --- */
-    .project-list {
+    .tool-tags span {
+      font-size: 14px;
+      background: var(--color-card-white);
+      color: var(--color-studio-ink);
+      padding: 8px 16px;
+      border-radius: var(--radius-tags);
+    }
+
+    /* --- WORK (Collaboration Project Cards) --- */
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--spacing-32);
+    }
+
+    .project-card {
+      position: relative;
+      border-radius: var(--radius-cards);
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #1a1a1a 0%, #3a3a3a 100%);
+      display: block;
+    }
+
+    .project-card.tint-blue { background: var(--color-powder-blue); }
+    .project-card.tint-mint { background: var(--color-mint-wash); }
+    .project-card.tint-blush { background: var(--color-blush-tint); }
+    .project-card.tint-ink { background: var(--color-studio-ink); }
+
+    .project-card .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: var(--spacing-24);
       display: flex;
       flex-direction: column;
+      justify-content: flex-start;
     }
 
-    .project-item {
-      padding: 28px 0;
-      border-bottom: 1px solid #2a2622;
-      transition: padding-left 0.2s, background 0.15s;
-    }
-    .project-item:hover {
-      padding-left: 16px;
-      background: #12100e;
+    .project-card.tint-ink .overlay .name,
+    .project-card.tint-ink .overlay .desc,
+    .project-card.tint-ink .overlay .meta {
+      color: var(--color-card-white);
     }
 
-    .project-item .name {
-      font-size: 22px;
+    .project-card:not(.tint-ink) .overlay .name,
+    .project-card:not(.tint-ink) .overlay .desc,
+    .project-card:not(.tint-ink) .overlay .meta {
+      color: var(--color-studio-ink);
+    }
+
+    .project-card .name {
+      font-size: 20px;
       font-weight: 600;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.5px;
     }
 
-    .project-item .desc {
+    .project-card .desc {
+      margin-top: var(--spacing-8);
       font-size: 14px;
-      color: #b8aea2;
-      margin-top: 4px;
-      max-width: 600px;
+      opacity: 0.85;
+      max-width: 90%;
     }
 
-    .project-item .meta {
-      display: inline-block;
-      margin-top: 10px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #e8e3da;
-      border-bottom: 1px solid #e8e3da;
-      padding-bottom: 2px;
+    .project-card .meta {
+      margin-top: auto;
+      align-self: flex-start;
+      font-size: 14px;
+      font-weight: 500;
+      padding-top: var(--spacing-16);
     }
 
-    /* --- SERVICES --- */
+    /* --- SERVICES (Service Category Cards) --- */
     .service-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
+      gap: var(--spacing-32);
     }
 
     .service-card {
-      background: #1a1714;
-      border: 1px solid #2a2622;
-      padding: 28px 24px;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .service-card:hover {
-      border-color: #b8aea2;
-      background: #24201c;
+      border-radius: var(--radius-cards);
+      padding: var(--spacing-32);
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    .service-card .num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13px;
-      color: #8f8579;
-      display: block;
-      margin-bottom: 12px;
-    }
+    .service-card.tint-white { background: var(--color-card-white); }
+    .service-card.tint-blue { background: var(--color-powder-blue); }
+    .service-card.tint-mint { background: var(--color-mint-wash); }
+    .service-card.tint-blush { background: var(--color-blush-tint); }
 
     .service-card h3 {
       font-size: 20px;
       font-weight: 600;
-      margin-bottom: 6px;
+      letter-spacing: -0.5px;
+      color: var(--color-studio-ink);
     }
 
     .service-card p {
+      margin-top: var(--spacing-8);
       font-size: 14px;
-      color: #b8aea2;
+      color: var(--color-studio-ink);
+      opacity: 0.7;
     }
 
-    /* --- PRODUCTS (digital product) --- */
-    .product-card {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 40px;
-      padding: 40px 0;
-      border-top: 1px solid #2a2622;
-      transition: background 0.15s;
+    .service-card .icon {
+      align-self: flex-end;
+      font-size: 24px;
+      color: var(--color-studio-ink);
+      margin-top: var(--spacing-16);
     }
-    .product-card:hover {
-      background: #12100e;
-      padding-left: 12px;
+
+    /* --- PRODUCTS (Neutral cards) --- */
+    .product-card {
+      display: block;
+      background: var(--color-card-white);
+      border-radius: var(--radius-cards);
+      padding: var(--spacing-32);
+      margin-bottom: var(--spacing-32);
+      transition: opacity 0.15s ease;
+    }
+
+    a.product-card:hover {
+      opacity: 0.85;
     }
 
     .product-card h3 {
-      font-size: 26px;
+      font-size: 30px;
       font-weight: 600;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.75px;
+      color: var(--color-studio-ink);
     }
 
     .product-card .detail p {
-      color: #b8aea2;
-      font-size: 15px;
-      max-width: 480px;
+      margin-top: var(--spacing-16);
+      font-size: 16px;
+      color: var(--color-studio-ink);
+      opacity: 0.7;
+      max-width: 520px;
     }
 
     .product-card .badge {
       display: inline-block;
-      margin-top: 16px;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 6px 16px;
-      background: #2a2622;
-      color: #c8beb2;
+      margin-top: var(--spacing-16);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 8px 16px;
+      background: var(--color-mint-wash);
+      color: var(--color-studio-ink);
+      border-radius: var(--radius-tags);
     }
 
     .product-card .demo-links {
-      margin-top: 20px;
+      margin-top: var(--spacing-24);
       display: flex;
-      gap: 20px;
+      gap: var(--spacing-24);
       flex-wrap: wrap;
     }
+
     .demo-links a {
-      font-size: 12px;
-      color: #e8e3da;
-      border-bottom: 1px solid transparent;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-studio-ink);
+      border-bottom: 1px solid var(--color-studio-ink);
       padding-bottom: 2px;
-      transition: border-color 0.2s;
-    }
-    .demo-links a:hover {
-      border-color: #e8e3da;
     }
 
-    /* --- LAB (ringkas) --- */
+    /* --- LAB (Neutral / tinted service cards) --- */
     .lab-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
+      gap: var(--spacing-32);
     }
 
     .lab-item {
-      background: #1a1714;
-      border: 1px solid #2a2622;
-      padding: 28px 24px;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .lab-item:hover {
-      border-color: #b8aea2;
-      background: #24201c;
+      border-radius: var(--radius-cards);
+      padding: var(--spacing-32);
     }
 
-    .lab-item .num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: #8f8579;
-      display: block;
-      margin-bottom: 10px;
-    }
+    .lab-item.tint-white { background: var(--color-card-white); }
+    .lab-item.tint-blue { background: var(--color-powder-blue); }
+    .lab-item.tint-mint { background: var(--color-mint-wash); }
+    .lab-item.tint-blush { background: var(--color-blush-tint); }
 
     .lab-item h3 {
       font-size: 20px;
       font-weight: 600;
-      margin-bottom: 4px;
+      letter-spacing: -0.5px;
+      color: var(--color-studio-ink);
     }
 
     .lab-item p {
-      font-size: 13px;
-      color: #b8aea2;
+      margin-top: var(--spacing-8);
+      font-size: 14px;
+      color: var(--color-studio-ink);
+      opacity: 0.7;
     }
 
     .lab-item .link {
       display: inline-block;
-      margin-top: 14px;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #e8e3da;
-      border-bottom: 1px solid #e8e3da;
+      margin-top: var(--spacing-16);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-studio-ink);
+      border-bottom: 1px solid var(--color-studio-ink);
       padding-bottom: 2px;
     }
 
-    /* --- CONTACT --- */
+    /* --- TESTIMONIAL-style CONTACT (Section Heading + Button) --- */
     .contact h2 {
-      font-size: 44px;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      max-width: 600px;
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -1.2px;
+      color: var(--color-studio-ink);
+      max-width: 640px;
+    }
+
+    .contact .accent {
+      opacity: 0.5;
     }
 
     .contact .info {
-      margin-top: 24px;
+      margin-top: var(--spacing-32);
       display: flex;
       flex-wrap: wrap;
-      gap: 32px 64px;
+      gap: var(--spacing-16) var(--spacing-48);
     }
 
     .contact .info a {
-      color: #b8aea2;
       font-size: 16px;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.2s, color 0.2s;
+      font-weight: 500;
+      color: var(--color-studio-ink);
+      border-bottom: 1px solid var(--color-studio-ink);
       padding-bottom: 2px;
-    }
-
-    .contact .info a:hover {
-      border-color: #e8e3da;
-      color: #e8e3da;
     }
 
     /* --- FOOTER --- */
     .footer {
-      padding: 32px 0 16px;
-      border-top: 1px solid #2a2622;
+      padding-top: var(--spacing-96);
+      padding-bottom: var(--spacing-48);
+      border-top: 1px solid var(--color-studio-ink);
       display: flex;
       justify-content: space-between;
-      font-size: 12px;
-      color: #8f8579;
       flex-wrap: wrap;
-      gap: 16px;
-      margin-top: 16px;
+      gap: var(--spacing-16);
+      font-size: 14px;
+      color: var(--color-studio-ink);
     }
 
     /* --- RESPONSIVE --- */
     @media (max-width: 992px) {
-      .hero {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-
-      .about-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-      }
-
-      .service-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .product-card {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .lab-grid {
-        grid-template-columns: 1fr 1fr;
-      }
+      .hero h1 { font-size: 64px; letter-spacing: -1.6px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stat-card.highlight { grid-column: span 2; }
+      .about-grid { grid-template-columns: 1fr; gap: var(--spacing-32); }
+      .project-grid { grid-template-columns: 1fr; }
+      .service-grid { grid-template-columns: 1fr 1fr; }
+      .lab-grid { grid-template-columns: 1fr; }
+      section { padding: var(--spacing-64) 0; }
     }
 
     @media (max-width: 720px) {
-      body {
-        padding: 0 16px;
-      }
-
-      .nav {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
-      }
-
-      .nav-links {
-        gap: 16px;
-        font-size: 11px;
-        justify-content: center;
-      }
-
-      .hero-content h1 {
-        font-size: 40px;
-      }
-
-      .hero-stats {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .stat-card.highlight {
-        grid-column: span 2;
-      }
-
-      .service-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .lab-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .contact h2 {
-        font-size: 32px;
-      }
-
-      .footer {
-        flex-direction: column;
-        text-align: center;
-      }
+      .nav { padding: var(--spacing-16); flex-direction: column; align-items: flex-start; }
+      .nav-links { gap: var(--spacing-16); font-size: 14px; }
+      .hero h1 { font-size: 44px; letter-spacing: -1.1px; }
+      .hero .subtitle { font-size: 16px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; gap: var(--spacing-16); }
+      .stat-card { padding: var(--spacing-24); }
+      .stat-card .number { font-size: 32px; }
+      .service-grid { grid-template-columns: 1fr; }
+      .about-grid h2 { font-size: 32px; letter-spacing: -0.8px; }
+      .contact h2 { font-size: 32px; letter-spacing: -0.8px; }
+      .footer { flex-direction: column; text-align: left; }
     }
 
     @media (max-width: 480px) {
-      .hero-stats {
-        grid-template-columns: 1fr;
-      }
-
-      .stat-card.highlight {
-        grid-column: span 1;
-      }
-
-      .section-title {
-        font-size: 28px;
-      }
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat-card.highlight { grid-column: span 1; }
+      .section-heading { font-size: 24px; }
     }
   </style>
 </head>
 
 <body>
 
-<div class="wrap">
-
   <!-- NAV -->
-  <nav class="nav">
-    <div class="logo">F.</div>
-    <div class="nav-links">
-      <a href="#about" class="active">Tentang</a>
-      <a href="#work">Project</a>
-      <a href="#services">Layanan</a>
-      <a href="#products">Produk</a>
-      <a href="#lab">Lab</a>
-      <a href="#contact">Kontak</a>
-    </div>
-  </nav>
+  <div class="nav-bar">
+    <nav class="nav">
+      <div class="logo">Fajar.</div>
+      <div class="nav-links">
+        <a href="#about" class="active">Tentang</a>
+        <a href="#work">Project</a>
+        <a href="#services">Layanan</a>
+        <a href="#products">Produk</a>
+        <a href="#lab">Lab</a>
+        <a href="#contact">Kontak</a>
+      </div>
+      <div class="nav-status">
+        <span class="status-dot"></span>
+        <span id="clock">--:--</span>
+      </div>
+    </nav>
+  </div>
 
-  <!-- HERO -->
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <div class="label-sm">// AI & Technology Explorer</div>
-      <h1>Muhammad<br />Fajar.</h1>
-      <p class="tagline">
-        Membangun website, produk digital, dan eksperimen AI — 
+  <div class="wrap">
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <span class="eyebrow">// AI & Technology Explorer</span>
+      <h1>Muhammad Fajar.</h1>
+      <p class="subtitle">
+        Membangun website, produk digital, dan eksperimen AI —
         dari ide menjadi sesuatu yang nyata dan bermanfaat.
       </p>
       <div class="actions">
-        <a href="#work" class="btn btn-primary">Lihat Project</a>
-        <a href="#contact" class="btn btn-outline">Hubungi</a>
+        <a href="#work" class="btn">Lihat Project</a>
+        <a href="#contact" class="btn-outline">Hubungi</a>
       </div>
-    </div>
 
-    <div class="hero-stats">
-      <div class="stat-card">
-        <span class="number">5+</span>
-        <span class="label">Project Selesai</span>
-      </div>
-      <div class="stat-card">
-        <span class="number">2</span>
-        <span class="label">Kolaborasi</span>
-      </div>
-      <div class="stat-card">
-        <span class="number">1</span>
-        <span class="label">Produk Digital</span>
-      </div>
-      <div class="stat-card">
-        <span class="number">3</span>
-        <span class="label">Demo Website</span>
-      </div>
-      <div class="stat-card highlight">
-        <span class="number">Learn → Build → Share</span>
-        <span class="label">AI · Website · Digital Product</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="about-grid">
-      <div class="left">
-        <span class="label-sm">Tentang Saya</span>
-        <h2 class="section-title" style="margin-top:4px;">
-          Menjelajahi <span class="text-accent">teknologi</span><br />
-          dengan membangun.
-        </h2>
-        <p>
-          Saya adalah AI & Technology Explorer. Bukan sekadar belajar,
-          tapi langsung menerapkan dengan membuat website, eksperimen AI,
-          dan produk digital yang bisa digunakan.
-        </p>
-        <p style="margin-top:12px; font-size:14px; color:#8f8579;">
-          Muhammad Fajar Nurkholiq
-        </p>
-      </div>
-      <div class="right">
-        <span class="label-sm">Tools & Tech</span>
-        <div class="tool-tags">
-          <span>HTML / CSS</span>
-          <span>JavaScript</span>
-          <span>AI (GPT, Claude)</span>
-          <span>Local-first</span>
-          <span>UI/UX</span>
-          <span>Responsive</span>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="number">5+</span>
+          <span class="label">Project Selesai</span>
         </div>
-        <p style="margin-top:24px; color:#b8aea2; font-size:14px; max-width:400px;">
-          Saya percaya teknologi terbaik adalah yang memecahkan masalah nyata — 
-          dan saya membangun untuk itu.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- WORK (Project) -->
-  <section id="work">
-    <span class="label-sm">Portfolio</span>
-    <h2 class="section-title">Project Unggulan</h2>
-    <p class="section-sub">Website, AI Workspace, dan kolaborasi.</p>
-
-    <div class="project-list">
-
-      <div class="project-item">
-        <a href="https://fajar-os.vercel.app/" target="_blank" rel="noopener noreferrer">
-          <div class="name">Fajar OS</div>
-          <div class="desc">AI Workspace dengan percakapan, memory, dan pendekatan local-first.</div>
-          <span class="meta">Buka Project →</span>
-        </a>
-      </div>
-
-      <div class="project-item">
-        <a href="https://fajarnurkholiq.github.io/macakecoffee/" target="_blank" rel="noopener noreferrer">
-          <div class="name">Macake Coffee</div>
-          <div class="desc">Website brand kopi — project bisnis nyata dengan desain modern.</div>
-          <span class="meta">Buka Website →</span>
-        </a>
-      </div>
-
-      <div class="project-item">
-        <a href="#services" style="display:block;">
-          <div class="name">Website Service — KaveloLab</div>
-          <div class="desc">Demo 3 paket layanan website: Starter, Business, Pro.</div>
-          <span class="meta">Lihat Demo →</span>
-        </a>
-      </div>
-
-      <div class="project-item">
-        <div class="name">Client & Collaboration</div>
-        <div class="desc">Website untuk Home Studio, Inframe Studio, dan project kolaborasi lainnya.</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-  <section id="services">
-    <span class="label-sm">Layanan</span>
-    <h2 class="section-title">Yang Saya Kerjakan</h2>
-    <p class="section-sub">Fokus pada kualitas, bukan kuantitas.</p>
-
-    <div class="service-grid">
-      <div class="service-card">
-        <span class="num">01</span>
-        <h3>Website</h3>
-        <p>Landing page, company profile, atau website bisnis yang responsif dan sesuai brand.</p>
-      </div>
-      <div class="service-card">
-        <span class="num">02</span>
-        <h3>AI & Technology</h3>
-        <p>Eksperimen AI untuk workflow, prototype, dan aplikasi kecil yang fungsional.</p>
-      </div>
-      <div class="service-card">
-        <span class="num">03</span>
-        <h3>Digital Products</h3>
-        <p>Mengubah eksperimen menjadi template, sistem, atau produk digital siap pakai.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRODUCTS (Digital Product) -->
-  <section id="products">
-    <span class="label-sm">Produk Digital</span>
-    <h2 class="section-title">Produk</h2>
-    <p class="section-sub">Salah satu eksperimen yang telah menjadi produk.</p>
-
-    <a class="product-card" href="https://kavelolab.lynk.id" target="_blank" rel="noopener noreferrer">
-      <h3>Caption System</h3>
-      <div class="detail">
-        <p>
-          Sistem 5 prompt berurutan untuk mengubah ide mentah menjadi caption Instagram 
-          yang natural, terstruktur, punya hook, dan CTA.
-        </p>
-        <span class="badge">Rp29.000 · Digital Product</span>
-      </div>
-    </a>
-
-    <!-- Demo Website Service (ditampilkan sebagai produk tambahan) -->
-    <div class="product-card" style="border-top:none; padding-top:20px;">
-      <h3>Demo Website Service</h3>
-      <div class="detail">
-        <p>
-          Tiga demo website untuk menunjukkan perbedaan skala layanan: 
-          Starter, Business, dan Pro.
-        </p>
-        <div class="demo-links">
-          <a href="https://fajarnurkholiq.github.io/Senja-Coffee-demo-started/" target="_blank" rel="noopener noreferrer">Senja / Starter →</a>
-          <a href="https://fajarnurkholiq.github.io/BENTANG-DEMO-BUSINESS/" target="_blank" rel="noopener noreferrer">BENTANG / Business →</a>
-          <a href="https://fajarnurkholiq.github.io/aruna-demo-pro/" target="_blank" rel="noopener noreferrer">ARUNA / Pro →</a>
+        <div class="stat-card">
+          <span class="number">2</span>
+          <span class="label">Kolaborasi</span>
+        </div>
+        <div class="stat-card">
+          <span class="number">1</span>
+          <span class="label">Produk Digital</span>
+        </div>
+        <div class="stat-card">
+          <span class="number">3</span>
+          <span class="label">Demo Website</span>
+        </div>
+        <div class="stat-card highlight">
+          <span class="number">Learn → Build → Share</span>
+          <span class="label">AI · Website · Digital Product</span>
         </div>
       </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="about-grid">
+        <div class="left">
+          <span class="eyebrow">Tentang Saya</span>
+          <h2>Menjelajahi <span class="accent">teknologi</span> dengan membangun.</h2>
+          <p>
+            Saya adalah AI & Technology Explorer. Bukan sekadar belajar,
+            tapi langsung menerapkan dengan membuat website, eksperimen AI,
+            dan produk digital yang bisa digunakan.
+          </p>
+          <p class="signature">Muhammad Fajar Nurkholiq</p>
+        </div>
+        <div class="right">
+          <span class="eyebrow">Tools & Tech</span>
+          <div class="tool-tags">
+            <span>HTML / CSS</span>
+            <span>JavaScript</span>
+            <span>AI (GPT, Claude)</span>
+            <span>Local-first</span>
+            <span>UI/UX</span>
+            <span>Responsive</span>
+          </div>
+          <p>
+            Saya percaya teknologi terbaik adalah yang memecahkan masalah nyata —
+            dan saya membangun untuk itu.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK (Project) -->
+    <section id="work">
+      <span class="eyebrow">Portfolio</span>
+      <h2 class="section-heading">Project Unggulan</h2>
+      <p class="section-sub">Website, AI Workspace, dan kolaborasi.</p>
+
+      <div class="project-grid">
+
+        <a class="project-card tint-ink" href="https://fajar-os.vercel.app/" target="_blank" rel="noopener noreferrer">
+          <div class="overlay">
+            <div class="name">Fajar OS</div>
+            <div class="desc">AI Workspace dengan percakapan, memory, dan pendekatan local-first.</div>
+            <span class="meta">Buka Project →</span>
+          </div>
+        </a>
+
+        <a class="project-card tint-blue" href="https://fajarnurkholiq.github.io/macakecoffee/" target="_blank" rel="noopener noreferrer">
+          <div class="overlay">
+            <div class="name">Macake Coffee</div>
+            <div class="desc">Website brand kopi — project bisnis nyata dengan desain modern.</div>
+            <span class="meta">Buka Website →</span>
+          </div>
+        </a>
+
+        <a class="project-card tint-mint" href="#services">
+          <div class="overlay">
+            <div class="name">Website Service — KaveloLab</div>
+            <div class="desc">Demo 3 paket layanan website: Starter, Business, Pro.</div>
+            <span class="meta">Lihat Demo →</span>
+          </div>
+        </a>
+
+        <div class="project-card tint-blush">
+          <div class="overlay">
+            <div class="name">Client & Collaboration</div>
+            <div class="desc">Website untuk Home Studio, Inframe Studio, dan project kolaborasi lainnya.</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <span class="eyebrow">Layanan</span>
+      <h2 class="section-heading">Yang Saya Kerjakan</h2>
+      <p class="section-sub">Fokus pada kualitas, bukan kuantitas.</p>
+
+      <div class="service-grid">
+        <div class="service-card tint-white">
+          <div>
+            <h3>Website</h3>
+            <p>Landing page, company profile, atau website bisnis yang responsif dan sesuai brand.</p>
+          </div>
+          <span class="icon">01</span>
+        </div>
+        <div class="service-card tint-blue">
+          <div>
+            <h3>AI & Technology</h3>
+            <p>Eksperimen AI untuk workflow, prototype, dan aplikasi kecil yang fungsional.</p>
+          </div>
+          <span class="icon">02</span>
+        </div>
+        <div class="service-card tint-mint">
+          <div>
+            <h3>Digital Products</h3>
+            <p>Mengubah eksperimen menjadi template, sistem, atau produk digital siap pakai.</p>
+          </div>
+          <span class="icon">03</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS (Digital Product) -->
+    <section id="products">
+      <span class="eyebrow">Produk Digital</span>
+      <h2 class="section-heading">Produk</h2>
+      <p class="section-sub">Salah satu eksperimen yang telah menjadi produk.</p>
+
+      <a class="product-card" href="https://kavelolab.lynk.id" target="_blank" rel="noopener noreferrer">
+        <h3>Caption System</h3>
+        <div class="detail">
+          <p>
+            Sistem 5 prompt berurutan untuk mengubah ide mentah menjadi caption Instagram
+            yang natural, terstruktur, punya hook, dan CTA.
+          </p>
+          <span class="badge">Rp29.000 · Digital Product</span>
+        </div>
+      </a>
+
+      <!-- Demo Website Service (ditampilkan sebagai produk tambahan) -->
+      <div class="product-card">
+        <h3>Demo Website Service</h3>
+        <div class="detail">
+          <p>
+            Tiga demo website untuk menunjukkan perbedaan skala layanan:
+            Starter, Business, dan Pro.
+          </p>
+          <div class="demo-links">
+            <a href="https://fajarnurkholiq.github.io/Senja-Coffee-demo-started/" target="_blank" rel="noopener noreferrer">Senja / Starter →</a>
+            <a href="https://fajarnurkholiq.github.io/BENTANG-DEMO-BUSINESS/" target="_blank" rel="noopener noreferrer">BENTANG / Business →</a>
+            <a href="https://fajarnurkholiq.github.io/aruna-demo-pro/" target="_blank" rel="noopener noreferrer">ARUNA / Pro →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAB -->
+    <section id="lab">
+      <span class="eyebrow">Eksperimen</span>
+      <h2 class="section-heading">Lab</h2>
+      <p class="section-sub">Proyek eksplorasi dan pembelajaran teknologi.</p>
+
+      <div class="lab-grid">
+        <div class="lab-item tint-white">
+          <h3>Fajar OS</h3>
+          <p>AI Workspace dengan memory dan local-first architecture.</p>
+          <a href="https://fajar-os.vercel.app/" target="_blank" rel="noopener noreferrer" class="link">Buka →</a>
+        </div>
+        <div class="lab-item tint-blue">
+          <h3>AI Coding</h3>
+          <p>Eksperimen membangun website dan aplikasi dengan bantuan AI.</p>
+        </div>
+        <div class="lab-item tint-mint">
+          <h3>Digital Products</h3>
+          <p>Menguji bagaimana eksperimen AI dapat menjadi produk digital.</p>
+        </div>
+        <div class="lab-item tint-blush">
+          <h3>KaveloLab</h3>
+          <p>Brand eksperimen AI & teknologi — wadah project, content, dan produk.</p>
+          <a href="https://fajarnurkholiq.github.io/KaveloLab.web/" target="_blank" rel="noopener noreferrer" class="link">Buka →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <h2>Ada project? Mari <span class="accent">dibangun</span>.</h2>
+      <div class="info">
+        <a href="tel:+6282121759018">WhatsApp →</a>
+        <a href="https://instagram.com/kholiq.619" target="_blank" rel="noopener noreferrer">Instagram →</a>
+        <a href="https://fajarnurkholiq.github.io/KaveloLab.web/" target="_blank" rel="noopener noreferrer">KaveloLab →</a>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <span>© 2026 Muhammad Fajar Nurkholiq</span>
+      <span>AI & Technology Explorer</span>
     </div>
-  </section>
 
-  <!-- LAB -->
-  <section id="lab">
-    <span class="label-sm">Eksperimen</span>
-    <h2 class="section-title">Lab</h2>
-    <p class="section-sub">Proyek eksplorasi dan pembelajaran teknologi.</p>
-
-    <div class="lab-grid">
-      <div class="lab-item">
-        <span class="num">01</span>
-        <h3>Fajar OS</h3>
-        <p>AI Workspace dengan memory dan local-first architecture.</p>
-        <a href="https://fajar-os.vercel.app/" target="_blank" rel="noopener noreferrer" class="link">Buka →</a>
-      </div>
-      <div class="lab-item">
-        <span class="num">02</span>
-        <h3>AI Coding</h3>
-        <p>Eksperimen membangun website dan aplikasi dengan bantuan AI.</p>
-      </div>
-      <div class="lab-item">
-        <span class="num">03</span>
-        <h3>Digital Products</h3>
-        <p>Menguji bagaimana eksperimen AI dapat menjadi produk digital.</p>
-      </div>
-      <div class="lab-item">
-        <span class="num">04</span>
-        <h3>KaveloLab</h3>
-        <p>Brand eksperimen AI & teknologi — wadah project, content, dan produk.</p>
-        <a href="https://fajarnurkholiq.github.io/KaveloLab.web/" target="_blank" rel="noopener noreferrer" class="link">Buka →</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="contact" id="contact">
-    <h2>
-      Ada project?<br />
-      Mari <span class="text-accent">dibangun</span>.
-    </h2>
-    <div class="info">
-      <a href="tel:+6282121759018">WhatsApp →</a>
-      <a href="https://instagram.com/kholiq.619" target="_blank" rel="noopener noreferrer">Instagram →</a>
-      <a href="https://fajarnurkholiq.github.io/KaveloLab.web/" target="_blank" rel="noopener noreferrer">KaveloLab →</a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <div class="footer">
-    <span>© 2026 Muhammad Fajar Nurkholiq</span>
-    <span>AI & Technology Explorer</span>
   </div>
 
-</div>
-
-<script>
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        // Update active nav link
-        document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
-        this.classList.add('active');
-      }
-    });
-  });
-
-  // Highlight active nav on scroll
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 120;
-      if (pageYOffset >= sectionTop) {
-        current = section.getAttribute('id');
-      }
+  <script>
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
     });
 
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + current) {
-        link.classList.add('active');
-      }
-    });
-  });
+    // Highlight active nav on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
 
-  // Cursor pointer for interactive items (optional)
-  document.querySelectorAll('.project-item, .service-card, .lab-item, .product-card').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      el.style.cursor = 'default';
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
     });
-  });
-</script>
+
+    // Live clock for nav status
+    function updateClock() {
+      const el = document.getElementById('clock');
+      if (!el) return;
+      const now = new Date();
+      let h = now.getHours();
+      const m = String(now.getMinutes()).padStart(2, '0');
+      const ampm = h >= 12 ? 'pm' : 'am';
+      h = h % 12;
+      if (h === 0) h = 12;
+      el.textContent = `${h}:${m} ${ampm}`;
+    }
+    updateClock();
+    setInterval(updateClock, 1000 * 30);
+  </script>
 
 </body>
 </html>
